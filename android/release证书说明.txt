@@ -1,0 +1,3 @@
+release的证书是 PoliceAffairs/android/local.properties/police.jks
+密码是 meishu
+alias是 meishu

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.11&key=0b44378bbb7118f3d6e8515fc5f1e38f"></script> 
+    <title>警务通地图</title>
+    <style>
+        html,body,#mapContainer{
+            width:100%; 
+            height: 100%; 
+        }
+    </style>
+</head>
+<body>
+    <div id="mapContainer"></div> 
+</body>
+
+<script>
+    let lng,lat,myLng,myLat;
+    let searchStr = window.location.search;
+    if(searchStr){
+        let search = searchStr.slice(1);
+        let arr = search.split("&");
+        let lngIndex = findIndex(arr,"lng");
+        let latIndex = findIndex(arr,"lat");
+        let lngIndex1 = findIndex(arr,"myLng");
+        let latIndex1 = findIndex(arr,"myLat");
+        lng = lngIndex > -1 ? arr[lngIndex].split("=")[1]:"";
+        lat = latIndex> -1 ? arr[latIndex].split("=")[1]:"";
+        myLng = lngIndex1 > -1 ? arr[lngIndex1].split("=")[1] :"";
+        myLat = latIndex1 > -1 ? arr[latIndex1].split("=")[1] :""
+    }
+    if(lng && lat ){
+        let map = new AMap.Map("mapContainer", {
+            resizeEnable: true,
+            center:[lng,lat],
+            // center:[121.458033,31.232279],
+            // center: [116.397428, 39.90923],
+            zoom: 13
+        });
+        // 创建一个 Marker 实例：
+        var marker = new AMap.Marker({
+            position: new AMap.LngLat(lng,lat),   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
+        });
+        // marker.setLabel({
+        //     //修改label相对于maker的位置
+        //     offset: new AMap.Pixel(20, 20),
+        //     content: "<div class='info'>被布控人的位置</div>"
+        // });
+        // 将创建的点标记添加到已有的地图实例：
+        map.add(marker);
+        // 121.472644,31.231706
+        //121.458033,31.232279
+        AMap.convertFrom([myLng,myLat],"gps", (status, result) => {
+          if (result.info === 'ok') {
+            var resLnglat = result.locations[0];
+            //lat: 31.230377
+            // lng: 121.462603 
+            console.info("哈哈",resLnglat);
+            m2 = new AMap.Marker({
+                position: resLnglat,
+            });
+            map.add(m2);
+          }
+        });
+
+    }
+
+    function findIndex(arr,str){
+       return arr.findIndex(item => {
+            return item.indexOf(str) > -1;
+        });
+    }
+    
+
+</script>
+</html>
