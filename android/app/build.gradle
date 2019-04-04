@@ -160,6 +160,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-push-notification')
     compile project(':react-native-webview')
     //    compile project(':react-native-amap3d')
     compile project(':react-native-vector-icons')
