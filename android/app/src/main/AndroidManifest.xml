@@ -45,7 +45,7 @@
 
       <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="${applicationId}.updateFileProvider"
+            android:authorities="com.meishu.policeaffairs.updateFileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -68,7 +68,7 @@
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <category android:name="${applicationId}" />
+                <category android:name="com.meishu.policeaffairs" />
             </intent-filter>
         </receiver>
         <!-- < Only if you're using GCM or localNotificationSchedule() > -->
@@ -115,9 +115,9 @@
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <permission
-        android:name="${applicationId}.permission.C2D_MESSAGE"
+        android:name="com.meishu.policeaffairs.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
-    <uses-permission android:name="${applicationId}.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.meishu.policeaffairs.permission.C2D_MESSAGE" />
     <!-- < Only if you're using GCM or localNotificationSchedule() > -->
 
     <uses-permission android:name="android.permission.VIBRATE" />

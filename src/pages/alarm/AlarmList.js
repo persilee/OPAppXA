@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, FlatList, View, Text, Image, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, FlatList, View, Text, Image, TouchableOpacity } from 'react-native';
 
 import GlobalStyles from '../../../assets/styles/GlobalStyles';
 import Toast, { DURATION } from 'react-native-easy-toast';
@@ -8,10 +8,10 @@ import { observer, inject } from 'mobx-react';
 import Color from '../../config/color';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import CommonFetch from '../../componets/CommonFetch';
-import NotifService from '../../componets/NotifService';
+
 @inject('User')
 @observer
-export default class AlarmList extends Component<Props> {
+export default class AlarmList extends Component {
 	constructor(props) {
 		super(props);
 		this.pageNum = 1;
@@ -21,19 +21,6 @@ export default class AlarmList extends Component<Props> {
 			data: [],
 			senderId: 'senderID'
 		};
-
-		this.notif = new NotifService(this.onRegister.bind(this), this.onNotif.bind(this));
-	}
-
-	onRegister(token) {
-		Alert.alert('Registered !', JSON.stringify(token));
-		console.log(token);
-		this.setState({ registerToken: token.token, gcmRegistered: true });
-	}
-
-	onNotif(notif) {
-		console.log(notif);
-		Alert.alert(notif.title, notif.message);
 	}
 
 	componentDidMount() {
@@ -116,14 +103,6 @@ export default class AlarmList extends Component<Props> {
 	render() {
 		return (
 			<View style={[ GlobalStyles.pageBg, GlobalStyles.p15 ]}>
-				<TouchableOpacity
-					style={styles.button}
-					onPress={() => {
-						this.notif.localNotif();
-					}}
-				>
-					<Text>Local Notification (now)</Text>
-				</TouchableOpacity>
 				<FlatList
 					keyExtractor={(item, index) => `alarm-${index}`}
 					data={this.state.data}

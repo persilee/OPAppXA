@@ -22,7 +22,8 @@ import CommonFetch from "../../componets/CommonFetch";
 import API from "../../api/index";
 import {observer,inject} from 'mobx-react';
 import {groupBy} from "../../utils/Utils";
-
+import NotifService from '../../componets/NotifService';
+import BackgroundJob from 'react-native-background-job';
 import Color from "../../config/color";
 
 const {Xinge} = NativeModules;
@@ -118,6 +119,30 @@ export default class Home extends Component{
         this.state = {
             isRefreshing:false,
             alarmLst:[],
+            senderId: 'senderID',
+        }
+
+        this.notif = new NotifService(this.onRegister.bind(this), this.onNotif.bind(this));
+    }
+
+    onRegister(token) {
+        Alert.alert("Registered !", JSON.stringify(token));
+        console.log(token);
+        this.setState({ registerToken: token.token, gcmRegistered: true });
+    }
+
+    onNotif(notif) {
+        console.log(notif);
+        Alert.alert(notif.title, notif.message);
+    }
+
+    componentWillMount() {
+        if (Platform.OS === 'android') {
+            const backgroundJob = {
+                jobKey: 'backgroundNotif',
+                job: () => this.notif.getAlarmList()
+            };
+            BackgroundJob.register(backgroundJob);
         }
     }
 
@@ -128,6 +153,16 @@ export default class Home extends Component{
                 this.getHomeAlarmList();
             }
         });
+
+        if (BackgroundJob) {
+            BackgroundJob.schedule({
+                jobKey: "backgroundNotif",       //后台运行任务的key
+                period: 5000,                     //任务执行周期
+                exact: true,                     //安排一个作业在提供的时间段内准确执行
+                allowWhileIdle: true,            //允许计划作业在睡眠模式下执行
+                allowExecutionInForeground: true,//允许任务在前台执行
+            });
+        }
 
         // Xinge.enableDebug(true);
         // Xinge.registerPushWithAccount(this.props.User.userId).then(token =>{
@@ -160,9 +195,8 @@ export default class Home extends Component{
                 // userId: "001"
                 userId:this.userId,
             }};
-        console.info("getHomeAlarmList",params);
         CommonFetch.doFetch(API.getHomeAlarmList,params,(responseData)=>{
-            console.info("getHomeAlarmList",responseData);
+            console.info('getHomeAlarmList', responseData);
             if(responseData.data && responseData.data.list && responseData.data.list.length > 0){
                 let sorted = groupBy(responseData.data.list, function (item) {
                     return [item.alarmType];
