@@ -82,6 +82,10 @@ export default class NotifService {
 
 	getAlarmList() {
     let date = moment().locale('zh-cn').format('YYYY-MM-DD');
+    let localTime = moment().locale('zh-cn').format('HH:mm:ss');
+    if (localTime > moment().locale('zh-cn').format('23:59:00')) {
+      time = '00:00:00';
+    }
     if(time == '00:00:00') {
       this.doFetch(API.getNotifAlarmData + `?pwd=2ysh3z72w&date=${date}&time=${time}`, (responseData) => {
         if (responseData.Exists) {
