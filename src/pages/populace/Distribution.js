@@ -59,13 +59,13 @@ export default class  Distribution extends Component {
             })
             item.totalNumber = totalNumber;
 
-            item.childData.unshift({
-                areaName: item.areaName,
-                name: "全部",
-                id: item.id,
-                sfid: "0",
-                roomUserNum: totalNumber
-            })
+            // item.childData.unshift({
+            //     areaName: item.areaName,
+            //     name: "全部",
+            //     id: item.id,
+            //     sfid: "0",
+            //     roomUserNum: totalNumber
+            // })
         })
 
         this.setState({
@@ -97,14 +97,12 @@ export default class  Distribution extends Component {
 
 
     _renderItem = ({item,index}) =>{
-            console.log(item);
         return (
              <View key={index}>
                 <TouchableOpacity style={[GlobalStyles.containerBg,styles.itemStyle,GlobalStyles.lineBlackBottom,GlobalStyles.pdlr15]}
                     onPress={() => this.headerPress(index)}>
                     <Text style={[GlobalStyles.font14Gray]}>{item.areaName}</Text>
                     <View style={styles.numberView}>
-                        <Text style={[GlobalStyles.font14Gray]}>{item.NAME}</Text>
                         <Text style={[GlobalStyles.font14Gray,GlobalStyles.mr15]}>{item.totalNumber}</Text>
                         <FontAwesome name={item.expanded?"angle-down":"angle-right"} color={Color.whiteColor} size={14} />
                     </View>
@@ -121,9 +119,15 @@ export default class  Distribution extends Component {
     }
 
     _subRenderItem = (item,index) =>{
+        console.log(item);
         return (
-            <TouchableOpacity key={index} onPress={()=>{this.provincePress(item)}}>
-                 <ItemInput name={item.name} textType={"text"}  textValue={item.roomUserNum} 
+            <TouchableOpacity 
+                key={index} 
+                onPress={()=>{this.provincePress(item)}} 
+                style={[styles.itemStyle, GlobalStyles.lineBlackBottom, GlobalStyles.pdlr15]}
+            >
+                <Text style={[GlobalStyles.font14Gray]}>{item.NAME}</Text>
+                <ItemInput name={item.name} textType={"text"}  textValue={item.roomUserNum} 
                  style={[styles.subItem,GlobalStyles.lineBottom]}
                  leftStyle={[GlobalStyles.font14Gray,styles.leftStyle]}></ItemInput>
             </TouchableOpacity>
@@ -134,7 +138,6 @@ export default class  Distribution extends Component {
 
     render() {
         const { navigate } = this.props.navigation;
-
         return (
             <View style={[GlobalStyles.pageBg,{position:"relative"}]}>
 
