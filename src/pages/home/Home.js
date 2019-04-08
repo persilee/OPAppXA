@@ -244,13 +244,14 @@ export default class Home extends Component{
 
     jumpAlarm = (item) => {
         let page = ""; //1-车辆报警 2-人脸报警 3-手机报警 
-        if(item.alarmTypeId == "1"){
+        if (item.alarmType == "车辆报警"){
             page = "CarAlarm";
-        }else if(item.alarmTypeId == "2"){
+        } else if (item.alarmType == "人脸报警"){
             page = "FaceAlarm";
-        }else if(item.alarmTypeId == "3"){
+        } else if (item.alarmType == "信息报警"){
             page = "InfoAlarm";
         }
+        console.log(item)
         this.props.navigation.navigate(page);
     }
 

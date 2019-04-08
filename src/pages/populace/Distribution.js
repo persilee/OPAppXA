@@ -49,6 +49,7 @@ export default class  Distribution extends Component {
 
     dealResponseData = (responseData)=>{
         let data = responseData.data.list;
+        console.log(responseData);
         data.map((item,index)=>{
             item.expanded = false;
 
@@ -96,12 +97,14 @@ export default class  Distribution extends Component {
 
 
     _renderItem = ({item,index}) =>{
+            console.log(item);
         return (
              <View key={index}>
                 <TouchableOpacity style={[GlobalStyles.containerBg,styles.itemStyle,GlobalStyles.lineBlackBottom,GlobalStyles.pdlr15]}
                     onPress={() => this.headerPress(index)}>
                     <Text style={[GlobalStyles.font14Gray]}>{item.areaName}</Text>
                     <View style={styles.numberView}>
+                        <Text style={[GlobalStyles.font14Gray]}>{item.NAME}</Text>
                         <Text style={[GlobalStyles.font14Gray,GlobalStyles.mr15]}>{item.totalNumber}</Text>
                         <FontAwesome name={item.expanded?"angle-down":"angle-right"} color={Color.whiteColor} size={14} />
                     </View>
