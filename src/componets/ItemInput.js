@@ -33,6 +33,10 @@ export default class ItemInput extends Component {
                    <Text style={[GlobalStyles.font14Gray,GlobalStyles.taRight,rightFontStyle]} {...props}>{textValue}</Text>
                </View>
            );
+       } else if (textType == 'textLine'){
+           <View style={[{ height: 20 }, rightStyle]} >
+               <Text style={[GlobalStyles.font14Gray, rightFontStyle]} {...props}>{textValue}</Text>
+           </View>
        }else if(textType == 'input' || !textType){
            rightView = (
                <TextInput

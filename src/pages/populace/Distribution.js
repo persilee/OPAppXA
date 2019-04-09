@@ -49,7 +49,6 @@ export default class  Distribution extends Component {
 
     dealResponseData = (responseData)=>{
         let data = responseData.data.list;
-        console.log(responseData);
         data.map((item,index)=>{
             item.expanded = false;
 
@@ -75,7 +74,6 @@ export default class  Distribution extends Component {
 
 
     provincePress = (item) =>{
-        console.log('provincePress',item)
         this.props.navigation.navigate('PopulaceList',{queryParam:item});
     }
     
@@ -119,17 +117,19 @@ export default class  Distribution extends Component {
     }
 
     _subRenderItem = (item,index) =>{
-        console.log(item);
         return (
             <TouchableOpacity 
                 key={index} 
                 onPress={()=>{this.provincePress(item)}} 
-                style={[styles.itemStyle, GlobalStyles.lineBlackBottom, GlobalStyles.pdlr15]}
+                style={[GlobalStyles.pdlr15, styles.itemStyle, GlobalStyles.lineBottom]}
             >
-                <Text style={[GlobalStyles.font14Gray]}>{item.NAME}</Text>
-                <ItemInput name={item.name} textType={"text"}  textValue={item.roomUserNum} 
+                {/* <ItemInput name={item.name} textType={"textLine"} textValue={item.NAME}
                  style={[styles.subItem,GlobalStyles.lineBottom]}
-                 leftStyle={[GlobalStyles.font14Gray,styles.leftStyle]}></ItemInput>
+                 leftStyle={[GlobalStyles.font14Gray,styles.leftStyle]}>                  
+                </ItemInput> */}
+
+                <Text style={[GlobalStyles.font14Gray, GlobalStyles.mr15]}>{item.NAME}</Text>
+                <Text style={[GlobalStyles.font14Gray, GlobalStyles.mr15]}>{item.roomUserNum}</Text>
             </TouchableOpacity>
         )
     }
