@@ -30,6 +30,7 @@ export default  {
     taskperson:`${additionUrl}/api/appserver/taskperson/update`,
     getHomeAlarmList:`${baseUrl}/mqi/pageOrData/a52d3efd7eeb479c8e56625be28a60f8`, //首页报警列表
     getNotifAlarmData: `${newUrl}/api/alarm/push`, //首页报警通知栏信息
+    getAlarmListData: `${newUrl}/api/alarm/list`, //首页报警列表
     getRealUnitList: `${baseUrl}/mqi/pageOrData/c50fd0e93e4d4deca21f20a36450204d`,//获取使用单位列表
     getVehicleRegional:`${baseUrl}/mqi/pageOrData/6e48b45d8454446b9c2fe3506900b4af`,//车辆归属统计
     getVehicleDetails:`${baseUrl}/mqi/pageOrData/d600fa5cb8d347f69f87da8439f5890c`,//车辆详情列表

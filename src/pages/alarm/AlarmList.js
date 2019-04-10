@@ -15,8 +15,6 @@ export default class AlarmList extends Component {
 	constructor(props) {
 		super(props);
 		this.pageNum = 1;
-		this.total = -1;
-		this.pageSize = 10;
 		this.state = {
 			data: [],
 			senderId: 'senderID'
@@ -29,14 +27,14 @@ export default class AlarmList extends Component {
 
 	jumpAlarm = (item) => {
 		let page = ''; //1-车辆报警 2-人脸报警 3-手机报警
-		if (item.alarmTypeId == '1') {
+		if (item.alarmType == '车辆报警') {
 			page = 'CarAlarm';
-		} else if (item.alarmTypeId == '2') {
+		} else if (item.alarmType == '人脸报警') {
 			page = 'FaceAlarm';
-		} else if (item.alarmTypeId == '3') {
+		} else if (item.alarmType == '信息报警') {
 			page = 'InfoAlarm';
 		}
-		this.props.navigation.navigate(page);
+		this.props.navigation.navigate(page, { queryParam: item });
 	};
 
 	convertAlarmColor = (type) => {
@@ -69,35 +67,31 @@ export default class AlarmList extends Component {
 	};
 
 	fetchData = () => {
-		if (this.total == -1 || this.total > (this.pageNum - 1) * this.pageSize) {
-			let params = {
-				init: 0,
-				pageNum: this.pageNum,
-				pageSize: this.pageSize,
-				queryPair: {
-					userId: this.props.User.userId
-				}
-			};
+		let params = {
+			alarmstate: 0,
+			istoday: 1,
+			page: this.pageNum,
+			limit: 20,
+			pwd: '2ysh3z72w'
+		};
 
-			CommonFetch.doFetch(API.getHomeAlarmList, params, (responseData) => {
-				console.info('alarmlist', responseData);
-				if (responseData.data && responseData.data.list && responseData.data.list.length > 0) {
-					// let sorted = groupBy(responseData.data.list, function (item) {
-					//     return [item.alarmType];
-					// });
-					// let arr = []; //排序
-					// arr = this.findIndexAlarm(arr,sorted,"人脸报警");
-					// arr = this.findIndexAlarm(arr,sorted,"车辆报警");
-					// arr = this.findIndexAlarm(arr,sorted,"信息报警");
-					this.total = responseData.data.total;
-					this.setState({
-						data: responseData.data.list
-					});
+		CommonFetch.doFetch(API.getAlarmListData, params, (responseData) => {
+			if (responseData.data && responseData.data.list && responseData.data.list.length > 0) {
+				let arr = [ ...responseData.data.list, ...this.state.data ];
+				function compare(property) {
+					return function (obj1, obj2) {
+						var value1 = obj1[property];
+						var value2 = obj2[property];
+						return value2 > value1 ? 1 : -1;
+					}
 				}
-			});
-
-			this.pageNum = this.pageNum + 1;
-		}
+				var sortArr = arr.sort(compare("alarmTime"));
+				this.setState({
+					data: sortArr
+				});
+			}
+		});
+		this.pageNum = this.pageNum + 1;
 	};
 
 	render() {

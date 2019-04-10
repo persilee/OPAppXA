@@ -123,13 +123,13 @@ let itemArr = [
 ];
 
 if (Platform.OS === 'android') {
-    const backgroundJob = {
-        jobKey: 'backgroundNotif',
-        job: () => {
-            new NotifService().getAlarmList();
-        }
-    };
-    BackgroundJob.register(backgroundJob);
+	const backgroundJob = {
+		jobKey: 'backgroundNotif',
+		job: () => {
+			new NotifService().getAlarmList();
+		}
+	};
+	BackgroundJob.register(backgroundJob);
 }
 
 @inject('User')
@@ -140,7 +140,7 @@ export default class Home extends Component {
 		this.state = {
 			isRefreshing: false,
 			alarmLst: [],
-            senderId: 'senderID'
+			senderId: 'senderID'
 		};
 
 		this.notif = new NotifService(this.onRegister.bind(this), this.onNotif.bind(this));
@@ -155,7 +155,7 @@ export default class Home extends Component {
 	onNotif(notif) {
 		console.log(notif);
 		Alert.alert(notif.title, notif.message);
-    }
+	}
 
 	componentDidMount() {
 		getUserId().then((_userId) => {
@@ -163,7 +163,7 @@ export default class Home extends Component {
 			if (this.findmoduleIndex('TodayAlarm') > -1) {
 				this.getHomeAlarmList();
 			}
-        });
+		});
 
 		if (BackgroundJob) {
 			BackgroundJob.schedule({
@@ -171,8 +171,8 @@ export default class Home extends Component {
 				period: 5000, //任务执行周期
 				exact: true, //安排一个作业在提供的时间段内准确执行
 				allowWhileIdle: true, //允许计划作业在睡眠模式下执行
-                allowExecutionInForeground: true //允许任务在前台执行
-            })
+				allowExecutionInForeground: true //允许任务在前台执行
+			});
 		}
 
 		// Xinge.enableDebug(true);
@@ -200,26 +200,17 @@ export default class Home extends Component {
 	};
 	getHomeAlarmList = () => {
 		let params = {
-			init: 3,
-			pageNum: 1,
-			pageSize: 3,
-			queryPair: {
-				// userId: "001"
-				userId: this.userId
-			}
+			alarmstate: 0,
+			istoday: 1,
+			page: 1,
+			limit: 10,
+			pwd: '2ysh3z72w'
 		};
-		CommonFetch.doFetch(API.getHomeAlarmList, params, (responseData) => {
+		CommonFetch.doFetch(API.getAlarmListData, params, (responseData) => {
 			console.info('getHomeAlarmList', responseData);
 			if (responseData.data && responseData.data.list && responseData.data.list.length > 0) {
-				let sorted = groupBy(responseData.data.list, function(item) {
-					return [ item.alarmType ];
-				});
-				let arr = []; //排序
-				arr = this.findIndexAlarm(arr, sorted, '人脸报警');
-				arr = this.findIndexAlarm(arr, sorted, '车辆报警');
-				arr = this.findIndexAlarm(arr, sorted, '信息报警');
-				this.setState({
-					alarmLst: arr
+                this.setState({
+                    alarmLst: responseData.data.list
 				});
 			}
 		});
@@ -264,8 +255,7 @@ export default class Home extends Component {
 		} else if (item.alarmType == '信息报警') {
 			page = 'InfoAlarm';
 		}
-		console.log(item);
-		this.props.navigation.navigate(page);
+        this.props.navigation.navigate(page, { queryParam: item });
 	};
 
 	render() {
@@ -314,7 +304,7 @@ export default class Home extends Component {
 								</View>
 							)}
 							<Text style={[ GlobalStyles.font14White, GlobalStyles.mb5 ]}>
-								警务责任区：{this.props.User.orgName}
+								警务责任区：劳动南路派出所
 							</Text>
 						</View>
 					</View>
