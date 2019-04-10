@@ -38,25 +38,25 @@ const Tabs = createBottomTabNavigator({
         }),
     },
 
-    Dispute: {
-        screen: DisputeList,
-        navigationOptions:({navigation}) => ({
-            tabBarLabel: '纠纷',
-            tabBarIcon:({focused, tintColor}) => {
-                return  renderTabIcon(focused, tintColor,'slideshare');
-            },
-            tabBarOnPress:(obj)=>{
-                console.log("obj",obj);
-                DeviceEventEmitter.emit("reloadDisputeList");
-                obj.navigation.navigate('Dispute');
-            }
-        }),
-    },
+    // Dispute: {
+    //     screen: DisputeList,
+    //     navigationOptions:({navigation}) => ({
+    //         tabBarLabel: '纠纷',
+    //         tabBarIcon:({focused, tintColor}) => {
+    //             return  renderTabIcon(focused, tintColor,'slideshare');
+    //         },
+    //         tabBarOnPress:(obj)=>{
+    //             console.log("obj",obj);
+    //             DeviceEventEmitter.emit("reloadDisputeList");
+    //             obj.navigation.navigate('Dispute');
+    //         }
+    //     }),
+    // },
 
     Control:{
         screen: ControlList,
         navigationOptions:({navigation}) => ({
-            tabBarLabel: '布控',
+            tabBarLabel: '任务',
             tabBarIcon:({focused, tintColor}) => {
                 return  renderTabIcon(focused, tintColor,'film');
             },

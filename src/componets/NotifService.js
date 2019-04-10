@@ -3,11 +3,14 @@ import CommonFetch from './CommonFetch';
 import { getUserId } from '../utils/Common';
 import API from '../api/index';
 import moment from 'moment';
+import 'moment/min/locales';
+import 'moment/locale/zh-cn';
 
 let subText = '';
 let bigText = '';
 let color = '';
 let time = '00:00:00';
+let num = 1;
 
 export default class NotifService {
 	constructor(onRegister, onNotification) {
@@ -81,28 +84,20 @@ export default class NotifService {
 	}
 
 	getAlarmList() {
-    let date = moment().locale('zh-cn').format('YYYY-MM-DD');
-    let localTime = moment().locale('zh-cn').format('HH:mm:ss');
-    if (localTime > moment().locale('zh-cn').format('23:59:00')) {
-      time = '00:00:00';
-    }
-    if(time == '00:00:00') {
-      this.doFetch(API.getNotifAlarmData + `?pwd=2ysh3z72w&date=${date}&time=${time}`, (responseData) => {
-        if (responseData.Exists) {
-          time = responseData.AlarmTime.slice(11);
-        }
-      });
-    }else{
-      this.doFetch(API.getNotifAlarmData + `?pwd=2ysh3z72w&date=${date}&time=${time}`, (responseData) => {
-        if (responseData.Exists) {
-          time = responseData.AlarmTime.slice(11);
-          subText = responseData.AlarmType;
-          bigText = `${responseData.AlarmType}: ${responseData.AlarmTime}`;
-          color = this.convertAlarmColor(responseData.AlarmType);
+    let date = moment().format('YYYY-MM-DD');
+		this.doFetch(API.getNotifAlarmData + `?pwd=2ysh3z72w&date=${date}&time=${time}`, (responseData) => {
+			if (responseData.Exists) {
+        num ++;
+				date = responseData.AlarmTime.slice(0, 10);
+				time = responseData.AlarmTime.slice(11);
+				subText = responseData.AlarmType;
+				bigText = `${responseData.AlarmType}: ${responseData.AlarmTime}`;
+        color = this.convertAlarmColor(responseData.AlarmType);
+        if(num > 2) {
           this.localNotif();
         }
-      });
-    }
+			}
+		});
 	}
 
 	localNotif() {
