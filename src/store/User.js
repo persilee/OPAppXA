@@ -13,6 +13,7 @@ class User {
         token:"",
         mobileNo:"",
         userId:"",
+        idcardNum: "",
         userNameChn:"",
         superName:"",
         orgName:"",
@@ -33,6 +34,9 @@ class User {
     };
     @computed get userId(){
         return this.userInfo.userId;
+    };
+    @computed get idcardNum(){
+        return this.userInfo.idcardNum;
     };
     @computed get userNameChn(){
         return this.userInfo.userNameChn;
@@ -63,7 +67,7 @@ class User {
     }
 
     @action
-    updateUser = (flag,_token,_mobileNo,userId,userNameChn,superName,orgName,userPosi) =>{
+    updateUser = (flag, _token, _mobileNo, userId,idcardNum,userNameChn,superName,orgName,userPosi) =>{
 
         let date = new Date();//token有效期 7天
         date.setTime(date.getTime() + 1000*60*60*24*7);
@@ -74,6 +78,7 @@ class User {
             token:_token,
             mobileNo:_mobileNo,
             userId:userId,
+            idcardNum: idcardNum,
             userNameChn:userNameChn,
             superName:superName,
             orgName:orgName,
@@ -115,6 +120,7 @@ class User {
                     token:"",
                     mobileNo:"",
                     userId:"",
+                    idcardNum:"",
                     userNameChn:"",
                     superName:"",
                     orgName:"",

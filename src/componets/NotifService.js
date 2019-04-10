@@ -9,6 +9,7 @@ import 'moment/locale/zh-cn';
 let subText = '';
 let bigText = '';
 let color = '';
+let date = moment().format('YYYY-MM-DD');
 let time = '00:00:00';
 let num = 1;
 
@@ -84,20 +85,25 @@ export default class NotifService {
 	}
 
 	getAlarmList() {
-    let date = moment().format('YYYY-MM-DD');
-		this.doFetch(API.getNotifAlarmData + `?pwd=2ysh3z72w&date=${date}&time=${time}`, (responseData) => {
-			if (responseData.Exists) {
-        num ++;
-				date = responseData.AlarmTime.slice(0, 10);
-				time = responseData.AlarmTime.slice(11);
-				subText = responseData.AlarmType;
-				bigText = `${responseData.AlarmType}: ${responseData.AlarmTime}`;
-        color = this.convertAlarmColor(responseData.AlarmType);
-        if(num > 2) {
+    let params = {
+      date: date,
+      time: time,
+      pwd: '2ysh3z72w'
+    };
+
+    CommonFetch.doFetch(API.getNotifAlarmData, params, (responseData) => {
+      if (responseData.data && responseData.data.Exists){
+        num++;
+        date = responseData.data.AlarmTime.slice(0, 10);
+        time = responseData.data.AlarmTime.slice(11);
+        subText = responseData.data.AlarmType;
+        bigText = `${responseData.data.AlarmType}: ${responseData.data.AlarmTime}`;
+        color = this.convertAlarmColor(responseData.data.AlarmType);
+        if (num > 2) {
           this.localNotif();
         }
-			}
-		});
+      }
+    })
 	}
 
 	localNotif() {

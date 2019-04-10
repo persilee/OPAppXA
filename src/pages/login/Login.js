@@ -124,7 +124,7 @@ export default class Login extends Component{
                         <CommonBtn text={'登录'} onPress={this.login} style={{marginTop:140}} ></CommonBtn>       
                     </View>
 
-                    <Text style={[GlobalStyles.font13White,GlobalStyles.taCenter,GlobalStyles.mb20]}>美数信息科技</Text>
+                    <Text style={[GlobalStyles.font13White,GlobalStyles.taCenter,GlobalStyles.mb20]}>远宏科技</Text>
 
                     <Toast ref="toast" position={"center"}  fadeInDuration={500} />
                 </View>
@@ -178,7 +178,7 @@ export default class Login extends Component{
                         console.info("Xinge推送的token",token);
                     });
                     this.props.User.updateUser(true,data.token,data.user.userName,data.user.id,
-                            data.user.userNameChn,data.user.superName,data.user.orgName,data.user.userPosi);
+                        data.user.idcardNum,data.user.userNameChn,data.user.superName,data.user.orgName,data.user.userPosi);
                     this.props.User.updateModuList(data.moduList);
                     this.props.navigation.replace('Main');
                 }else {

@@ -29,6 +29,7 @@ export default class Mine extends Component{
             uncompleteTotal:0,
             uncompleteVisible:false,
         }
+        console.log(this.props);
     }
 
     componentDidMount(){
@@ -183,7 +184,7 @@ export default class Mine extends Component{
                     <Image source={require('../../../assets/images/person_portait.png')} style={styles.userImg} />
                     <View style={[GlobalStyles.flex]}>
                         <Text style={[GlobalStyles.font18White,GlobalStyles.mb5]}>{this.props.User.userNameChn}</Text>
-                        <Text style={GlobalStyles.font14White}>警员ID：{this.props.User.mobileNo}</Text>
+                        <Text style={GlobalStyles.font14White}>警员ID：{this.props.User.idcardNum}</Text>
                     </View>
                     <FontAwesome size={22} name={"angle-right"} color={Color.whiteColor}/>
                 </TouchableOpacity>
