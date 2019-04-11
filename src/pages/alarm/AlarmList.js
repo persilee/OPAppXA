@@ -69,7 +69,7 @@ export default class AlarmList extends Component {
 	fetchData = () => {
 		let params = {
 			alarmstate: 0,
-			istoday: 1,
+			istoday: 0,
 			page: this.pageNum,
 			limit: 20,
 			pwd: '2ysh3z72w'

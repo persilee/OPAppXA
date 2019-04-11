@@ -7,6 +7,7 @@ import { width, getUserId } from '../../utils/Common';
 import CommonFetch from '../../componets/CommonFetch';
 import Geolocation from 'Geolocation';
 import { formatDate } from '../../utils/Utils';
+import CommonBtn from '../../componets/CommonBtn';
 let titleArr = [
 	{
 		title: '姓名',
@@ -37,7 +38,6 @@ export default class AlarmInfo extends Component {
 			lon: '',
 			lat: ''
 		};
-		this.getLocation();
 	}
 
 	getLocation() {
@@ -75,8 +75,6 @@ export default class AlarmInfo extends Component {
 	};
 
 	render() {
-		// let mapUrl = `http://work.meishutech.com/test/map.html?lng=${this.state.lon}&lat=${this.state.lat}`;
-		let mapUrl = `https://meishutest-1256675553.cos.ap-chengdu.myqcloud.com/%E8%AD%A6%E5%8A%A1%E9%80%9AAPP(%E7%94%9F%E4%BA%A7)/map.html?lng=115.862411&lat=28.692943&myLng=121.458033&myLat=31.232279`;
 		return (
 			<View style={[ GlobalStyles.pageBg, GlobalStyles.pdlr15 ]}>
 				<View style={[ GlobalStyles.containerBg, styles.itemContainer ]}>
@@ -95,7 +93,7 @@ export default class AlarmInfo extends Component {
 						<View style={GlobalStyles.justifyCenter}>
 							<Text style={[ GlobalStyles.font12Gray, GlobalStyles.mb5, GlobalStyles.taCenter ]}>VS</Text>
 							<Text style={[ GlobalStyles.font12Gray ]}>
-								相似度:<Text style={GlobalStyles.font12Red}>92%</Text>
+								相似度:<Text style={GlobalStyles.font12Red}>{this.state.data.Similary}</Text>
 							</Text>
 						</View>
 						<View style={[ styles.imgContainer, GlobalStyles.alignCenter, GlobalStyles.borderColor ]}>
@@ -105,9 +103,9 @@ export default class AlarmInfo extends Component {
 					</View>
 
 					{this.renderPersonItem()}
-				</View>
 
-				<WebView source={{ uri: mapUrl }} javaScriptEnabled={true} style={styles.mapContainer} />
+					<CommonBtn text={'处 理'} onPress={} style={{ marginTop: 10 }} />
+				</View>
 			</View>
 		);
 	}

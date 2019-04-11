@@ -186,9 +186,10 @@ export default class HouseAllScene extends Component{
     }
 
     convertTreeData = (list) => {
+        console.log(list);
         let arr = list.map((item,index) => {
-            let roomData = item.houseInfo;
-            // console.info("convertTreeData before ",index,roomData);
+            let roomData = item.houseInfo || '无数据';
+            console.info("convertTreeData before ",index,roomData);
             let roomArr = roomData && roomData.split(",");
             roomArr = roomArr.map(data => { return data.split("_")});
             roomArr = roomArr.map(data => {

@@ -7,6 +7,7 @@ import { width, getUserId } from '../../utils/Common';
 import CommonFetch from '../../componets/CommonFetch';
 import Geolocation from 'Geolocation';
 import { formatDate } from '../../utils/Utils';
+import CommonBtn from '../../componets/CommonBtn';
 let titleArr = [
 	{
 		title: '车辆号码',
@@ -78,6 +79,8 @@ export default class CarAlarm extends Component {
 					</View>
 
 					{this.renderPersonItem()}
+
+					<CommonBtn text={'处 理'} onPress={} style={{ marginTop: 10 }} />
 				</View>
 			</View>
 		);

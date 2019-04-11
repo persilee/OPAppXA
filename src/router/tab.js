@@ -161,7 +161,7 @@ Tabs.navigationOptions = ({ navigation }) => {
 
     } else if(route.routeName === 'Control'){
         options = {
-            headerTitle: "布控",
+            headerTitle: "报警任务",
             headerLeft:(
                 <View />
             ),
