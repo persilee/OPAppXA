@@ -166,7 +166,7 @@ export default class ControlScene extends Component {
 		return (
 			<View style={[ GlobalStyles.pageBg ]}>
 				{item.alarmType == '人脸报警' ? (
-					<View style={[ GlobalStyles.pageBg, GlobalStyles.pdlr15 ]}>
+					<View style={[ GlobalStyles.pageBg ]}>
 						<View style={[ GlobalStyles.containerBg, styles.itemContainer ]}>
 							<View
 								style={[
@@ -245,13 +245,8 @@ export default class ControlScene extends Component {
 			DealAlarmPolice: this.props.User.userNameChn,
 			pwd: '2ysh3z72w'
 		};
-		console.log('params', params);
-		console.log(this.state.data);
 		CommonFetch.doFetch(API.getAlarmDealData, params, (responseData) => {
-			console.log('responseData', responseData);
 			if (responseData.msg == 'success' ){
-				
-				console.log('bbb')
 				this.modalSelect(false);
 				this.setState({
 					tasksInfo: '',
@@ -259,7 +254,6 @@ export default class ControlScene extends Component {
 					data: []
 				});
 				this.fetchData();
-				console.log(this.state.data);
 				this.refs.toast.show('报警任务处理成功');
 			}
 		});
@@ -293,7 +287,6 @@ export default class ControlScene extends Component {
 					};
 				}
 				var sortArr = arr.sort(compare('alarmTime'));
-				console.log('sortArr', sortArr);
 				this.setState({
 					data: sortArr
 				});
@@ -331,7 +324,7 @@ export default class ControlScene extends Component {
 					>
 						<View style={[ styles.modalStyle, GlobalStyles.containerBg ]}>
 							<View style={{ justifyContent: 'flex-end', flexDirection: 'row' }}>
-								<TouchableOpacity onPress={() => this.modalSelect(false)}>
+								<TouchableOpacity onPress={() => this.cancelTasks()}>
 									<FontAwesome
 										name={'close'}
 										size={15}
@@ -345,7 +338,7 @@ export default class ControlScene extends Component {
 								<Text style={[ GlobalStyles.font14Gray, GlobalStyles.mr5 ]}>处理人：</Text>
 								<TextInput
 									editable = {false}
-									style={[GlobalStyles.borderColor, GlobalStyles.font14White, GlobalStyles.pdlr5, GlobalStyles.mr5, { height: 40, borderWidth: 1, borderRadius: 4}]}
+									style={[GlobalStyles.borderColor, GlobalStyles.font14White, GlobalStyles.pdlr5, GlobalStyles.mr5, GlobalStyles.mt10, { height: 40, borderWidth: 1, borderRadius: 4}]}
 									value={this.props.User.userNameChn}
 								/>
 								<Text style={[GlobalStyles.font14Gray, GlobalStyles.mt10]}>处理事由：</Text>
