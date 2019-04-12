@@ -103,8 +103,7 @@ export default class AlarmInfo extends Component {
 					</View>
 
 					{this.renderPersonItem()}
-
-					<CommonBtn text={'处 理'} onPress={} style={{ marginTop: 10 }} />
+					<CommonBtn text={'处 理'} style={{ marginTop: 10, width: 86, alignSelf: 'flex-end'}} ></CommonBtn>
 				</View>
 			</View>
 		);

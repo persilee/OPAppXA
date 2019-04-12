@@ -24,6 +24,9 @@ export default  GlobalStyles = {
     justifyBetween:{
         justifyContent:"space-between",
     },
+    justifyAround:{
+        justifyContent:"space-around",
+    },
     alignCenter:{
         alignItems:"center",
     },
@@ -86,9 +89,20 @@ export default  GlobalStyles = {
         paddingRight:15,
         paddingLeft:15,
     },
+    pdlr10:{
+        paddingRight:10,
+        paddingLeft:10,
+    },
+    pdlr5:{
+        paddingRight:10,
+        paddingLeft:10,
+    },
     containerBorder:{
         borderWidth:1,
         borderColor:Color.blackAlpha50Color,
+    },
+    p25:{
+        padding: 25,
     },
     p15:{
         padding:15,

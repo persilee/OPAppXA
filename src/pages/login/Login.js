@@ -121,7 +121,7 @@ export default class Login extends Component{
                             </View>
                         </TouchableHighlight> */}
                         
-                        <CommonBtn text={'登录'} onPress={this.login} style={{marginTop:140}} ></CommonBtn>       
+                        <CommonBtn text={'登 录'} onPress={this.login} style={{ marginTop: 10}} ></CommonBtn>      
                     </View>
 
                     <Text style={[GlobalStyles.font13White,GlobalStyles.taCenter,GlobalStyles.mb20]}>远宏科技</Text>

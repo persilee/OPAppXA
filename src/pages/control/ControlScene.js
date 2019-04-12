@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, FlatList, View, Text, Image, TouchableOpacity, Dimensions } from 'react-native';
+import { StyleSheet, FlatList, View, Text, Image, TouchableOpacity, Dimensions, Modal, TextInput } from 'react-native';
 
 import GlobalStyles from '../../../assets/styles/GlobalStyles';
 import Toast, { DURATION } from 'react-native-easy-toast';
@@ -9,6 +9,7 @@ import Color from '../../config/color';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import CommonFetch from '../../componets/CommonFetch';
 import CommonBtn from '../../componets/CommonBtn';
+
 
 let carTitleArr = [
 	{
@@ -51,13 +52,19 @@ let faceTitleArr = [
 		value: 'alarmTime'
 	}
 ];
+
+@inject('User')
+@observer
 export default class ControlScene extends Component {
 	constructor(props) {
 		super(props);
 		this.pageNum = 1;
 		this.state = {
 			data: [],
-			senderId: 'senderID'
+			senderId: 'senderID',
+			modalVisible: false,
+			text: '',
+			tasksInfo: ''
 		};
 	}
 
@@ -88,6 +95,19 @@ export default class ControlScene extends Component {
 		}
 		return color;
 	};
+
+	modalSelect = (flag) => {
+		this.setState({
+			modalVisible: flag
+		});
+	};
+
+	openFilterModal = (item) => {
+		this.setState({
+			tasksInfo: item
+		});
+		this.modalSelect(true);
+	}
 
 	renderCarItem = (item) => {
 		return (
@@ -143,19 +163,7 @@ export default class ControlScene extends Component {
 		if (item.value == 'like') {
 			specialColor = GlobalStyles.font14Red;
 		}
-		console.log(item);
 		return (
-			// <TouchableOpacity
-			//     style={[styles.policeItem, GlobalStyles.flexDirectRow, GlobalStyles.center, GlobalStyles.containerBg]}
-			//     key={`alram-${index}`}
-			//     onPress={() => this.jumpAlarm(item)}
-			// >
-			//     <FontAwesome name={'warning'} color={color} size={13} style={GlobalStyles.mr5} />
-			//     <Text style={[GlobalStyles.font14White, GlobalStyles.flex]} ellipsizeMode="tail" numberOfLines={1}>
-			//         {item.alarmType}：{item.alarmTime}
-			//     </Text>
-			//     <FontAwesome name={'angle-right'} color={Color.whiteColor} size={14} style={GlobalStyles.ml5} />
-			// </TouchableOpacity>
 			<View style={[ GlobalStyles.pageBg ]}>
 				{item.alarmType == '人脸报警' ? (
 					<View style={[ GlobalStyles.pageBg, GlobalStyles.pdlr15 ]}>
@@ -198,7 +206,9 @@ export default class ControlScene extends Component {
 								</View>
 							</View>
 							{this.renderFaceItem(item)}
-							<CommonBtn text={'处 理'} onPress={} style={{ marginTop: 10 }} />
+							{this.props.readStatus == 0 ? (
+								<CommonBtn text={'处 理'} onPress={() => this.openFilterModal(item) } style={{ marginTop: 10, width: 86, alignSelf: 'flex-end' }} />
+							): null}
 						</View>
 					</View>
 				) : (
@@ -219,12 +229,49 @@ export default class ControlScene extends Component {
 							</View>
 						</View>
 						{this.renderCarItem(item)}
-						<CommonBtn text={'处 理'} onPress={} style={{ marginTop: 10 }} />
+						{this.props.readStatus == 0 ? (
+								<CommonBtn text={'处 理'} onPress={ () => this.openFilterModal(item) } style={{ marginTop: 10, width: 86, alignSelf: 'flex-end' }} />
+							): null}
 					</View>
 				)}
 			</View>
 		);
 	};
+
+	doTasks = () => {
+		let params = {
+			AlarmID: this.state.tasksInfo.ID,
+			BackDescription: this.state.text,
+			DealAlarmPolice: this.props.User.userNameChn,
+			pwd: '2ysh3z72w'
+		};
+		console.log('params', params);
+		console.log(this.state.data);
+		CommonFetch.doFetch(API.getAlarmDealData, params, (responseData) => {
+			console.log('responseData', responseData);
+			if (responseData.msg == 'success' ){
+				
+				console.log('bbb')
+				this.modalSelect(false);
+				this.setState({
+					tasksInfo: '',
+					text: '',
+					data: []
+				});
+				this.fetchData();
+				console.log(this.state.data);
+				this.refs.toast.show('报警任务处理成功');
+			}
+		});
+	};
+
+	cancelTasks = () => {
+		this.setState({
+			tasksInfo: '',
+			text: ''
+		});
+		this.modalSelect(false);
+	}
 
 	fetchData = () => {
 		let params = {
@@ -236,7 +283,6 @@ export default class ControlScene extends Component {
 		};
 
 		CommonFetch.doFetch(API.getAlarmListData, params, (responseData) => {
-			console.log('responseData', responseData);
 			if (responseData.data && responseData.data.list && responseData.data.list.length > 0) {
 				let arr = [ ...responseData.data.list, ...this.state.data ];
 				function compare(property) {
@@ -247,9 +293,11 @@ export default class ControlScene extends Component {
 					};
 				}
 				var sortArr = arr.sort(compare('alarmTime'));
+				console.log('sortArr', sortArr);
 				this.setState({
 					data: sortArr
 				});
+				sortArr = [];
 			}
 		});
 		this.pageNum = this.pageNum + 1;
@@ -266,6 +314,58 @@ export default class ControlScene extends Component {
 					onEndReachedThreshold={0.1}
 					onEndReached={() => this.fetchData()}
 				/>
+
+				<Modal
+					animationType={'fade'}
+					transparent={true}
+					visible={this.state.modalVisible}
+					onRequestClose={() => this.modalSelect(false)}
+				>
+					<View
+						style={[
+							GlobalStyles.flex,
+							GlobalStyles.blackAlpha50,
+							GlobalStyles.flexDirectRow,
+							{ justifyContent: 'center'}
+						]}
+					>
+						<View style={[ styles.modalStyle, GlobalStyles.containerBg ]}>
+							<View style={{ justifyContent: 'flex-end', flexDirection: 'row' }}>
+								<TouchableOpacity onPress={() => this.modalSelect(false)}>
+									<FontAwesome
+										name={'close'}
+										size={15}
+										color={Color.whiteColor}
+										style={{ padding: 10 }}
+									/>
+								</TouchableOpacity>
+							</View>
+
+							<View style={[GlobalStyles.p25]}>
+								<Text style={[ GlobalStyles.font14Gray, GlobalStyles.mr5 ]}>处理人：</Text>
+								<TextInput
+									editable = {false}
+									style={[GlobalStyles.borderColor, GlobalStyles.font14White, GlobalStyles.pdlr5, GlobalStyles.mr5, { height: 40, borderWidth: 1, borderRadius: 4}]}
+									value={this.props.User.userNameChn}
+								/>
+								<Text style={[GlobalStyles.font14Gray, GlobalStyles.mt10]}>处理事由：</Text>
+								<TextInput
+									multiline = {true}
+									numberOfLines = {4}
+        							maxLength = {40}
+									style={[GlobalStyles.pdlr5,GlobalStyles.borderColor, GlobalStyles.font14White, GlobalStyles.mt10, { height: 80, borderWidth: 1, borderRadius: 4 }]}
+									onChangeText={(text) => this.setState({ text })}
+									value={this.state.text}
+								/>
+								<View style={[GlobalStyles.flexDirectRow, GlobalStyles.justifyAround]}>
+									<CommonBtn text={'取 消'} onPress={() => this.cancelTasks()} style={{ marginTop: 20, width: 86, alignSelf: 'flex-end' }} />
+									<CommonBtn text={'确 定'} onPress={() => this.doTasks()} style={{ marginTop: 20, width: 86, alignSelf: 'flex-end' }} />
+								</View>
+							</View>
+						</View>
+					</View>
+				</Modal>
+				<Toast ref="toast" position={"center"} fadeInDuration={600} />
 			</View>
 		);
 	}
@@ -330,5 +430,21 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		left: 25,
 		top: 55
-	}
+	},
+	btnContainer: {
+		width: 86,
+		height: 38,
+		borderRadius: 8,
+		justifyContent: 'center',
+		overflow: 'hidden'
+	},
+	btn: {
+		textAlign: 'center'
+		// backgroundColor:"transparent",
+	},
+	modalStyle:{
+        width:360,
+        height: 340,
+        marginTop:126,
+    },
 });

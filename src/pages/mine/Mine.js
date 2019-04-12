@@ -29,7 +29,6 @@ export default class Mine extends Component{
             uncompleteTotal:0,
             uncompleteVisible:false,
         }
-        console.log(this.props);
     }
 
     componentDidMount(){
