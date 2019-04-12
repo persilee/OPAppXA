@@ -25,6 +25,13 @@ export default class AlarmList extends Component {
 		this.fetchData();
 	}
 
+	refreshData = () => {
+		this.setState({
+			data: []
+		})
+		this.fetchData();
+	}
+
 	jumpAlarm = (item) => {
 		let page = ''; //1-车辆报警 2-人脸报警 3-手机报警
 		if (item.alarmType == '车辆报警') {
@@ -34,7 +41,10 @@ export default class AlarmList extends Component {
 		} else if (item.alarmType == '信息报警') {
 			page = 'InfoAlarm';
 		}
-		this.props.navigation.navigate(page, { queryParam: item });
+		this.props.navigation.navigate(page, { 
+			queryParam: item,
+			refresh: () => this.refreshData()
+		 });
 	};
 
 	convertAlarmColor = (type) => {
@@ -89,6 +99,7 @@ export default class AlarmList extends Component {
 				this.setState({
 					data: sortArr
 				});
+				sortArr = [];
 			}
 		});
 		this.pageNum = this.pageNum + 1;

@@ -255,7 +255,10 @@ export default class Home extends Component {
 		} else if (item.alarmType == '信息报警') {
 			page = 'InfoAlarm';
 		}
-        this.props.navigation.navigate(page, { queryParam: item });
+        this.props.navigation.navigate(page, { 
+			queryParam: item,
+			refresh: () => this.getHomeAlarmList()
+		});
 	};
 
 	render() {
