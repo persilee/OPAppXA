@@ -206,6 +206,10 @@ export default  GlobalStyles = {
         fontSize:13,
         color:Color.fontColor,
     },
+    font14Blue: {
+        fontSize: 14,
+        color: Color.btnColor,
+    },
     font14Gray:{
         fontSize:14,
         color:Color.fontColor,

@@ -19,6 +19,8 @@ import Toast, {DURATION} from 'react-native-easy-toast';
 import CommonSearch from "../../componets/CommonSearch";
 import ItemInput from '../../componets/ItemInput';
 import Color from "../../config/color";
+import Communications from 'react-native-communications';
+
 @inject('User')
 @observer
 export default class RealUnit extends Component{
@@ -138,7 +140,12 @@ export default class RealUnit extends Component{
                     </View>
                     <View style={[GlobalStyles.flexDirectRow,GlobalStyles.mb5]}>
                         <Text style={[GlobalStyles.font14Gray,GlobalStyles.mr5]}>法人手机号：</Text>
-                        <Text style={[GlobalStyles.font14Gray,GlobalStyles.flex]}>{item.legalPhone == null ? '' : item.legalPhone.replace('\n', '')}</Text>
+                        <Text style={[GlobalStyles.font14Gray]}>{item.legalPhone == null ? '' : item.legalPhone.replace('\n', '')}</Text>
+                        {item.legalPhone == '' ? (
+                            <Text></Text>
+                        ) : (
+                                <TouchableOpacity onPress={() => Communications.phonecall(item.legalPhone, true)}><Text style={[GlobalStyles.font14Blue, GlobalStyles.pdlr10]}>一键拨号</Text></TouchableOpacity>
+                        )}
                     </View>
                     <View style={[GlobalStyles.flexDirectRow,GlobalStyles.mb5]}>
                         <Text style={[GlobalStyles.font14Gray,GlobalStyles.mr5]}>法人身份号：</Text>
