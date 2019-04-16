@@ -95,7 +95,7 @@ export default class Login extends Component{
 
         const { navigate } = this.props.navigation;
         return (
-            <ImageBackground source={require("../../../assets/images/login_bg.jpg")} style={{ flex: 1 }}>
+            <ImageBackground source={require("../../../assets/images/login_bg.png")} style={{ flex: 1 }}>
                 <View style={[GlobalStyles.flex,GlobalStyles.pdlr15,{paddingTop:160}]}>
                     <View style={[GlobalStyles.flex,GlobalStyles.justifyCenter]}>
                         <LoginTextInput maxLength={11} placeholderTextColor={Color.whiteColor}
@@ -121,10 +121,10 @@ export default class Login extends Component{
                             </View>
                         </TouchableHighlight> */}
                         
-                        <CommonBtn text={'登 录'} onPress={this.login} style={{ marginTop: 10}} ></CommonBtn>      
+                        <CommonBtn text={'登 录'} onPress={this.login} style={{ marginTop: 10, colors: '#2663ff'}} ></CommonBtn> 
                     </View>
 
-                    <Text style={[GlobalStyles.font13White,GlobalStyles.taCenter,GlobalStyles.mb20]}>远宏科技</Text>
+                    <Text style={[GlobalStyles.font13White,GlobalStyles.taCenter,GlobalStyles.mb20]}></Text>
 
                     <Toast ref="toast" position={"center"}  fadeInDuration={500} />
                 </View>

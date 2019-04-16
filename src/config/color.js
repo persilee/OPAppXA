@@ -9,5 +9,5 @@ export default {
     blackColor:"#000",
     blackAlpha50Color:"rgba(0,0,0,0.5)",
     specialColor:"#FF4618",
-    btnColor:"#1544A8",
+    btnColor:"#2663ff",
 }

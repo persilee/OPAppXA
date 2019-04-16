@@ -31,7 +31,7 @@ export default class QuickSearch extends Component{
     
     constructor(props) {
         super(props);
-        this.pageSize = 5;
+        this.pageSize = 1;
         this.pageNum = 1;
         this.keyword = "";
         this.specialType = "";
@@ -108,7 +108,7 @@ export default class QuickSearch extends Component{
             }
         }
         let url = API.getQuickSearchList;
-        let params = {init: 0,
+        let params = {init: 1,
             pageNum: this.pageNum,
             pageSize: this.pageSize,
             queryPair: queryPair,

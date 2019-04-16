@@ -49,6 +49,7 @@ export default class RealUnit extends Component{
     }
 
     dealResponseData=(responseData)=>{
+        console.log('responseData', responseData);
         this.setState({
             data:responseData.data.list
         })

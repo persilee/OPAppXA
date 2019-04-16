@@ -65,7 +65,8 @@ export default class  CheckListWait extends Component {
             
             this.state.waitPageNo = this.state.waitPageNo+1;
 
-            let params={init: 0,
+            let params={
+                    init: 0,
                    pageNum: this.state.waitPageNo-1,
                    pageSize: 10,
                    queryPair: {
@@ -79,6 +80,9 @@ export default class  CheckListWait extends Component {
                 RoutApi.getWaitCheckList,
                 params,
                 (responseData)=>{
+
+                    console.log('responseData',responseData);
+
                     let data =  this.state.waitData.concat(responseData.data.list?responseData.data.list:[]);
                     
                     this.setState({
