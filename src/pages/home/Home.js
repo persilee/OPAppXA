@@ -119,6 +119,17 @@ let itemArr = [
 		iconSize: 30,
 		page: 'VehicleRegional',
 		moduCode: 'RealVehicle'
+	},
+	{
+		title: '高龄老人',
+		color: '#FEA095',
+		isImage: true,
+		name: require('../../../assets/images/home_dispute.png'),
+		iconOutSize: 48,
+		height: 66,
+		iconSize: 30,
+		page: 'OldMan',
+		moduCode: 'OldMan'
 	}
 ];
 
