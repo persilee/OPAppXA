@@ -22,7 +22,9 @@ export default class OldMan extends Component {
 
         this.pageNo = 1;
         this.state = {
-            data: []
+            data: [],
+            keyword: '',
+            searchFlag: false,
         }
     }
 
@@ -40,21 +42,37 @@ export default class OldMan extends Component {
         let params = {
             page: this.pageNo,
             limit: 20,
+            key: this.state.keyword,
             pwd: '2ysh3z72w'
         };
-
+        console.log('params', params);
         CommonFetch.doFetch(RoutApi.getOldManList, params, this.dealResponseData, this.refs.toast)
+    }
+
+    doSearch = () => {
+        if (!this.state.searchFlag) {
+            this.state.searchFlag = true;
+            this.setState({
+                data: [],
+            }, this.doFetch);
+            this.pageNo = 1;
+            this.refs.oldMan.refs.commonSerachInputRef.blur();
+            this.refs.oldMan.refs.commonSerachInputRef.clear();
+        }
     }
 
     dealResponseData = (responseData) => {
 
         let data = this.state.data;
+        console.log('data',data);
         if (responseData.data.list) {
             data = data.concat(responseData.data.list);
         }
         console.log('responseData', data);
         this.setState({
             data: data,
+            searchFlag: false,
+            keyword: ''
         })
         this.pageNo = this.pageNo + 1;
     }
@@ -62,17 +80,14 @@ export default class OldMan extends Component {
 
     headerPress = (item) => {
         console.log('provincePress', item)
-        this.props.navigation.navigate('PopulaceDetail', { queryParam: item })
+        this.props.navigation.navigate('OldManDetail', { queryParam: item })
     }
 
 
 
 
     _renderItem = ({ item, index }) => {
-
-        console.log('item',item);
         return (
-
             <TouchableOpacity key={index} style={[styles.itemStyle, GlobalStyles.lineBottom]}
                 onPress={() => this.headerPress(item)}>
                 {item.IdentyPhoto ?
@@ -122,9 +137,11 @@ export default class OldMan extends Component {
                     <CommonSearch placeholder={'请输入关键字'} placeholderTextColor={Color.whiteColor}
                         style={[GlobalStyles.pageBg, GlobalStyles.borderColor, { borderWidth: 1 }]}
                         onChangeText={(keyword) => this.setState({ keyword: keyword })}
-                        onSubmitEditing={this.doFetch}
-                        autoFocus={false}></CommonSearch>
-                    <TouchableOpacity style={styles.searchButton} onPress={this.doFetch}>
+                        onSubmitEditing={this.doSearch}
+                        autoFocus={false} 
+                        ref="oldMan"
+                        ></CommonSearch>
+                    <TouchableOpacity style={styles.searchButton} onPress={this.doSearch}>
                         <Text style={[GlobalStyles.font14White]}>搜索</Text>
                     </TouchableOpacity>
 

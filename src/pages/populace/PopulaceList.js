@@ -14,6 +14,7 @@ import Toast, {DURATION} from 'react-native-easy-toast';
 
 import {getUserId} from "../../utils/Common";
 import Color from "../../config/color";
+import Communications from 'react-native-communications';
 export default class  PopulaceList extends Component {
 
 
@@ -112,15 +113,22 @@ export default class  PopulaceList extends Component {
                         (<Image source={{uri:item.identyPhoto}} style={styles.image}></Image>):
                         (<Image source={require("../../../assets/images/idcard_default.png")} style={styles.image}></Image>)
                     }
-                    <View style={styles.detailView}>
-                        <View style={styles.detailTextView}>
+                <View style={[styles.detailView]}>
+                    <View style={[styles.detailTextView]}>
                             <Text style={[GlobalStyles.font14Gray,styles.detailKey]}>姓名:</Text>
                             <Text numberOfLines={3} style={[GlobalStyles.font14Gray]} >{item.roomerName}</Text>
                             {item.peopleType=='1'?(<Image style={{height:15,width:15,marginLeft:10,marginTop:2}} source={require("../../../assets/images/star.png")}></Image>):null}
-                        </View>
-                        {this.detailText('联系方式',item.callPhone)}
-                        {this.detailText('联系地址',item.address)}
                     </View>
+                    <View style={[styles.detailTextView, GlobalStyles.flexDirectRow]}>
+                        {this.detailText('联系方式',item.callPhone)}
+                        {item.callPhone == '' ? (
+                            <Text></Text>
+                        ) : (
+                            <TouchableOpacity onPress={() => Communications.phonecall(item.callPhone, true)}><Text style={[GlobalStyles.font14Blue, GlobalStyles.pdlr10,{top: 3}]}>一键拨号</Text></TouchableOpacity>
+                        )}
+                    </View>
+                    {this.detailText('联系地址',item.address)}
+                </View>
 
                 </TouchableOpacity>
         )
@@ -131,7 +139,7 @@ export default class  PopulaceList extends Component {
         return(
             <View style={styles.detailTextView}>
                 <Text style={[GlobalStyles.font14Gray,styles.detailKey]}>{key}:</Text>
-                <Text numberOfLines={3} style={[GlobalStyles.font14Gray,styles.detailValue]}>{value}</Text>
+                <Text numberOfLines={3} style={[GlobalStyles.font14Gray]}>{value}</Text>
             </View>
         )
     }

@@ -19,6 +19,7 @@ import DealTaskResult from '../pages/check/DealTaskResult';
 
 import VehicleRegional from '../pages/vehicle/VehicleRegional';
 import OldMan from '../pages/oldMan/OldMan';
+import OldManDetail from '../pages/oldMan/OldManDetail';
 import VehicleDetails from '../pages/vehicle/VehicleDetails';
 import Login from '../pages/login/Login';
 import Home from '../pages/home/Home';
@@ -156,7 +157,14 @@ export default createStackNavigator(
 				headerTitle: '高龄老人',
 				headerRight: <View />
 			})
-		},
+        },
+        OldManDetail: {
+            screen: OldManDetail,
+            navigationOptions: ({ navigation }) => ({
+                headerTitle: '高龄老人',
+                headerRight: <View />
+            })
+        },
 		RealUnit: {
 			screen: RealUnit,
 			navigationOptions: ({ navigation }) => ({

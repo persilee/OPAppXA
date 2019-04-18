@@ -54,7 +54,7 @@ export default class QuickSearch extends Component{
     searchMethod = (keyword,isSpecialType,specialType) =>{
 
         this.keyword = keyword;
-        this.pageSize = 5;
+        this.pageSize = 20;
         this.pageNum = 1;
         
         this.isSpecialType  = isSpecialType;
@@ -108,7 +108,7 @@ export default class QuickSearch extends Component{
             }
         }
         let url = API.getQuickSearchList;
-        let params = {init: 1,
+        let params = {init: 0,
             pageNum: this.pageNum,
             pageSize: this.pageSize,
             queryPair: queryPair,

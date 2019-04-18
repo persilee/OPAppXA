@@ -24,7 +24,6 @@ export default class CommonSearch extends Component {
 
     render() {
         let {searchIconSize,searchIconColor,style,...props} = this.props;
-
         return (
                 <View style={[GlobalStyles.flexDirectRow,GlobalStyles.center,styles.searchContainer,style]}>
                     <FontAwesome name={"search"} size={searchIconSize} color={searchIconColor} style={[GlobalStyles.mr10,GlobalStyles.ml10]} />
