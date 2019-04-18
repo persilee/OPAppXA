@@ -10,7 +10,6 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import CommonFetch from '../../componets/CommonFetch';
 import CommonBtn from '../../componets/CommonBtn';
 
-
 let carTitleArr = [
 	{
 		title: '车辆号码',
@@ -27,6 +26,22 @@ let carTitleArr = [
 	{
 		title: '布控原因',
 		value: 'Remark'
+	}
+];
+
+let alreadyCarTitileArr = [
+	...carTitleArr,
+	{
+		title: '处理人',
+		value: 'DealAlarmPolice'
+	},
+	{
+	title: '反馈内容',
+		value: 'BackDescription'
+	},
+	{
+	title: '处理时间',
+		value: 'UpdateTime'
 	}
 ];
 
@@ -50,6 +65,22 @@ let faceTitleArr = [
 	{
 		title: '时间',
 		value: 'alarmTime'
+	}
+];
+
+let alreadyFaceTitleArr = [
+	...faceTitleArr,
+	{
+		title: '处理人',
+		value: 'DealAlarmPolice' 
+	},
+	{
+		title: '反馈内容',
+		value: 'BackDescription' 
+	},
+	{
+		title: '处理时间',
+		value: 'UpdateTime' 
 	}
 ];
 
@@ -107,54 +138,110 @@ export default class ControlScene extends Component {
 			tasksInfo: item
 		});
 		this.modalSelect(true);
-	}
+	};
 
 	renderCarItem = (item) => {
-		return (
-			<View>
-				{carTitleArr.map((titleItem, index) => {
-					let specialColor = GlobalStyles.font14Gray;
-					if (item.value == 'like') {
-						specialColor = GlobalStyles.font14Red;
-					}
-					return (
-						<View
-							style={[ GlobalStyles.flexDirectRow, GlobalStyles.mb5, GlobalStyles.justifyCenter ]}
-							key={`item-${index}`}
-						>
-							<Text style={[ GlobalStyles.font14Gray, GlobalStyles.mr5 ]}>{titleItem.title}：</Text>
-							<Text style={[ GlobalStyles.flex, GlobalStyles.justifyCenter, specialColor ]}>
-								{item[titleItem.value]}
-							</Text>
-						</View>
-					);
-				})}
-			</View>
-		);
+		if (this.props.readStatus == 0) {
+			return (
+				<View>
+					{carTitleArr.map((titleItem, index) => {
+						let specialColor = GlobalStyles.font14Gray;
+						if (item.value == 'like') {
+							specialColor = GlobalStyles.font14Red;
+						}
+						return (
+							<View
+								style={[ GlobalStyles.flexDirectRow, GlobalStyles.mb5, GlobalStyles.justifyCenter ]}
+								key={`item-${index}`}
+							>
+								<Text style={[ GlobalStyles.font14Gray, GlobalStyles.mr5 ]}>{titleItem.title}：</Text>
+								<Text style={[ GlobalStyles.flex, GlobalStyles.justifyCenter, specialColor ]}>
+									{item[titleItem.value]}
+								</Text>
+							</View>
+						);
+					})}
+				</View>
+			);
+		} else {
+			return (
+				<View>
+					{alreadyCarTitileArr.map((titleItem, index) => {
+						let specialColor = GlobalStyles.font14Gray;
+						if (item.value == 'like') {
+							specialColor = GlobalStyles.font14Red;
+						}
+						return (
+							<View
+								style={[ GlobalStyles.flexDirectRow, GlobalStyles.mb5, GlobalStyles.justifyCenter ]}
+								key={`item-${index}`}
+							>
+								<Text style={[ GlobalStyles.font14Gray, GlobalStyles.mr5 ]}>{titleItem.title}：</Text>
+								<Text style={[ GlobalStyles.flex, GlobalStyles.justifyCenter, specialColor ]}>
+									{item[titleItem.value]}
+								</Text>
+							</View>
+						);
+					})}
+				</View>
+			);
+		}
 	};
 
 	renderFaceItem = (item) => {
-		return (
-			<View>
-				{faceTitleArr.map((titleItem, index) => {
-					let specialColor = GlobalStyles.font14Gray;
-					if (item.value == 'like') {
-						specialColor = GlobalStyles.font14Red;
-					}
-					return (
-						<View
-							style={[ GlobalStyles.flexDirectRow, GlobalStyles.mb5, GlobalStyles.justifyCenter ]}
-							key={`item-${index}`}
-						>
-							<Text style={[ GlobalStyles.font14Gray, GlobalStyles.mr5 ]}>{titleItem.title}：</Text>
-							<Text style={[ GlobalStyles.flex, GlobalStyles.justifyCenter, specialColor ]}>
-								{item[titleItem.value]}
-							</Text>
-						</View>
-					);
-				})}
-			</View>
-		);
+		if (this.props.readStatus == 0) {
+			return (
+				<View>
+					{faceTitleArr.map((titleItem, index) => {
+						let specialColor = GlobalStyles.font14Gray;
+						if (item.value == 'like') {
+							specialColor = GlobalStyles.font14Red;
+						}
+						return (
+							<View
+								style={[ GlobalStyles.flexDirectRow, GlobalStyles.mb5, GlobalStyles.justifyCenter ]}
+								key={`item-${index}`}
+							>
+								<Text style={[ GlobalStyles.font14Gray, GlobalStyles.mr5 ]}>{titleItem.title}：</Text>
+								<Text style={[ GlobalStyles.flex, GlobalStyles.justifyCenter, specialColor ]}>
+									{titleItem.title == '相似度' ? (
+										item[titleItem.value] * 100 + '%'
+									) : (
+										item[titleItem.value]
+									)}
+								</Text>
+							</View>
+						);
+					})}
+				</View>
+			);
+		} else {
+			return (
+				<View>
+					{alreadyFaceTitleArr.map((titleItem, index) => {
+						let specialColor = GlobalStyles.font14Gray;
+						if (item.value == 'like') {
+							specialColor = GlobalStyles.font14Red;
+						}
+						return (
+							<View
+								style={[ GlobalStyles.flexDirectRow, GlobalStyles.mb5, GlobalStyles.justifyCenter ]}
+								key={`item-${index}`}
+							>
+								<Text style={[ GlobalStyles.font14Gray, GlobalStyles.mr5 ]}>{titleItem.title}：</Text>
+								<Text style={[ GlobalStyles.flex, GlobalStyles.justifyCenter, specialColor ]}>
+									{titleItem.title == '相似度' ? (
+										item[titleItem.value] * 100 + '%'
+									) : (
+										item[titleItem.value]
+									)}
+								</Text>
+							</View>
+						);
+					})}
+				</View>
+			);
+		}
 	};
 
 	_renderItem = ({ item, index }) => {
@@ -191,7 +278,7 @@ export default class ControlScene extends Component {
 										VS
 									</Text>
 									<Text style={[ GlobalStyles.font12Gray ]}>
-										相似度:<Text style={GlobalStyles.font12Red}>{item.Similary}</Text>
+										相似度:<Text style={GlobalStyles.font12Red}>{item.Similary * 100}%</Text>
 									</Text>
 								</View>
 								<View
@@ -207,8 +294,12 @@ export default class ControlScene extends Component {
 							</View>
 							{this.renderFaceItem(item)}
 							{this.props.readStatus == 0 ? (
-								<CommonBtn text={'处 理'} onPress={() => this.openFilterModal(item) } style={{ marginTop: 10, width: 86, alignSelf: 'flex-end' }} />
-							): null}
+								<CommonBtn
+									text={'处 理'}
+									onPress={() => this.openFilterModal(item)}
+									style={{ marginTop: 10, width: 86, alignSelf: 'flex-end' }}
+								/>
+							) : null}
 						</View>
 					</View>
 				) : (
@@ -230,8 +321,12 @@ export default class ControlScene extends Component {
 						</View>
 						{this.renderCarItem(item)}
 						{this.props.readStatus == 0 ? (
-								<CommonBtn text={'处 理'} onPress={ () => this.openFilterModal(item) } style={{ marginTop: 10, width: 86, alignSelf: 'flex-end' }} />
-							): null}
+							<CommonBtn
+								text={'处 理'}
+								onPress={() => this.openFilterModal(item)}
+								style={{ marginTop: 10, width: 86, alignSelf: 'flex-end' }}
+							/>
+						) : null}
 					</View>
 				)}
 			</View>
@@ -246,7 +341,7 @@ export default class ControlScene extends Component {
 			pwd: '2ysh3z72w'
 		};
 		CommonFetch.doFetch(API.getAlarmDealData, params, (responseData) => {
-			if (responseData.msg == 'success' ){
+			if (responseData.msg == 'success') {
 				this.modalSelect(false);
 				this.setState({
 					tasksInfo: '',
@@ -265,7 +360,7 @@ export default class ControlScene extends Component {
 			text: ''
 		});
 		this.modalSelect(false);
-	}
+	};
 
 	fetchData = () => {
 		let params = {
@@ -319,7 +414,7 @@ export default class ControlScene extends Component {
 							GlobalStyles.flex,
 							GlobalStyles.blackAlpha50,
 							GlobalStyles.flexDirectRow,
-							{ justifyContent: 'center'}
+							{ justifyContent: 'center' }
 						]}
 					>
 						<View style={[ styles.modalStyle, GlobalStyles.containerBg ]}>
@@ -334,31 +429,52 @@ export default class ControlScene extends Component {
 								</TouchableOpacity>
 							</View>
 
-							<View style={[GlobalStyles.p25]}>
+							<View style={[ GlobalStyles.p25 ]}>
 								<Text style={[ GlobalStyles.font14Gray, GlobalStyles.mr5 ]}>处理人：</Text>
 								<TextInput
-									editable = {false}
-									style={[GlobalStyles.borderColor, GlobalStyles.font14White, GlobalStyles.pdlr5, GlobalStyles.mr5, GlobalStyles.mt10, { height: 40, borderWidth: 1, borderRadius: 4}]}
+									editable={false}
+									style={[
+										GlobalStyles.borderColor,
+										GlobalStyles.font14White,
+										GlobalStyles.pdlr5,
+										GlobalStyles.mr5,
+										GlobalStyles.mt10,
+										{ height: 40, borderWidth: 1, borderRadius: 4 }
+									]}
 									value={this.props.User.userNameChn}
 								/>
-								<Text style={[GlobalStyles.font14Gray, GlobalStyles.mt10]}>处理事由：</Text>
+								<Text style={[ GlobalStyles.font14Gray, GlobalStyles.mt10 ]}>处理事由：</Text>
 								<TextInput
-									multiline = {true}
-									numberOfLines = {4}
-        							maxLength = {40}
-									style={[GlobalStyles.pdlr5,GlobalStyles.borderColor, GlobalStyles.font14White, GlobalStyles.mt10, { height: 80, borderWidth: 1, borderRadius: 4 }]}
+									multiline={true}
+									numberOfLines={4}
+									maxLength={40}
+									style={[
+										GlobalStyles.pdlr5,
+										GlobalStyles.borderColor,
+										GlobalStyles.font14White,
+										GlobalStyles.mt10,
+										{ height: 80, borderWidth: 1, borderRadius: 4 }
+									]}
 									onChangeText={(text) => this.setState({ text })}
 									value={this.state.text}
 								/>
-								<View style={[GlobalStyles.flexDirectRow, GlobalStyles.justifyAround]}>
-									<CommonBtn text={'取 消'} onPress={() => this.cancelTasks()} style={{ marginTop: 20, width: 86, alignSelf: 'flex-end' }} />
-									<CommonBtn text={'确 定'} onPress={() => this.doTasks()} style={{ marginTop: 20, width: 86, alignSelf: 'flex-end' }} />
+								<View style={[ GlobalStyles.flexDirectRow, GlobalStyles.justifyAround ]}>
+									<CommonBtn
+										text={'取 消'}
+										onPress={() => this.cancelTasks()}
+										style={{ marginTop: 20, width: 86, alignSelf: 'flex-end' }}
+									/>
+									<CommonBtn
+										text={'确 定'}
+										onPress={() => this.doTasks()}
+										style={{ marginTop: 20, width: 86, alignSelf: 'flex-end' }}
+									/>
 								</View>
 							</View>
 						</View>
 					</View>
 				</Modal>
-				<Toast ref="toast" position={"center"} fadeInDuration={600} />
+				<Toast ref="toast" position={'center'} fadeInDuration={600} />
 			</View>
 		);
 	}
@@ -435,9 +551,9 @@ const styles = StyleSheet.create({
 		textAlign: 'center'
 		// backgroundColor:"transparent",
 	},
-	modalStyle:{
-        width:360,
-        height: 340,
-        marginTop:126,
-    },
+	modalStyle: {
+		width: 360,
+		height: 340,
+		marginTop: 126
+	}
 });
