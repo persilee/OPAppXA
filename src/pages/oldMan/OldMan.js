@@ -12,7 +12,7 @@ import {
 	Image
 } from 'react-native';
 
-import ItemInput from '../../componets/ItemInput';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import GlobalStyles from '../../../assets/styles/GlobalStyles';
 import CommonSearch from '../../componets/CommonSearch';
 import CommonFetch from '../../componets/CommonFetch';
@@ -111,32 +111,37 @@ export default class OldMan extends Component {
 						</Text>
 					</View>
 					{this.detailText('年龄', item.Age, emptyColor)}
-					<View style={[ styles.detailTextView, GlobalStyles.flexDirectRow ]}>
-						{this.detailText('联系方式', item.CallPhone, emptyColor)}
-						{item.CallPhone == '' ? (
-							<Text />
-						) : (
-							<TouchableOpacity onPress={() => Communications.phonecall(item.CallPhone, true)}>
-								<Text style={[ GlobalStyles.font14Blue, GlobalStyles.pdlr10, { top: 3 } ]}>一键拨号</Text>
-							</TouchableOpacity>
-						)}
-					</View>
+					{this.detailText('联系方式', item.CallPhone, emptyColor, true)}
 					{this.detailText('联系地址', item.RoomAddress, emptyColor)}
 				</View>
 			</TouchableOpacity>
 		);
 	};
 
-	detailText = (key, value, color) => {
-		return (
-			<View style={styles.detailTextView}>
-				<Text style={[ {color: color}, styles.detailKey ]}>{key}:</Text>
-				<Text numberOfLines={3} style={[{color: color}]}>
-					{value}
-				</Text>
-			</View>
-		);
-	};
+	detailText = (key, value, color, isClick = false) => {
+		if (value) {
+			return (
+				<View style={styles.detailTextView} key={key}>
+					<Text style={[{ color: color }, styles.detailKey]}>{key}:</Text>
+					{isClick ? (
+						<TouchableOpacity onPress={() => Communications.phonecall(value, true)}>
+							<Text numberOfLines={3} style={[GlobalStyles.font14Blue, GlobalStyles.pdlr10]}>{value} &nbsp;<FontAwesome name="phone" color={Color.btnColor} size={14} /></Text>
+						</TouchableOpacity>
+					) : (
+							<Text numberOfLines={3} style={[{ color: color }]}>{value}</Text>
+						)}
+				</View>
+			)
+		} else {
+			return (
+				<View style={styles.detailTextView} key={key}>
+					<Text style={[{ color: color }, styles.detailKey]}>{key}:</Text>
+					<Text numberOfLines={3} style={[{ color: color }]}>{value}</Text>
+				</View>
+			)
+		}
+
+	}
 
 	_renderEmptyComponent = () => {
 		return (
