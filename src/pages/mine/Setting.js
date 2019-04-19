@@ -44,7 +44,7 @@ export default class Setting extends Component{
             .then(responseData => {
                 console.log("logout",responseData);
                 if(responseData.code == 0){
-                    this.props.User.updateUser(false,"","","","","","","");
+                    this.props.User.updateUser(false, "", "","","","","","","");
                     this.props.User.updateModuList([]);
                     this.props.User.logout();
                     this.props.navigation.navigate("Login");

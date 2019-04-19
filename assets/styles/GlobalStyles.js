@@ -107,6 +107,9 @@ export default  GlobalStyles = {
     p15:{
         padding:15,
     },
+    p20:{
+        padding:20,
+    },
     mr5:{
         marginRight:5,
     },
@@ -133,6 +136,9 @@ export default  GlobalStyles = {
     },
     mb10:{
         marginBottom:10,
+    },
+    mb15: {
+        marginBottom: 15,
     },
     mt30:{
         marginTop:30,

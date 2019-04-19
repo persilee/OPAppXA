@@ -36,7 +36,8 @@
     "react-native-swiper": "^1.5.13",
     "react-native-vector-icons": "^5.0.0",
     "react-native-webview": "^2.14.3",
-    "react-navigation": "^2.14.2"
+    "react-navigation": "^2.14.2",
+    "teaset": "^0.6.3"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

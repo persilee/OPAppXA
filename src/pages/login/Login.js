@@ -22,6 +22,8 @@ import {observer,inject} from 'mobx-react';
 import {getUserId} from "../../utils/Common";
 import Color from "../../config/color";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { Select } from 'teaset';
+
 
 const {Xinge} = NativeModules;
 
@@ -37,11 +39,22 @@ export default class Login extends Component{
         if(now < expiration && this.props.User.userId ){
             this.props.navigation.replace('Main');
         }
+        this.customItems = [
+            {
+                text: '公园天下',
+                value: 10001,
+            },
+            {
+                text: '明航小区',
+                value: 10002,
+            }
+        ];
 
         this.state = {
             mobileNo: '',
             password: '',
             isChecked:false,
+            valueCustom: null
         };
     }
 
@@ -91,6 +104,13 @@ export default class Login extends Component{
         });
     }
 
+    isSelected = (item) => {
+        console.log('item',item);
+        this.setState({ valueCustom: item.value },() => {
+            console.log('valueCustom', this.state.valueCustom);
+        });
+    }
+
     render() {
 
         const { navigate } = this.props.navigation;
@@ -98,6 +118,19 @@ export default class Login extends Component{
             <ImageBackground source={require("../../../assets/images/login_bg.png")} style={{ flex: 1 }}>
                 <View style={[GlobalStyles.flex,GlobalStyles.pdlr15,{paddingTop:160}]}>
                     <View style={[GlobalStyles.flex,GlobalStyles.justifyCenter]}>
+                        <Select
+                            style={[GlobalStyles.mb15, GlobalStyles.p15, { backgroundColor: Color.headerBgColor, borderColor: Color.borderColor, height: 40 }]}
+                            value={this.state.valueCustom}
+                            valueStyle={{ flex: 1, color: Color.whiteColor, textAlign: 'left' }}
+                            items={this.customItems}
+                            getItemValue={(item, index) => item.value}
+                            getItemText={(item, index) => item.text}
+                            iconTintColor={Color.whiteColor}
+                            placeholder='请选择小区'
+                            pickerTitle='请选择小区'
+                            pickerType='pull'
+                            onSelected={(item, index) => this.isSelected(item)}
+                        />
                         <LoginTextInput maxLength={11} placeholderTextColor={Color.whiteColor}
                                 placeholder="请输入警员编号" iconVisible={true} iconName={"user"} iconColor={Color.whiteColor}
                                 value={this.state.mobileNo} inputStyle={[GlobalStyles.font14White]}
@@ -133,6 +166,10 @@ export default class Login extends Component{
     }
 
     valid(){
+        if(!this.state.valueCustom){
+            this.refs.toast.show('请选择小区');
+            return false;
+        }
         if(!this.state.mobileNo){
             this.refs.toast.show('请输入警员编号');
             return false;
@@ -153,14 +190,16 @@ export default class Login extends Component{
         // let url = "http://192.168.1.23:8380/api/appserver/auth/login";
         let url = API.login;
         let params = {
+            areaKey: this.state.valueCustom,
             passwd:this.state.password,
             userName:this.state.mobileNo,
         }
+        console.log('params', params);
         fetch(url,{
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
                 body:JSON.stringify(params)
             }
@@ -177,7 +216,7 @@ export default class Login extends Component{
                     Xinge.registerPushWithAccount(data.user.id).then(token =>{
                         console.info("Xinge推送的token",token);
                     });
-                    this.props.User.updateUser(true,data.token,data.user.userName,data.user.id,
+                    this.props.User.updateUser(true, data.token, data.user.areaKey,data.user.userName,data.user.id,
                         data.user.idcardNum,data.user.userNameChn,data.user.superName,data.user.orgName,data.user.userPosi);
                     this.props.User.updateModuList(data.moduList);
                     this.props.navigation.replace('Main');

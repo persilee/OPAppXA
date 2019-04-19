@@ -91,6 +91,7 @@ export default class OldMan extends Component {
 	};
 
 	_renderItem = ({ item, index }) => {
+		let emptyColor = !item.family ? Color.specialColor : Color.fontColor;
 		return (
 			<TouchableOpacity
 				key={index}
@@ -102,16 +103,16 @@ export default class OldMan extends Component {
 				) : (
 					<Image source={require('../../../assets/images/idcard_default.png')} style={styles.image} />
 				)}
-				<View style={styles.detailView}>
+				<View style={[styles.detailView]}>
 					<View style={styles.detailTextView}>
-						<Text style={[ GlobalStyles.font14Gray, styles.detailKey ]}>姓名:</Text>
-						<Text numberOfLines={3} style={[ GlobalStyles.font14Gray ]}>
+						<Text style={[styles.detailKey, { color: emptyColor }]}>姓名:</Text>
+						<Text numberOfLines={3} style={[{ color: emptyColor }]}>
 							{item.RoomerName}
 						</Text>
 					</View>
-					{this.detailText('年龄', item.Age)}
+					{this.detailText('年龄', item.Age, emptyColor)}
 					<View style={[ styles.detailTextView, GlobalStyles.flexDirectRow ]}>
-						{this.detailText('联系方式', item.CallPhone)}
+						{this.detailText('联系方式', item.CallPhone, emptyColor)}
 						{item.CallPhone == '' ? (
 							<Text />
 						) : (
@@ -120,17 +121,17 @@ export default class OldMan extends Component {
 							</TouchableOpacity>
 						)}
 					</View>
-					{this.detailText('联系地址', item.RoomAddress)}
+					{this.detailText('联系地址', item.RoomAddress, emptyColor)}
 				</View>
 			</TouchableOpacity>
 		);
 	};
 
-	detailText = (key, value) => {
+	detailText = (key, value, color) => {
 		return (
 			<View style={styles.detailTextView}>
-				<Text style={[ GlobalStyles.font14Gray, styles.detailKey ]}>{key}:</Text>
-				<Text numberOfLines={3} style={[ GlobalStyles.font14Gray ]}>
+				<Text style={[ {color: color}, styles.detailKey ]}>{key}:</Text>
+				<Text numberOfLines={3} style={[{color: color}]}>
 					{value}
 				</Text>
 			</View>
@@ -208,7 +209,6 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		justifyContent: 'flex-start',
 		alignItems: 'flex-start',
-		color: '#333',
 		fontSize: 14
 	},
 

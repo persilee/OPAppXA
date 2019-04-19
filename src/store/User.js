@@ -67,7 +67,7 @@ class User {
     }
 
     @action
-    updateUser = (flag, _token, _mobileNo, userId,idcardNum,userNameChn,superName,orgName,userPosi) =>{
+    updateUser = (flag, _token, areaKey, _mobileNo, userId,idcardNum,userNameChn,superName,orgName,userPosi) =>{
 
         let date = new Date();//token有效期 7天
         date.setTime(date.getTime() + 1000*60*60*24*7);
@@ -76,6 +76,7 @@ class User {
         this.userInfo = {
             isLogin:flag,
             token:_token,
+            areaKey: areaKey,
             mobileNo:_mobileNo,
             userId:userId,
             idcardNum: idcardNum,
@@ -118,6 +119,7 @@ class User {
                 this.userInfo = {
                     isLogin:false,
                     token:"",
+                    areaKey:"",
                     mobileNo:"",
                     userId:"",
                     idcardNum:"",

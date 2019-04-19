@@ -2,6 +2,7 @@ import {baseUrl,additionUrl,newUrl} from '../config/index'
 
 export default  {
     login:`${additionUrl}/api/appserver/auth/login`,
+    // login:`${additionUrl}/appserver/auth/login`,
     getHouseList:`${baseUrl}/mqi/pageOrData/45268bd540d147e6ad3bfca27958f3d6`,
     getHouseUnitInfo:`${baseUrl}/mqi/pageOrData/c6d2af1c2b9e4e4fb92cd77815d3881d`,  //实有房屋单元信息
     getHouseUnitEmphasisInfo:`${baseUrl}/mqi/pageOrData/00806c1d869749c781a749e1ee31dbfc`,//重点关注人员房屋

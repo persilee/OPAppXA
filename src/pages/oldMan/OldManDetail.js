@@ -5,15 +5,10 @@ import {
     View,PixelRatio,FlatList,Image
 } from 'react-native';
 
-import ItemInput from '../../componets/ItemInput';
 import GlobalStyles from "../../../assets/styles/GlobalStyles";
-import CommonSearch from "../../componets/CommonSearch";
-import CommonFetch from "../../componets/CommonFetch";
-import Shadow from "../../componets/Shadow";
-import RoutApi from '../../api/index';
-import Toast, {DURATION} from 'react-native-easy-toast';
-
-import {getUserId} from "../../utils/Common";
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Color from "../../config/color";
+import Communications from 'react-native-communications';
 
 
 export default class  OldManDetail extends Component {
@@ -24,9 +19,12 @@ export default class  OldManDetail extends Component {
 
         this.queryParam = this.props.navigation.getParam('queryParam', {});
 
+        console.log('queryParam', this.queryParam);
+        
+
         this.state = {
-            data:{
-            },
+            expandOldManInfo: true,
+            expandFamilyInfo: false,
         }
     }
 
@@ -36,44 +34,47 @@ export default class  OldManDetail extends Component {
     }
 
 
-    detailText = (key,value)=>{
+    detailText = (key,value,isClick=false)=>{
         return(
             <View style={styles.detailTextView} key={key}>
                 <Text style={[GlobalStyles.font14Gray,styles.detailKey]}>{key}:</Text>
-                <Text numberOfLines={3} style={[GlobalStyles.font14Gray,styles.detailValue]}>{value}</Text>
+                {isClick ? (
+                    <TouchableOpacity onPress={() => Communications.phonecall(value, true)}>
+                        <Text numberOfLines={3} style={[GlobalStyles.font14Gray]}>{value}</Text>
+                        <Text style={[GlobalStyles.font14Blue, GlobalStyles.pdlr10, { top: 6 }]}>一键拨号</Text>
+                    </TouchableOpacity>
+                    
+                ) : (
+                    <Text numberOfLines={3} style={[GlobalStyles.font14Gray]}>{value}</Text>
+                )}
             </View>
         )
     }
 
-
-
-    render() {
-
+    oldManDetail = () => {
         return (
-            <View style={[GlobalStyles.pageBg,styles.page]}>
-                
+            <View style={[GlobalStyles.pageBg, GlobalStyles.mb5]}>
 
-
-                <View style={[GlobalStyles.containerBg,GlobalStyles.containerBorder,styles.detailView]}>
+                <View style={[GlobalStyles.containerBg, , GlobalStyles.p20]}>
                     <View style={styles.imageView}>
-                        {this.queryParam.IdentyPhoto?
-                            (<Image source={{ uri: this.queryParam.IdentyPhoto}} style={[styles.image,{marginRight: 30}]}></Image>):
-                            (<Image source={require("../../../assets/images/idcard_default.png")} style={[styles.image,{marginRight: 30}]}></Image>)
+                        {this.queryParam.IdentyPhoto ?
+                            (<Image source={{ uri: this.queryParam.IdentyPhoto }} style={[styles.image, { marginRight: 30 }]}></Image>) :
+                            (<Image source={require("../../../assets/images/idcard_default.png")} style={[styles.image, { marginRight: 30 }]}></Image>)
                         }
-                        {this.queryParam.ImgUrl?
-                            (<Image source={{ uri: this.queryParam.ImgUrl}} style={[styles.image]}></Image>):
+                        {this.queryParam.ImgUrl ?
+                            (<Image source={{ uri: this.queryParam.ImgUrl }} style={[styles.image]}></Image>) :
                             (<Image source={require("../../../assets/images/image_default.png")} style={[styles.image]}></Image>)
                         }
                     </View>
 
                     <View style={styles.detailTextView}>
-                        <Text style={[GlobalStyles.font14Gray,styles.detailKey]}>姓名:</Text>
+                        <Text style={[GlobalStyles.font14Gray, styles.detailKey]}>姓名:</Text>
                         <Text numberOfLines={3} style={[GlobalStyles.font14Gray]} >{this.queryParam.RoomerName}</Text>
-                        {this.queryParam.PeopleType?(<Image style={{height:15,width:15,marginLeft:10,marginTop:2}} source={require("../../../assets/images/star.png")}></Image>):null}
+                        {this.queryParam.PeopleType ? (<Image style={{ height: 15, width: 15, marginLeft: 10, marginTop: 2 }} source={require("../../../assets/images/star.png")}></Image>) : null}
                     </View>
-                    {this.queryParam.PeopleType&&(
+                    {this.queryParam.PeopleType && (
                         <View style={styles.detailTextView}>
-                            <Text style={[GlobalStyles.font14Gray,styles.detailKey]}>重点类型:</Text>
+                            <Text style={[GlobalStyles.font14Gray, styles.detailKey]}>重点类型:</Text>
                             <Text style={[GlobalStyles.font14Red]} numberOfLines={3} >{this.queryParam.PeopleType}</Text>
                         </View>
                     )}
@@ -81,13 +82,101 @@ export default class  OldManDetail extends Component {
                     {this.detailText('住户类型', this.queryParam.RoomUserType)}
                     {this.detailText('是否外籍', this.queryParam.IsForeign)}
                     {this.detailText('身份证号', this.queryParam.CardNumber)}
-                    {this.detailText('联系电话', this.queryParam.CallPhone)}
+                    
+                    <View style={[styles.detailTextView, GlobalStyles.flexDirectRow]}>
+                        {this.detailText('联系电话', this.queryParam.CallPhone)}
+                        {this.queryParam.CallPhone == '' ? (
+                            <Text />
+                        ) : (
+                                <TouchableOpacity onPress={() => Communications.phonecall(this.queryParam.CallPhone, true)}>
+                                    <Text style={[GlobalStyles.font14Blue, GlobalStyles.pdlr10, { top: 6 }]}>一键拨号</Text>
+                                </TouchableOpacity>
+                            )}
+                    </View>
                     {this.detailText('小区名称', this.queryParam.AreaName)}
                     {this.detailText('楼宇单元', this.queryParam.RoomAddress)}
                     {this.detailText('登记时间', this.queryParam.CheckInTime)}
                     {this.detailText('户籍地址', this.queryParam.HousePlace)}
                 </View>
+
             </View>
+
+        )
+    }
+
+    familyDetail = () => {
+        return (
+            <View style={[GlobalStyles.pageBg, GlobalStyles.mb5]}>
+
+                <View style={[GlobalStyles.containerBg, , GlobalStyles.p20]}>
+                    <View style={styles.imageView}>
+                        {this.queryParam.family.IdentyPhoto ?
+                            (<Image source={{ uri: this.queryParam.family.IdentyPhoto }} style={[styles.image, { marginRight: 30 }]}></Image>) :
+                            (<Image source={require("../../../assets/images/idcard_default.png")} style={[styles.image, { marginRight: 30 }]}></Image>)
+                        }
+                        {this.queryParam.family.ImgUrl ?
+                            (<Image source={{ uri: this.queryParam.family.ImgUrl }} style={[styles.image]}></Image>) :
+                            (<Image source={require("../../../assets/images/image_default.png")} style={[styles.image]}></Image>)
+                        }
+                    </View>
+
+                    <View style={styles.detailTextView}>
+                        <Text style={[GlobalStyles.font14Gray, styles.detailKey]}>姓名:</Text>
+                        <Text numberOfLines={3} style={[GlobalStyles.font14Gray]} >{this.queryParam.family.RoomerName}</Text>
+                        {this.queryParam.family.PeopleType ? (<Image style={{ height: 15, width: 15, marginLeft: 10, marginTop: 2 }} source={require("../../../assets/images/star.png")}></Image>) : null}
+                    </View>
+                    {this.queryParam.family.PeopleType && (
+                        <View style={styles.detailTextView}>
+                            <Text style={[GlobalStyles.font14Gray, styles.detailKey]}>重点类型:</Text>
+                            <Text style={[GlobalStyles.font14Red]} numberOfLines={3} >{this.queryParam.family.PeopleType}</Text>
+                        </View>
+                    )}
+                    {this.detailText('民族', this.queryParam.family.Nation)}
+                    {this.detailText('住户类型', this.queryParam.family.RoomUserType)}
+                    {this.detailText('是否外籍', this.queryParam.family.IsForeign)}
+                    {this.detailText('身份证号', this.queryParam.family.CardNumber)}
+                    <View style={[styles.detailTextView, GlobalStyles.flexDirectRow]}>
+                        {this.detailText('联系电话', this.queryParam.family.CallPhone)}
+                        {this.queryParam.family.CallPhone == '' ? (
+                            <Text />
+                        ) : (
+                                <TouchableOpacity onPress={() => Communications.phonecall(this.queryParam.family.CallPhone, true)}>
+                                    <Text style={[GlobalStyles.font14Blue, GlobalStyles.pdlr10, { top: 8 }]}><FontAwesome name="phone" color={Color.whiteColor} size={16} /></Text>
+                                </TouchableOpacity>
+                        )}
+                    </View>
+                    {this.detailText('小区名称', this.queryParam.family.AreaName)}
+                    {this.detailText('楼宇单元', this.queryParam.family.RoomAddress)}
+                    {this.detailText('登记时间', this.queryParam.family.CheckInTime)}
+                    {this.detailText('户籍地址', this.queryParam.family.HousePlace)}
+                </View>
+
+            </View>
+
+        )
+    }
+
+
+    render() {
+
+        return (
+            <ScrollView style={GlobalStyles.pageBg}>
+                <TouchableOpacity style={[styles.title, GlobalStyles.containerBg, GlobalStyles.lineBlackBottom]}
+                    onPress={() => { this.setState({ expandOldManInfo: !this.state.expandOldManInfo }) }}>
+                    <Text style={GlobalStyles.font14White}>老人信息</Text>
+                    <FontAwesome name={this.state.expandOldManInfo ? "angle-down" : "angle-right"} color={Color.whiteColor} size={14} />
+                </TouchableOpacity>
+                {this.state.expandOldManInfo ? this.oldManDetail() : null}
+                {this.queryParam.family ? (
+                    <TouchableOpacity style={[styles.title, GlobalStyles.containerBg, GlobalStyles.lineBlackBottom]}
+                        onPress={() => { this.setState({ expandFamilyInfo: !this.state.expandFamilyInfo }) }}>
+                        <Text style={GlobalStyles.font14White}>家人信息</Text>
+                        <FontAwesome name={this.state.expandFamilyInfo ? "angle-down" : "angle-right"} color={Color.whiteColor} size={14} />
+                    </TouchableOpacity>
+                ): null}
+                {this.queryParam.family && this.state.expandFamilyInfo ? this.familyDetail() : null}
+                
+            </ScrollView>
         );
     }
 
@@ -139,6 +228,15 @@ const  styles = StyleSheet.create({
 
     detailValue:{
         width:220
+    },
+    title: {
+        height: 38,
+        paddingLeft: 15,
+        paddingRight: 15,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flex: 1
     },
 
    
