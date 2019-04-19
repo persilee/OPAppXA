@@ -35,20 +35,28 @@ export default class  OldManDetail extends Component {
 
 
     detailText = (key,value,isClick=false)=>{
-        return(
-            <View style={styles.detailTextView} key={key}>
-                <Text style={[GlobalStyles.font14Gray,styles.detailKey]}>{key}:</Text>
-                {isClick ? (
-                    <TouchableOpacity onPress={() => Communications.phonecall(value, true)}>
-                        <Text numberOfLines={3} style={[GlobalStyles.font14Gray]}>{value}</Text>
-                        <Text style={[GlobalStyles.font14Blue, GlobalStyles.pdlr10, { top: 6 }]}>一键拨号</Text>
-                    </TouchableOpacity>
-                    
-                ) : (
+        if (value) {
+            return (
+                <View style={styles.detailTextView} key={key}>
+                    <Text style={[GlobalStyles.font14Gray, styles.detailKey]}>{key}:</Text>
+                    {isClick ? (
+                        <TouchableOpacity onPress={() => Communications.phonecall(value, true)}>
+                            <Text numberOfLines={3} style={[GlobalStyles.font14Blue, GlobalStyles.pdlr10]}>{value} &nbsp;<FontAwesome name="phone" color={Color.btnColor} size={14} /></Text>
+                        </TouchableOpacity>
+                    ) : (
+                            <Text numberOfLines={3} style={[GlobalStyles.font14Gray]}>{value}</Text>
+                        )}
+                </View>
+            )
+        }else{
+            return (
+                <View style={styles.detailTextView} key={key}>
+                    <Text style={[GlobalStyles.font14Gray, styles.detailKey]}>{key}:</Text>
                     <Text numberOfLines={3} style={[GlobalStyles.font14Gray]}>{value}</Text>
-                )}
-            </View>
-        )
+                </View>
+            )
+        }
+        
     }
 
     oldManDetail = () => {
@@ -82,17 +90,7 @@ export default class  OldManDetail extends Component {
                     {this.detailText('住户类型', this.queryParam.RoomUserType)}
                     {this.detailText('是否外籍', this.queryParam.IsForeign)}
                     {this.detailText('身份证号', this.queryParam.CardNumber)}
-                    
-                    <View style={[styles.detailTextView, GlobalStyles.flexDirectRow]}>
-                        {this.detailText('联系电话', this.queryParam.CallPhone)}
-                        {this.queryParam.CallPhone == '' ? (
-                            <Text />
-                        ) : (
-                                <TouchableOpacity onPress={() => Communications.phonecall(this.queryParam.CallPhone, true)}>
-                                    <Text style={[GlobalStyles.font14Blue, GlobalStyles.pdlr10, { top: 6 }]}>一键拨号</Text>
-                                </TouchableOpacity>
-                            )}
-                    </View>
+                    {this.detailText('联系电话', this.queryParam.CallPhone, true)}
                     {this.detailText('小区名称', this.queryParam.AreaName)}
                     {this.detailText('楼宇单元', this.queryParam.RoomAddress)}
                     {this.detailText('登记时间', this.queryParam.CheckInTime)}
@@ -135,16 +133,7 @@ export default class  OldManDetail extends Component {
                     {this.detailText('住户类型', this.queryParam.family.RoomUserType)}
                     {this.detailText('是否外籍', this.queryParam.family.IsForeign)}
                     {this.detailText('身份证号', this.queryParam.family.CardNumber)}
-                    <View style={[styles.detailTextView, GlobalStyles.flexDirectRow]}>
-                        {this.detailText('联系电话', this.queryParam.family.CallPhone)}
-                        {this.queryParam.family.CallPhone == '' ? (
-                            <Text />
-                        ) : (
-                                <TouchableOpacity onPress={() => Communications.phonecall(this.queryParam.family.CallPhone, true)}>
-                                    <Text style={[GlobalStyles.font14Blue, GlobalStyles.pdlr10, { top: 8 }]}><FontAwesome name="phone" color={Color.whiteColor} size={16} /></Text>
-                                </TouchableOpacity>
-                        )}
-                    </View>
+                    {this.detailText('联系电话', this.queryParam.family.CallPhone, true)}
                     {this.detailText('小区名称', this.queryParam.family.AreaName)}
                     {this.detailText('楼宇单元', this.queryParam.family.RoomAddress)}
                     {this.detailText('登记时间', this.queryParam.family.CheckInTime)}
