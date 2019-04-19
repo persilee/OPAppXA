@@ -139,12 +139,13 @@ export default class RealUnit extends Component{
                         <Text style={[GlobalStyles.font14Gray,GlobalStyles.flex]}>{item.legalName == null ? '' : item.legalName.replace('\n', '')}</Text>
                     </View>
                     <View style={[GlobalStyles.flexDirectRow,GlobalStyles.mb5]}>
-                        <Text style={[GlobalStyles.font14Gray,GlobalStyles.mr5]}>法人手机号：</Text>
-                        <Text style={[GlobalStyles.font14Gray]}>{item.legalPhone == null ? '' : item.legalPhone.replace('\n', '')}</Text>
+                        <Text style={[GlobalStyles.font14Gray,GlobalStyles.mr5]}>法人手机号：</Text>                     
                         {item.legalPhone == '' ? (
                             <Text></Text>
                         ) : (
-                                <TouchableOpacity onPress={() => Communications.phonecall(item.legalPhone, true)}><Text style={[GlobalStyles.font14Blue, GlobalStyles.pdlr10]}>一键拨号</Text></TouchableOpacity>
+                                <TouchableOpacity onPress={() => Communications.phonecall(item.legalPhone, true)}>
+                                    <Text style={[GlobalStyles.font14Blue]}>{item.legalPhone} &nbsp;<FontAwesome name="phone" color={Color.btnColor} size={14} /></Text>
+                                </TouchableOpacity>
                         )}
                     </View>
                     <View style={[GlobalStyles.flexDirectRow,GlobalStyles.mb5]}>
