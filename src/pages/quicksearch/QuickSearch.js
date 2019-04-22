@@ -257,6 +257,20 @@ export default class QuickSearch extends Component{
         );
     }
 
+    renderFooter = () => {
+        if (this.state.loading) return null;
+
+        return (
+            <View
+                style={{
+                    paddingVertical: 20,
+                }}
+            >
+                <ActivityIndicator size='small' color={Theme.toastIconTintColor} />
+            </View>
+        );
+    };
+
 
     render(){
         return (
@@ -275,6 +289,7 @@ export default class QuickSearch extends Component{
                             keyExtractor={(item,index) => `serach-${index}`}
                             onEndReachedThreshold={0.2}
                             onEndReached={  this.onEndReached }
+                            ListFooterComponent={this.renderFooter}
                         />
                     </View>
                     :null
