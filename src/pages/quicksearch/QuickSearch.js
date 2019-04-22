@@ -157,13 +157,7 @@ export default class QuickSearch extends Component{
 
     fetchSpecialList = (type) => {
         if(this.state.loading)return;
-        if (type != "search" && (this.pageSize * this.pageNum ) >= this.state.total){
-            this.setLoading(true);
-            return;  //最后一页
-        }
-        this.setState({
-            loading:true,
-        });
+        if (type != "search" && (this.pageSize * (this.pageNum - 1)) > this.state.total) return;
         let url = API.getQuickSearchSpecialList;
         let params = {init: 0,
             pageNum: this.pageNum,
