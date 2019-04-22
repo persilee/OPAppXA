@@ -157,7 +157,10 @@ export default class QuickSearch extends Component{
 
     fetchSpecialList = (type) => {
         if(this.state.loading)return;
-        if( type != "search" && (this.pageSize * (this.pageNum-1) ) > this.state.total) return;  //最后一页
+        if (type != "search" && (this.pageSize * this.pageNum ) >= this.state.total){
+            this.setLoading(true);
+            return;  //最后一页
+        }
         this.setState({
             loading:true,
         });
@@ -258,8 +261,8 @@ export default class QuickSearch extends Component{
     }
 
     renderFooter = () => {
-        if (this.state.loading) return null;
 
+        if (this.state.loading) return null;
         return (
             <View
                 style={{
@@ -268,7 +271,7 @@ export default class QuickSearch extends Component{
             >
                 <ActivityIndicator size='small' color={Theme.toastIconTintColor} />
             </View>
-        );
+        ); 
     };
 
 
@@ -289,7 +292,7 @@ export default class QuickSearch extends Component{
                             keyExtractor={(item,index) => `serach-${index}`}
                             onEndReachedThreshold={0.2}
                             onEndReached={  this.onEndReached }
-                            ListFooterComponent={this.renderFooter}
+                            ListFooterComponent={this.pageNum * this.pageSize < this.state.total ? this.renderFooter : null}
                         />
                     </View>
                     :null
