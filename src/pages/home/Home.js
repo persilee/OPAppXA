@@ -221,16 +221,15 @@ export default class Home extends Component {
 			console.info('getHomeAlarmList', responseData);
 			if (responseData.data && responseData.data.list && responseData.data.list.length > 0) {
                 this.setState({
-                    alarmLst: responseData.data.list
+					alarmLst: responseData.data.list,
+					isRefreshing: false
 				});
 			}
 		});
 	};
 
 	onHeaderRefresh = () => {
-		this.setState({
-			isRefreshing: false
-		});
+		this.getHomeAlarmList();
 	};
 
 	userPress = async (page) => {

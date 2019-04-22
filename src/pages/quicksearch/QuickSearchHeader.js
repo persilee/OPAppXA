@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
     View,
-    Text,DeviceEventEmitter,
-    TouchableOpacity,
+    Text,
+    DeviceEventEmitter,
     TextInput,
+    TouchableOpacity,
 } from 'react-native';
 
 import GlobalStyles from '../../../assets/styles/GlobalStyles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Toast, {DURATION} from 'react-native-easy-toast';
-import CommonSearch from "../../componets/CommonSearch";
 import Color from "../../config/color";
 
 export default class QuickSearchHeader extends Component{

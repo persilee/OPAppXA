@@ -5,17 +5,18 @@ import {
     Text,
     TouchableOpacity,
     DeviceEventEmitter,
-    Platform,TextInput,
+    Platform,
+    ActivityIndicator,
 } from 'react-native';
 
 import GlobalStyles from '../../../assets/styles/GlobalStyles';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import QuickSearchHeader from "./QuickSearchHeader";
 import {width} from "../../utils/Common";
 import API from "../../api/index";
 import CommonFetch from "../../componets/CommonFetch";
 import {getUserId} from "../../utils/Common";
 import Color from "../../config/color";
+import { Toast, Theme } from 'teaset';
 export default class QuickSearch extends Component{
 
     static navigationOptions = ({navigation,screenProps}) => ({
@@ -51,6 +52,24 @@ export default class QuickSearch extends Component{
         this.props.navigation.setParams({ searchMethod: this.searchMethod });
     }
 
+    static customKey = null;
+
+    showCustom() {
+        if (QuickSearch.customKey) return;
+        QuickSearch.customKey = Toast.show({
+            text: '数据加载中...',
+            icon: <ActivityIndicator size='large' color={Theme.toastIconTintColor} />,
+            position: 'center',
+            duration: 10000,
+        });
+    }
+
+    hideCustom() {
+        if (!QuickSearch.customKey) return;
+        Toast.hide(QuickSearch.customKey);
+        QuickSearch.customKey = null;
+    }
+
     searchMethod = (keyword,isSpecialType,specialType) =>{
 
         this.keyword = keyword;
@@ -65,6 +84,7 @@ export default class QuickSearch extends Component{
                 total:0,
                 data:[],
             },() => {
+                this.showCustom();
                 this.fetchSpecialList("search");
             });
         }else{
@@ -75,6 +95,7 @@ export default class QuickSearch extends Component{
                 data:[],
                 searchVisible:false,
             },() => {
+                this.showCustom();
                 this.fetchData("search");
             });
            
@@ -117,6 +138,7 @@ export default class QuickSearch extends Component{
         CommonFetch.doFetch(url,params,(responseData) => {
             console.info("getQuickSearchList",responseData);
             if(responseData.data && responseData.data.list && responseData.data.list.length > 0){
+                this.hideCustom();
                 this.setState({
                     data:this.state.data.concat(responseData.data.list),
                     total:responseData.data.total,
@@ -152,12 +174,14 @@ export default class QuickSearch extends Component{
         CommonFetch.doFetch(url,params,(responseData) => {
             console.info("getQuickSearchSpecialList",responseData);
             if(responseData.data && responseData.data.list && responseData.data.list.length > 0){
+                this.hideCustom();
                 this.setState({
                     data:this.state.data.concat(responseData.data.list),
                     total:responseData.data.total,
                     loading:false,
                 });
                 this.pageNum++;
+                
             }else{
                 this.setLoading(false);
             }
