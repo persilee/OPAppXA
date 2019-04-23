@@ -95,17 +95,13 @@ def enableProguardInReleaseBuilds = false
 
 android {
     signingConfigs {
-        config {
-            keyAlias 'meishu'
-            keyPassword 'meishu'
-            storeFile file('../police.jks')
-            storePassword 'meishu'
-        }
         release {
-            keyAlias 'meishu'
-            keyPassword 'meishu'
-            storeFile file('../police.jks')
-            storePassword 'meishu'
+            if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
+                storeFile file(MYAPP_RELEASE_STORE_FILE)
+                storePassword MYAPP_RELEASE_STORE_PASSWORD
+                keyAlias MYAPP_RELEASE_KEY_ALIAS
+                keyPassword MYAPP_RELEASE_KEY_PASSWORD
+            }
         }
     }
     compileSdkVersion 26
