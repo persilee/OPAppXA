@@ -160,6 +160,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-update')
     compile project(':react-native-background-job')
     compile project(':react-native-push-notification')
     compile project(':react-native-webview')
