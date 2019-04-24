@@ -41,8 +41,8 @@ export default class CheckUpdate extends Component {
 		console.log('isFirstTime', isFirstTime);
 		if (isFirstTime) {
 			Alert.alert('提示', '是否更新当前版本，点击是，更新，点击否，回退上一个版本', [
-				{ text: '是', onPress: () => { throw new Error('启动失败,请重启应用') } },
-				{ text: '否', onPress: () => { markSuccess() } },
+				{ text: '否', onPress: () => { throw new Error('启动失败,请重启应用') } },
+				{ text: '是', onPress: () => { markSuccess() } },
 			]);
 		} else if (isRolledBack) {
 			Alert.alert('提示', '刚刚更新失败了,版本被回滚.');
