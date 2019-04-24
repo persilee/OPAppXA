@@ -87,7 +87,7 @@ export default class CheckUpdate extends Component {
 				Alert.alert('提示', '您的应用版本已更新,请前往应用商店下载新的版本', [
                     { text: '是', onPress: () => { info.downloadUrl && Linking.openURL(info.downloadUrl) } },
                     {text: '否', onPress: () => { this.props.navigation.replace('Login'); }}
-				]);
+				], { cancelable: false });
 			} else if (info.upToDate) {
 				this.props.navigation.replace('Login');
 				// Alert.alert('提示', '您的应用版本已是最新.');
@@ -95,7 +95,7 @@ export default class CheckUpdate extends Component {
 				Alert.alert('提示', '检查到新的版本' + info.name + ',是否下载?\n' + info.description, [
 					{ text: '是', onPress: () => { this.doUpdate(info); this.showDownCustom();} },
 					{ text: '否', onPress: () => { this.props.navigation.replace('Login');}}
-				]);
+				], { cancelable: false });
             }
             this.hideCustom();
 		}).catch(err => {
@@ -110,7 +110,7 @@ export default class CheckUpdate extends Component {
 				{ text: '是', onPress: () => { switchVersion(hash); } },
 				{ text: '否', onPress: () => { this.props.navigation.replace('Login');}},
 				{ text: '下次启动时', onPress: () => { switchVersionLater(hash); } }
-			]);
+			], { cancelable: false });
 		}).catch(err => {
 			Alert.alert('提示', '更新失败.');
 		});

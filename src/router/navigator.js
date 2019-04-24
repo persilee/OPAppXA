@@ -5,6 +5,7 @@ import { createStackNavigator } from 'react-navigation';
 import Tabs from './tab';
 
 import Distribution from '../pages/populace/Distribution';
+import Population from '../pages/populace/Population';
 import PopulaceList from '../pages/populace/PopulaceList';
 import PopulaceDetail from '../pages/populace/PopulaceDetail';
 
@@ -66,24 +67,31 @@ export default createStackNavigator(
 		Main: {
 			screen: Tabs
 		},
+		Population: {
+			screen: Population,
+			navigationOptions: ({ navigation }) => ({
+				headerTitle: '实有人口',
+				headerRight: <View />
+			})
+		},
 		Distribution: {
 			screen: Distribution,
 			navigationOptions: ({ navigation }) => ({
-				headerTitle: '实有人口',
+				headerTitle: '人口户籍统计',
 				headerRight: <View />
 			})
 		},
 		PopulaceList: {
 			screen: PopulaceList,
 			navigationOptions: ({ navigation }) => ({
-				headerTitle: '实有人口',
+				headerTitle: '人口户籍统计',
 				headerRight: <View />
 			})
 		},
 		PopulaceDetail: {
 			screen: PopulaceDetail,
 			navigationOptions: ({ navigation }) => ({
-				headerTitle: '实有人口',
+				headerTitle: '人口详情',
 				headerRight: <View />
 			})
 		},

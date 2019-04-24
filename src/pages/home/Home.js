@@ -95,7 +95,7 @@ let itemArr = [
 		iconOutSize: 48,
 		height: 66,
 		iconSize: 30,
-		page: 'Distribution',
+		page: 'Population',
 		moduCode: 'RealPopulation'
 	},
 	{
@@ -121,7 +121,7 @@ let itemArr = [
 		moduCode: 'RealVehicle'
 	},
 	{
-		title: '高龄老人',
+		title: '人脸识别',
 		color: '#FEA095',
 		isImage: true,
 		name: require('../../../assets/images/home_dispute.png'),
@@ -130,7 +130,40 @@ let itemArr = [
 		iconSize: 30,
 		page: 'OldMan',
 		moduCode: 'OldMan'
-	}
+	},
+	{
+		title: '一键报警',
+		color: '#89DBFD',
+		isImage: true,
+		name: require('../../../assets/images/home_control.png'),
+		iconOutSize: 48,
+		height: 66,
+		iconSize: 30,
+		page: 'OldMan',
+		moduCode: 'OldMan'
+	},
+	{
+		title: '车辆出入',
+		color: '#FD6D6D',
+		isImage: true,
+		name: require('../../../assets/images/home_car.png'),
+		iconOutSize: 48,
+		height: 66,
+		iconSize: 30,
+		page: 'OldMan',
+		moduCode: 'OldMan'
+	},
+	{
+		title: '门禁管理',
+		color: '#89DBFD',
+		isImage: true,
+		name: require('../../../assets/images/home_control.png'),
+		iconOutSize: 48,
+		height: 66,
+		iconSize: 30,
+		page: 'OldMan',
+		moduCode: 'OldMan'
+	},
 ];
 
 if (Platform.OS === 'android') {
