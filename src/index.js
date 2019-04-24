@@ -12,7 +12,7 @@ class SetUp extends Component {
 
 	componentDidMount() {
 		// do anything while splash screen keeps, use await to wait for an async task.
-        SplashScreen.hide(); //关闭启动屏幕
+        // SplashScreen.hide(); //关闭启动屏幕
 	}
 
 	render() {

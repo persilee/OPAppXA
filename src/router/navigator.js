@@ -22,6 +22,7 @@ import OldMan from '../pages/oldMan/OldMan';
 import OldManDetail from '../pages/oldMan/OldManDetail';
 import VehicleDetails from '../pages/vehicle/VehicleDetails';
 import Login from '../pages/login/Login';
+import CheckUpdate from '../pages/checkUpdate/CheckUpdate';
 import Home from '../pages/home/Home';
 import Mine from '../pages/mine/Mine';
 import QuickSearch from '../pages/quicksearch/QuickSearch';
@@ -50,6 +51,12 @@ import Color from '../config/color';
 
 export default createStackNavigator(
 	{
+		CheckUpdate: {
+			screen: CheckUpdate,
+			navigationOptions: ({ navigation }) => ({
+				header: null
+			})
+		},
 		Login: {
 			screen: Login,
 			navigationOptions: ({ navigation }) => ({
@@ -310,7 +317,7 @@ export default createStackNavigator(
 	},
 	{
 		headerMode: 'screen', // 标题导航
-		initialRouteName: 'Login', // 默认先加载的页面组件,指定堆栈中的初始路由
+		initialRouteName: 'CheckUpdate', // 默认先加载的页面组件,指定堆栈中的初始路由
 		mode: 'modal', // 定义跳转风格(card、modal)
 		/* The header config from HomeScreen is now here */
 		navigationOptions: {
