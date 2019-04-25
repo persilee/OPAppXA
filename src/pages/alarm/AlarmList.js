@@ -117,7 +117,6 @@ export default class AlarmList extends Component {
 	};
 
 	render() {
-		console.log('this.pageNum', this.pageNum);
 		return (
 			<View style={[ GlobalStyles.pageBg, GlobalStyles.p15 ]}>
 				<FlatList
