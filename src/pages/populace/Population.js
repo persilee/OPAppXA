@@ -68,6 +68,7 @@ export default class Population extends Component {
                     (item, index) => {
                         return (
                             <PageItemImage
+                                key={`${item.page}-${index}`}
                                 name={ item.name }
                                 color={ item.color }
                                 image={ item.image }

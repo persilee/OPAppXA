@@ -42,7 +42,7 @@ export default class  Distribution extends Component {
                         userId:this.userId,
                     //    type:"",
                    }};
-
+        console.log('this.refs', this.refs);
         CommonFetch.doFetch(RoutApi.getPopulaceDistribution,params,this.dealResponseData,this.refs.toast)
     }
 

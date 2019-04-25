@@ -26,6 +26,7 @@ import Login from '../pages/login/Login';
 import CheckUpdate from '../pages/checkUpdate/CheckUpdate';
 import Home from '../pages/home/Home';
 import RealTime from '../pages/home/RealTime';
+import Basis from '../pages/home/Basis';
 import Mine from '../pages/mine/Mine';
 import QuickSearch from '../pages/quicksearch/QuickSearch';
 import HouseReal from '../pages/house/HouseReal';
@@ -57,6 +58,13 @@ export default createStackNavigator(
 			screen: RealTime,
 			navigationOptions: ({ navigation }) => ({
 				headerTitle: '防控情报',
+				headerRight: <View />
+			})
+		},
+		Basis: {
+			screen: Basis,
+			navigationOptions: ({ navigation }) => ({
+				headerTitle: '一标三实',
 				headerRight: <View />
 			})
 		},

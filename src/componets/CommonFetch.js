@@ -24,6 +24,7 @@ export default {
             }else {
                 failCallback && failCallback(responseData.msg);
                 toast&&toast.show(responseData.msg);
+                console.log(api, responseData);
             }
         })
         .catch(err => {

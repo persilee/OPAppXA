@@ -12,20 +12,32 @@ import PageItemImage from '../../componets/PageItemImage';
 
 let itemArr = [
     {
-        name: '车辆出入',
+        name: '实有房屋',
         color: '#89DBFD',
-        image: require('../../../assets/images/home_population.png'),
-        page: 'OldMan'
+        image: require('../../../assets/images/home_house.png'),
+        page: 'HouseReal'
     },
     {
-        name: '门禁管理',
+        name: '实有人口',
+        color: '#FD6D6D',
+        image: require('../../../assets/images/home_population.png'),
+        page: 'Population'
+    },
+    {
+        name: '实有单位',
         color: '#B9E669',
-        image: require('../../../assets/images/home_dispute.png'),
-        page: 'OldMan'
-    }
+        image: require('../../../assets/images/home_unit.png'),
+        page: 'RealUnit'
+    },
+    {
+        name: '实有车辆',
+        color: '#FCC23F',
+        image: require('../../../assets/images/home_car.png'),
+        page: 'VehicleRegional'
+    },
 ];
 
-export default class RealTime extends Component {
+export default class Basis extends Component {
 
 
     constructor(props) {
