@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, FlatList, View, Text, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, FlatList, View, Text, TouchableOpacity } from 'react-native';
 
 import GlobalStyles from '../../../assets/styles/GlobalStyles';
 import Toast, { DURATION } from 'react-native-easy-toast';
@@ -8,6 +8,7 @@ import { observer, inject } from 'mobx-react';
 import Color from '../../config/color';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import CommonFetch from '../../componets/CommonFetch';
+import Loading from '../../componets/Loading';
 
 @inject('User')
 @observer
@@ -15,13 +16,17 @@ export default class AlarmList extends Component {
 	constructor(props) {
 		super(props);
 		this.pageNum = 1;
+		this.pageSize = 20;
+		this.pageTotal = 0;
 		this.state = {
 			data: [],
-			senderId: 'senderID'
+			senderId: 'senderID',
+			loading: false
 		};
 	}
 
 	componentDidMount() {
+		Loading.showCustom();
 		this.fetchData();
 	}
 
@@ -77,16 +82,20 @@ export default class AlarmList extends Component {
 	};
 
 	fetchData = () => {
+		this.setState({
+			loading: false
+		});
 		let params = {
 			alarmstate: 0,
 			istoday: 0,
 			page: this.pageNum,
-			limit: 20,
+			limit: this.pageSize,
 			pwd: '2ysh3z72w'
 		};
 
 		CommonFetch.doFetch(API.getAlarmListData, params, (responseData) => {
 			if (responseData.data && responseData.data.list && responseData.data.list.length > 0) {
+				this.pageTotal = responseData.data.list.length;
 				let arr = [ ...responseData.data.list, ...this.state.data ];
 				function compare(property) {
 					return function (obj1, obj2) {
@@ -97,15 +106,18 @@ export default class AlarmList extends Component {
 				}
 				var sortArr = arr.sort(compare("alarmTime"));
 				this.setState({
-					data: sortArr
+					data: sortArr,
+					loading: this.pageNum > 1 ? true : false
 				});
 				sortArr = [];
+				this.pageNum = this.pageNum + 1;
 			}
+			Loading.hideCustom();
 		});
-		this.pageNum = this.pageNum + 1;
 	};
 
 	render() {
+		console.log('this.pageNum', this.pageNum);
 		return (
 			<View style={[ GlobalStyles.pageBg, GlobalStyles.p15 ]}>
 				<FlatList
@@ -115,6 +127,7 @@ export default class AlarmList extends Component {
 					renderItem={this._renderItem}
 					onEndReachedThreshold={0.1}
 					onEndReached={() => this.fetchData()}
+					ListFooterComponent={this.pageNum * this.pageSize <= this.pageTotal * this.pageNum ? Loading.renderFooter(this.state.loading) : null}
 				/>
 			</View>
 		);
