@@ -7,10 +7,35 @@ import {
     View
 } from 'react-native';
 
-import GlobalStyles from "../../../assets/styles/GlobalStyles";
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { getUserId } from "../../utils/Common";
-import Color from "../../config/color";
+import PageItemImage from '../../componets/PageItemImage';
+
+let itemArr = [
+    {
+        name: '户籍统计',
+        color: '#89DBFD',
+        image: require('../../../assets/images/home_population.png'),
+        page: 'Distribution'
+    },
+    {
+        name: '高龄老人',
+        color: '#FEA095',
+        image: require('../../../assets/images/home_dispute.png'),
+        page: 'OldMan'
+    },
+    {
+        name: '租客信息',
+        color: '#FCC23F',
+        image: require('../../../assets/images/home_check.png'),
+        page: 'OldMan'
+    },
+    {
+        name: '访客信息',
+        color: '#B9E669',
+        image: require('../../../assets/images/home_house.png'),
+        page: 'OldMan'
+    },
+];
 
 export default class Population extends Component {
 
@@ -23,19 +48,35 @@ export default class Population extends Component {
         }
     }
 
-
     componentDidMount() {
         getUserId().then(_userId => {
             this.userId = _userId;
         });
     }
 
+    userPress = async (page) => {
+        const { navigate } = this.props.navigation;
+        navigate(page);
+    };
+
 
     render() {
         const { navigate } = this.props.navigation;
         return (
             <View style={[GlobalStyles.pageBg, { position: "relative" }]}>
-                <TouchableOpacity style={[GlobalStyles.containerBg, styles.itemStyle, GlobalStyles.lineBlackBottom, GlobalStyles.pdlr15]}
+                {itemArr.map(
+                    (item, index) => {
+                        return (
+                            <PageItemImage
+                                name={ item.name }
+                                color={ item.color }
+                                image={ item.image }
+                                onPress={ () => this.userPress(item.page) }
+                            />
+                        );
+                    }
+                )}
+                {/* <TouchableOpacity style={[GlobalStyles.containerBg, styles.itemStyle, GlobalStyles.lineBlackBottom, GlobalStyles.pdlr15]}
                     onPress={() => this.props.navigation.navigate('Distribution')}>
                     <View
                         style={{ 
@@ -117,7 +158,7 @@ export default class Population extends Component {
                         <FontAwesome name={"angle-right"} color={Color.whiteColor} size={14} />
                     </View>
 
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
         );
     }

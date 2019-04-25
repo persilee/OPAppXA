@@ -4,8 +4,8 @@
 
 export const baseUrl = "http://106.2.232.234:28010"; //阿里云 正式库
 export const additionUrl = "http://106.2.232.234:28081";
-// export const baseUrl = "http://106.2.232.235:28084"; //阿里云 正式库
-// export const additionUrl = "http://106.2.232.235:8083";
+// export const baseUrl = "http://192.168.1.20:8010"; //阿里云 正式库
+// export const additionUrl = "http://192.168.1.20:8081";
 export const newUrl = 'http://106.2.232.234:9070';
 
 // export const baseUrl = "http://192.168.1.147:8091"; //局域网IP

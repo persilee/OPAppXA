@@ -25,6 +25,7 @@ import VehicleDetails from '../pages/vehicle/VehicleDetails';
 import Login from '../pages/login/Login';
 import CheckUpdate from '../pages/checkUpdate/CheckUpdate';
 import Home from '../pages/home/Home';
+import RealTime from '../pages/home/RealTime';
 import Mine from '../pages/mine/Mine';
 import QuickSearch from '../pages/quicksearch/QuickSearch';
 import HouseReal from '../pages/house/HouseReal';
@@ -52,6 +53,13 @@ import Color from '../config/color';
 
 export default createStackNavigator(
 	{
+		RealTime: {
+			screen: RealTime,
+			navigationOptions: ({ navigation }) => ({
+				headerTitle: '防控情报',
+				headerRight: <View />
+			})
+		},
 		CheckUpdate: {
 			screen: CheckUpdate,
 			navigationOptions: ({ navigation }) => ({

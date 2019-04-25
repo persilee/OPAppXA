@@ -345,6 +345,7 @@ export default class Home extends Component {
 				filterArr.push(item);
 			}
 		});
+		console.log('filterArr', filterArr);
 		return (
 			<ScrollView
 				style={GlobalStyles.pageBg}
