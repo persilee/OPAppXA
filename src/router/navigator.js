@@ -27,6 +27,7 @@ import CheckUpdate from '../pages/checkUpdate/CheckUpdate';
 import Home from '../pages/home/Home';
 import RealTime from '../pages/home/RealTime';
 import Basis from '../pages/home/Basis';
+import Task from '../pages/home/Task';
 import Mine from '../pages/mine/Mine';
 import QuickSearch from '../pages/quicksearch/QuickSearch';
 import HouseReal from '../pages/house/HouseReal';
@@ -65,6 +66,13 @@ export default createStackNavigator(
 			screen: Basis,
 			navigationOptions: ({ navigation }) => ({
 				headerTitle: '一标三实',
+				headerRight: <View />
+			})
+		},
+		Task: {
+			screen: Task,
+			navigationOptions: ({ navigation }) => ({
+				headerTitle: '群防群治',
 				headerRight: <View />
 			})
 		},
