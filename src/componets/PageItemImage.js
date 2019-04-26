@@ -49,7 +49,7 @@ export default  class  PageItemImage extends  Component{
                         borderRadius: 16
                     }}>
                     <Image
-                        style={{ tintColor: "#fff", width: 20, height: 20 }}
+                        style={{ tintColor: "#fff", width: 18, height: 18 }}
                         source={this.props.image} />
                 </View>
                 <Text style={[GlobalStyles.font14Gray, GlobalStyles.pdlr10, { flex: 1 }]}>{this.props.name}</Text>

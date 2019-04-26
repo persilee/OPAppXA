@@ -8,33 +8,20 @@ import PageItemImage from '../../componets/PageItemImage';
 
 let itemArr = [
     {
-        name: '实有房屋',
-        color: '#89DBFD',
-        image: require('../../../assets/images/home_house.png'),
-        page: 'HouseReal'
-    },
-    {
-        name: '实有人口',
-        color: '#FD6D6D',
-        image: require('../../../assets/images/home_population.png'),
-        page: 'Population'
-    },
-    {
-        name: '实有单位',
-        color: '#B9E669',
-        image: require('../../../assets/images/home_unit.png'),
-        page: 'RealUnit'
-    },
-    {
-        name: '实有车辆',
+        name: '警务通讯录',
         color: '#FCC23F',
-        image: require('../../../assets/images/home_car.png'),
-        page: 'VehicleRegional'
+        image: require('../../../assets/images/home_check.png'),
+        page: 'AddressList'
     },
+    {
+        name: '一键报警',
+        color: '#FEA095',
+        image: require('../../../assets/images/home_control.png'),
+        page: 'OneButtonCall'
+    }
 ];
 
-export default class Basis extends Component {
-
+export default class Alarm extends Component {
 
     constructor(props) {
         super(props);

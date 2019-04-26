@@ -66,17 +66,6 @@ let itemArr = [
 		moduCode: 'Task'
 	},
 	// {
-	// 	title: '房屋核查',
-	// 	color: '#FCC23F',
-	// 	isImage: true,
-	// 	name: require('../../../assets/images/home_check.png'),
-	// 	iconOutSize: 48,
-	// 	height: 66,
-	// 	iconSize: 30,
-	// 	page: 'Check',
-	// 	moduCode: 'Check'
-	// },
-	// {
 	// 	title: '纠纷化解',
 	// 	color: '#B9E669',
 	// 	isImage: true,
@@ -88,16 +77,6 @@ let itemArr = [
 	// 	moduCode: 'DisputeCheck'
 	// },
 	// {
-	// 	title: '报警任务',
-	// 	color: '#FEA095',
-	// 	isImage: true,
-	// 	name: require('../../../assets/images/home_control.png'),
-	// 	iconOutSize: 48,
-	// 	height: 66,
-	// 	iconSize: 30,
-	// 	page: 'Control',
-	// 	moduCode: 'ControlPrecaution'
-	// },
 	// {
 	// 	title: '任务统计',
 	// 	color: '#89DBFD',
@@ -108,50 +87,6 @@ let itemArr = [
 	// 	iconSize: 30,
 	// 	page: 'History',
 	// 	moduCode: 'TaskStatistics'
-	// },
-	// {
-	// 	title: '实有房屋',
-	// 	color: '#89DBFD',
-	// 	isImage: true,
-	// 	name: require('../../../assets/images/home_house.png'),
-	// 	iconOutSize: 48,
-	// 	height: 66,
-	// 	iconSize: 30,
-	// 	page: 'HouseReal',
-	// 	moduCode: 'RealHouse'
-	// },
-	// {
-	// 	title: '实有人口',
-	// 	color: '#FD6D6D',
-	// 	isImage: true,
-	// 	name: require('../../../assets/images/home_population.png'),
-	// 	iconOutSize: 48,
-	// 	height: 66,
-	// 	iconSize: 30,
-	// 	page: 'Population',
-	// 	moduCode: 'RealPopulation'
-	// },
-	// {
-	// 	title: '实有单位',
-	// 	color: '#B9E669',
-	// 	isImage: true,
-	// 	name: require('../../../assets/images/home_unit.png'),
-	// 	iconOutSize: 48,
-	// 	height: 66,
-	// 	iconSize: 30,
-	// 	page: 'RealUnit',
-	// 	moduCode: 'RealUnit'
-	// },
-	// {
-	// 	title: '实有车辆',
-	// 	color: '#FCC23F',
-	// 	isImage: true,
-	// 	name: require('../../../assets/images/home_car.png'),
-	// 	iconOutSize: 48,
-	// 	height: 66,
-	// 	iconSize: 30,
-	// 	page: 'VehicleRegional',
-	// 	moduCode: 'RealVehicle'
 	// },
 	{
 		title: '人脸识别',
@@ -175,28 +110,6 @@ let itemArr = [
 		page: 'Alarm',
 		moduCode: 'Alarm'
 	},
-	// {
-	// 	title: '车辆出入',
-	// 	color: '#FD6D6D',
-	// 	isImage: true,
-	// 	name: require('../../../assets/images/home_car.png'),
-	// 	iconOutSize: 48,
-	// 	height: 66,
-	// 	iconSize: 30,
-	// 	page: 'OldMan',
-	// 	moduCode: 'OldMan'
-	// },
-	// {
-	// 	title: '门禁管理',
-	// 	color: '#89DBFD',
-	// 	isImage: true,
-	// 	name: require('../../../assets/images/home_control.png'),
-	// 	iconOutSize: 48,
-	// 	height: 66,
-	// 	iconSize: 30,
-	// 	page: 'OldMan',
-	// 	moduCode: 'OldMan'
-	// },
 ];
 
 if (Platform.OS === 'android') {
