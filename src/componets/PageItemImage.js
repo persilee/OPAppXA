@@ -24,11 +24,15 @@ export default  class  PageItemImage extends  Component{
         image: PropTypes.oneOfType([
             PropTypes.number,
             PropTypes.string,
-        ]).isRequired
+        ]).isRequired,
+        isToggle: PropTypes.bool,
+        isSwitch: PropTypes.bool,
+        isText: PropTypes.bool
     }
 
     static defaultProps = {
-        isImage: false
+        isToggle: false,
+        isSwitch: false
     }
 
     constructor(props){
@@ -39,7 +43,7 @@ export default  class  PageItemImage extends  Component{
         return (
             <TouchableOpacity style={[GlobalStyles.containerBg, styles.itemStyle, GlobalStyles.lineBlackBottom, GlobalStyles.pdlr15]}
                 onPress={this.props.onPress}>
-                <View
+                {this.props.isText ? null : <View
                     style={{
                         backgroundColor: this.props.color,
                         justifyContent: "center",
@@ -51,10 +55,10 @@ export default  class  PageItemImage extends  Component{
                     <Image
                         style={{ tintColor: "#fff", width: 18, height: 18 }}
                         source={this.props.image} />
-                </View>
-                <Text style={[GlobalStyles.font14Gray, GlobalStyles.pdlr10, { flex: 1 }]}>{this.props.name}</Text>
+                </View>}
+                <Text style={[this.props.isText ? { marginLeft: 30 }: null,GlobalStyles.font14Gray, GlobalStyles.pdlr10, { flex: 1 }]}>{this.props.name}</Text>
                 <View style={styles.numberView}>
-                    <FontAwesome name={"angle-right"} color={Color.whiteColor} size={14} />
+                    <FontAwesome name={this.props.isSwitch ? "angle-down" : "angle-right"} color={Color.whiteColor} size={14} />
                 </View>
             </TouchableOpacity>
         );

@@ -122,6 +122,9 @@ export default  GlobalStyles = {
     ml20:{
         marginLeft:20
     },
+    ml25:{
+        marginLeft:25
+    },
     mr10:{
         marginRight:10,
     },

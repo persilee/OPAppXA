@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
-    View
+    View,
+    Text
 } from 'react-native';
 
 import { getUserId } from "../../utils/Common";
@@ -11,7 +12,9 @@ let itemArr = [
         name: '警务通讯录',
         color: '#FCC23F',
         image: require('../../../assets/images/home_check.png'),
-        page: 'AddressList'
+        page: 'AddressList',
+        isToggle: true,
+        isSwitch: true,
     },
     {
         name: '一键报警',
@@ -21,13 +24,37 @@ let itemArr = [
     }
 ];
 
+let itemListArr = [
+    {
+        name: '社区民警通讯录',
+        color: '#FCC23F',
+        image: require('../../../assets/images/home_check.png'),
+        page: 'AddressList',
+        isText: true
+    },
+    {
+        name: '派出所民警通信录',
+        color: '#FEA095',
+        image: require('../../../assets/images/home_control.png'),
+        page: 'OneButtonCall',
+        isText: true
+    },
+    {
+        name: '其他通信录',
+        color: '#FEA095',
+        image: require('../../../assets/images/home_control.png'),
+        page: 'OneButtonCall',
+        isText: true
+    },
+];
+
 export default class Alarm extends Component {
 
     constructor(props) {
         super(props);
-
+        this.index = 0,
         this.state = {
-            data: []
+            isSwitch: false,
         }
     }
 
@@ -42,21 +69,59 @@ export default class Alarm extends Component {
         navigate(page);
     };
 
+    itemList = () => {
+        return (
+            <View>
+                {itemListArr.map((item, index) => {
+                    this.index += 1; 
+                    return (
+                        <PageItemImage
+                            key={`${item.page}-${index}-${this.index}`}
+                            name={item.name}
+                            color={item.color}
+                            image={item.image}
+                            onPress={() => this.userPress(item.page)}
+                            isText={item.isText}
+                        />
+                    );
+                })}
+            </View>
+        )
+    }
 
     render() {
         return (
             <View style={[GlobalStyles.pageBg, { position: "relative" }]}>
                 {itemArr.map(
                     (item, index) => {
-                        return (
-                            <PageItemImage
-                                key={`${item.page}-${index}`}
-                                name={item.name}
-                                color={item.color}
-                                image={item.image}
-                                onPress={() => this.userPress(item.page)}
-                            />
-                        );
+                        this.index += 1; 
+                        console.log('index', `${item.page}-${index}-${this.index}`);
+                        if(item.isToggle) {
+                            return (
+                                <View key={`View-${index}-${this.index}`}> 
+                                    <PageItemImage
+                                        key={`${item.page}-${index}-${this.index}`}
+                                        name={item.name}
+                                        color={item.color}
+                                        image={item.image}
+                                        onPress={() => { this.setState({isSwitch:!this.state.isSwitch})}}
+                                        isSwitch={this.state.isSwitch}
+                                        isToggle={item.isToggle}
+                                    />
+                                    { this.state.isSwitch ? this.itemList() : null}
+                                </View>
+                            )
+                        }else{
+                            return (
+                                <PageItemImage
+                                    key={`${item.page}-${index}-${this.index}`}
+                                    name={item.name}
+                                    color={item.color}
+                                    image={item.image}
+                                    onPress={() => this.userPress(item.page)}
+                                />
+                            );
+                        }
                     }
                 )}
             </View>
