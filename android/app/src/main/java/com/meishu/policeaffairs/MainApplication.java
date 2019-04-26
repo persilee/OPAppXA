@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.facebook.react.ReactApplication;
+import org.lovebing.reactnative.baidumap.BaiduMapPackage;
 import cn.reactnative.modules.update.UpdatePackage;
 import cn.reactnative.modules.update.UpdateContext;
 import com.pilloxa.backgroundjob.BackgroundJobPackage;
@@ -43,6 +44,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new BaiduMapPackage(),
             new UpdatePackage(),
             new BackgroundJobPackage(),
             new ReactNativePushNotificationPackage(),
