@@ -13,6 +13,7 @@ import {groupBy} from "../../utils/Utils";
 import {getUserId} from "../../utils/Common";
 import Color from "../../config/color";
 import { observer, inject } from 'mobx-react';
+import Loading from '../../componets/Loading';
 var Dimensions = require('Dimensions');
 var ScreenWidth = Dimensions.get('window').width;
 
@@ -26,11 +27,13 @@ export default class HouseReal extends Component{
             data:[],
             statusVisible: false,
             modalData:{},
+            loading: true,
         };
     
     }
     
     componentDidMount(){
+        Loading.showCustom();
         getUserId().then(_userId => {
             this.userId = _userId;
             this.fetchData();
@@ -73,11 +76,13 @@ export default class HouseReal extends Component{
                     let data = this.convertTreeData(responseData.data.list);
                     this.setState({
                         data: data,
+                        loading: false,
                     });
                 }
+                Loading.hideCustom();
             }).catch( err => {
                 console.log(err);
-            });
+            });      
     }
     /**
      * 数据转换成树结构
@@ -258,11 +263,16 @@ export default class HouseReal extends Component{
 
 
     _renderEmptyComponent = () => {
-        return (
-            <View style={[GlobalStyles.center,GlobalStyles.mt40]}>
-                <Text style={[GlobalStyles.font14Gray]}>无数据</Text>
-            </View>
-        );
+        if(!this.state.loading){
+            return (
+                <View style={[GlobalStyles.center,GlobalStyles.mt40]}>
+                    <Text style={[GlobalStyles.font14Gray]}>无数据</Text>
+                </View>
+            );
+        }else{
+            return null;
+        }
+       
     }
 
     statusSelect=(flag)=>{
@@ -275,13 +285,12 @@ export default class HouseReal extends Component{
     render(){
         return (
             <ScrollView style={GlobalStyles.pageBg}>
-
-                 <FlatList
-                    ListEmptyComponent = {this._renderEmptyComponent}
+                <FlatList
                     renderItem={this._renderSectionHeader}
                     data={this.state.data}
                     extraData={this.state}
                     keyExtractor={(item,index) => `area-${index}`}
+                    ListEmptyComponent = { this._renderEmptyComponent }
                 />
 
 

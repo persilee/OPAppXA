@@ -46,6 +46,7 @@ export default class CheckUpdate extends Component {
 			]);
 		} else if (isRolledBack) {
 			Alert.alert('提示', '刚刚更新失败了,版本被回滚.');
+			this.props.navigation.replace('Login');
 		}
     }
     
@@ -100,6 +101,7 @@ export default class CheckUpdate extends Component {
             this.hideCustom();
 		}).catch(err => {
 			Alert.alert('提示', '更新失败.');
+			this.props.navigation.replace('Login');
 		});
 	};
 
@@ -113,6 +115,7 @@ export default class CheckUpdate extends Component {
 			], { cancelable: false });
 		}).catch(err => {
 			Alert.alert('提示', '更新失败.');
+			this.props.navigation.replace('Login');
 		});
 	};
 
