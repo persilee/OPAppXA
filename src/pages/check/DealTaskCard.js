@@ -13,6 +13,7 @@ import RoutApi from '../../api/index';
 import {imageBaseUrl} from '../../config/index';
 import CommonBtn from  '../../componets/CommonBtn';
 import Color from "../../config/color";
+
 @inject('CheckData')
 @inject('DisputeData')
 @inject('User')
@@ -142,7 +143,8 @@ export default class DealTaskCard extends Component {
             method:'POST',
             headers:{
                 'Content-Type':'multipart/form-data',
-                'Authorization': this.props.User.token
+                'Authorization': this.props.User.token,
+                'areaKey': this.props.User.areaKey
             },
             body:formData,
         })

@@ -5,19 +5,20 @@ import {
 
 import { getUserId } from "../../utils/Common";
 import PageItemImage from '../../componets/PageItemImage';
+import { Toast } from 'teaset';
 
 let itemArr = [
     {
         name: '车辆出入',
         color: '#89DBFD',
         image: require('../../../assets/images/home_population.png'),
-        page: 'OldMan'
+        page: ''
     },
     {
         name: '门禁管理',
         color: '#B9E669',
         image: require('../../../assets/images/home_dispute.png'),
-        page: 'OldMan'
+        page: ''
     }
 ];
 
@@ -39,8 +40,12 @@ export default class RealTime extends Component {
     }
 
     userPress = async (page) => {
-        const { navigate } = this.props.navigation;
-        navigate(page);
+        if(page){
+            const { navigate } = this.props.navigation;
+            navigate(page);
+        }else{
+            Toast.smile('正在开发中，敬请期待...');
+        }
     };
 
 

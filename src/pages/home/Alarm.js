@@ -6,6 +6,7 @@ import {
 
 import { getUserId } from "../../utils/Common";
 import PageItemImage from '../../componets/PageItemImage';
+import { Toast } from 'teaset';
 
 let itemArr = [
     {
@@ -19,7 +20,7 @@ let itemArr = [
     {
         name: '一键报警',
         color: '#FEA095',
-        image: require('../../../assets/images/home_control.png'),
+        image: require('../../../assets/images/baojing.png'),
         page: 'OneButtonCall'
     }
 ];
@@ -29,21 +30,21 @@ let itemListArr = [
         name: '社区民警通讯录',
         color: '#FCC23F',
         image: require('../../../assets/images/home_check.png'),
-        page: 'AddressList',
+        page: '',
         isText: true
     },
     {
         name: '派出所民警通信录',
         color: '#FEA095',
         image: require('../../../assets/images/home_control.png'),
-        page: 'OneButtonCall',
+        page: '',
         isText: true
     },
     {
         name: '其他通信录',
         color: '#FEA095',
         image: require('../../../assets/images/home_control.png'),
-        page: 'OneButtonCall',
+        page: '',
         isText: true
     },
 ];
@@ -65,8 +66,12 @@ export default class Alarm extends Component {
     }
 
     userPress = async (page) => {
-        const { navigate } = this.props.navigation;
-        navigate(page);
+        if(page){
+            const { navigate } = this.props.navigation;
+            navigate(page);
+        }else{
+            Toast.smile('正在开发中，敬请期待...');
+        }
     };
 
     itemList = () => {
@@ -95,7 +100,6 @@ export default class Alarm extends Component {
                 {itemArr.map(
                     (item, index) => {
                         this.index += 1; 
-                        console.log('index', `${item.page}-${index}-${this.index}`);
                         if(item.isToggle) {
                             return (
                                 <View key={`View-${index}-${this.index}`}> 

@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import GlobalStyles from "../../../assets/styles/GlobalStyles";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {observer,inject} from 'mobx-react/native'
+import {observer,inject} from 'mobx-react/native';
 import Toast, {DURATION} from 'react-native-easy-toast';
 import RoutApi from '../../api/index';
 import ImagePicker from 'react-native-image-picker';
@@ -112,7 +112,8 @@ export default class DisputeTaskPhoto extends Component {
             method:'POST',
             headers:{
                 'Content-Type':'multipart/form-data',
-                'Authorization': this.props.User.token
+                'Authorization': this.props.User.token,
+                'areaKey': this.props.User.areaKey
             },
             body:formData,
         })

@@ -18,6 +18,7 @@ import DealTaskCard from '../pages/check/DealTaskCard';
 import DealTaskPhoto from '../pages/check/DealTaskPhoto';
 import DealTaskResult from '../pages/check/DealTaskResult';
 
+import OneButtonCall from '../pages/alarmCall/OneButtonCall';
 import VehicleRegional from '../pages/vehicle/VehicleRegional';
 import OldMan from '../pages/oldMan/OldMan';
 import OldManDetail from '../pages/oldMan/OldManDetail';
@@ -29,6 +30,9 @@ import RealTime from '../pages/home/RealTime';
 import Basis from '../pages/home/Basis';
 import Task from '../pages/home/Task';
 import Alarm from '../pages/home/Alarm';
+import Joint from '../pages/home/Joint';
+import ItPolice from '../pages/home/ItPolice';
+import Duty from '../pages/home/Duty';
 import Mine from '../pages/mine/Mine';
 import QuickSearch from '../pages/quicksearch/QuickSearch';
 import HouseReal from '../pages/house/HouseReal';
@@ -81,6 +85,34 @@ export default createStackNavigator(
 			screen: Alarm,
 			navigationOptions: ({ navigation }) => ({
 				headerTitle: '一键报警',
+				headerRight: <View />
+			})
+		},
+		OneButtonCall: {
+			screen: OneButtonCall,
+			navigationOptions: ({ navigation }) => ({
+				headerTitle: '一键报警',
+				headerRight: <View />
+			})
+		},
+		Joint: {
+			screen: Joint,
+			navigationOptions: ({ navigation }) => ({
+				headerTitle: '智能联勤',
+				headerRight: <View />
+			})
+		},
+		ItPolice: {
+			screen: ItPolice,
+			navigationOptions: ({ navigation }) => ({
+				headerTitle: '接处警任务',
+				headerRight: <View />
+			})
+		},
+		Duty: {
+			screen: Duty,
+			navigationOptions: ({ navigation }) => ({
+				headerTitle: '勤务资源',
 				headerRight: <View />
 			})
 		},

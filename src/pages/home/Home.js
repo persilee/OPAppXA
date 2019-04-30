@@ -29,20 +29,10 @@ import NotifService from '../../componets/NotifService';
 import BackgroundJob from 'react-native-background-job';
 import Color from '../../config/color';
 import _updateConfig from '../../../update.json';
+import { Toast } from 'teaset';
 
 const { Xinge } = NativeModules;
 let itemArr = [
-	{
-		title: '防控情报',
-		color: '#FCC23F',
-		isImage: true,
-		name: require('../../../assets/images/home_unit.png'),
-		iconOutSize: 48,
-		height: 66,
-		iconSize: 30,
-		page: 'RealTime',
-		moduCode: 'RealTime'
-	},
 	{
 		title: '一标三实',
 		color: '#B9E669',
@@ -53,6 +43,17 @@ let itemArr = [
 		iconSize: 30,
 		page: 'Basis',
 		moduCode: 'Basis'
+	},
+	{
+		title: '防控情报',
+		color: '#FCC23F',
+		isImage: true,
+		name: require('../../../assets/images/home_unit.png'),
+		iconOutSize: 48,
+		height: 66,
+		iconSize: 30,
+		page: 'RealTime',
+		moduCode: 'RealTime'
 	},
 	{
 		title: '群防群治',
@@ -96,8 +97,41 @@ let itemArr = [
 		iconOutSize: 48,
 		height: 66,
 		iconSize: 30,
-		page: 'Face',
+		page: '',
 		moduCode: 'Face'
+	},
+	{
+		title: '智能联勤',
+		color: '#B9E669',
+		isImage: true,
+		name: require('../../../assets/images/home_task.png'),
+		iconOutSize: 48,
+		height: 66,
+		iconSize: 30,
+		page: 'Joint',
+		moduCode: 'Alarm'
+	},
+	{
+		title: '接处警任务',
+		color: '#FCC23F',
+		isImage: true,
+		name: require('../../../assets/images/home_dispute.png'),
+		iconOutSize: 48,
+		height: 66,
+		iconSize: 30,
+		page: 'ItPolice',
+		moduCode: 'Alarm'
+	},
+	{
+		title: '勤务资源',
+		color: '#B9E669',
+		isImage: true,
+		name: require('../../../assets/images/home_check.png'),
+		iconOutSize: 48,
+		height: 66,
+		iconSize: 30,
+		page: 'Duty',
+		moduCode: 'Alarm'
 	},
 	{
 		title: '一键报警',
@@ -212,8 +246,12 @@ export default class Home extends Component {
 	};
 
 	userPress = async (page) => {
-		const { navigate } = this.props.navigation;
-		navigate(page);
+		if(page){
+            const { navigate } = this.props.navigation;
+            navigate(page);
+        }else{
+            Toast.smile('正在开发中，敬请期待...');
+        }
 	};
 
 	convertAlarmColor = (type) => {

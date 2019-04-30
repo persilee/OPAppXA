@@ -94,6 +94,10 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
+     compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
     signingConfigs {
         release {
             if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
@@ -111,7 +115,7 @@ android {
         minSdkVersion 20
         targetSdkVersion 26
         versionCode 1
-        versionName "1.1.1"
+        versionName "1.1.2"
 
         ndk {
             //根据需要 自行选择添加的对应cpu类型的.so库。

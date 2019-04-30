@@ -2,8 +2,12 @@
 // export const baseUrl = "http://140.143.143.34:28091"; //反向代理
 // export const additionUrl = "http://140.143.143.34:28092";
 
-export const baseUrl = "http://106.2.232.234:28010"; //阿里云 正式库
-export const additionUrl = "http://106.2.232.234:28081";
+// export const baseUrl = "http://106.2.232.234:28010"; //阿里云 正式库
+// export const additionUrl = "http://106.2.232.234:28081";
+
+export const baseUrl = "http://106.2.232.234:28888"; //阿里云 正式库
+export const additionUrl = "http://106.2.232.234:28888";
+
 // export const baseUrl = "http://106.2.232.235:8010"; //阿里云 正式库
 // export const additionUrl = "http://106.2.232.235:8083";
 export const newUrl = 'http://106.2.232.234:9070';

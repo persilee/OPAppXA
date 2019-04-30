@@ -15,7 +15,11 @@ import API from "../../api/index";
 import {groupBy} from "../../utils/Utils";
 import {getUserId} from "../../utils/Common";
 import Color from "../../config/color";
+import {observer,inject} from 'mobx-react/native';
 
+
+@inject('User')
+@observer
 export default class HouseAllScene extends Component{
     constructor(props) {
         super(props);
@@ -56,6 +60,7 @@ export default class HouseAllScene extends Component{
                headers: {
                    'Accept': 'application/json',
                    'Content-Type': 'application/json',
+                   'areaKey': this.props.User.areaKey
                    // 'Authorization': this.props.User.token
                },
                body:JSON.stringify({init: 0,
@@ -133,6 +138,7 @@ export default class HouseAllScene extends Component{
                headers: {
                    'Accept': 'application/json',
                    'Content-Type': 'application/json',
+                   'areaKey': this.props.User.areaKey
                    // 'Authorization': this.props.User.token
                },
                body:JSON.stringify(params)
@@ -163,6 +169,7 @@ export default class HouseAllScene extends Component{
                headers: {
                    'Accept': 'application/json',
                    'Content-Type': 'application/json',
+                   'areaKey': this.props.User.areaKey
                    // 'Authorization': this.props.User.token
                },
                body:JSON.stringify(params)

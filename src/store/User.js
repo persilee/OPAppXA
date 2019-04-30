@@ -11,6 +11,7 @@ class User {
     @observable userInfo = {
         isLogin:false,
         token:"",
+        areaKey:"",
         mobileNo:"",
         userId:"",
         idcardNum: "",
@@ -28,6 +29,9 @@ class User {
     }; // 注册变量，使其成为可检测的
     @computed get token(){
         return this.userInfo.token;
+    };
+    @computed get areaKey(){
+        return this.userInfo.areaKey;
     };
     @computed get mobileNo(){
         return this.userInfo.mobileNo;
@@ -86,6 +90,7 @@ class User {
             userPosi:userPosi,
             expiration:date.getTime(),
         }
+        console.log('updateUser', this.userInfo)
         AsyncStorage.setItem("_userInfo",JSON.stringify(this.userInfo));
         AsyncStorage.setItem("_userId",userId);
     }

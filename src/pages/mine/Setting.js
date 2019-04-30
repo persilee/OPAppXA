@@ -31,13 +31,14 @@ export default class Setting extends Component{
     }
 
     logout = () => {
-        console.log(this.props.User.token);
+   
         fetch(API.loginOut,{
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': this.props.User.token
+                'Authorization': this.props.User.token,
+                'areaKey': this.props.User.areaKey,
             },
         })
             .then(response => response.json())

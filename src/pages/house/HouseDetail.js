@@ -16,6 +16,8 @@ import {getUserId} from "../../utils/Common";
 import {copyData} from "../../utils/Utils";
 import Toast, {DURATION} from 'react-native-easy-toast';
 import Color from "../../config/color";
+import {observer,inject} from 'mobx-react';
+
 let ownerTitleArr =[ 
     {
         title:"姓名",
@@ -73,6 +75,9 @@ rentTitleArr.splice(10, 0, {
     value:"tenantTime",
 });
 
+
+@inject('User')
+@observer
 export default class HouseDetail extends Component{
 
     static navigationOptions = ({navigation,screenProps}) => ({
@@ -141,6 +146,7 @@ export default class HouseDetail extends Component{
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
+                'areaKey': this.props.User.areaKey
                 // 'Authorization': this.props.User.token
             },
             body:JSON.stringify({init: 0,

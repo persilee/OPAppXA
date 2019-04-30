@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
-    View
+    View,
+    Text
 } from 'react-native';
 
 import { getUserId } from "../../utils/Common";
@@ -9,72 +10,82 @@ import { Toast } from 'teaset';
 
 let itemArr = [
     {
-        name: '实有房屋',
-        color: '#89DBFD',
-        image: require('../../../assets/images/home_house.png'),
-        page: 'HouseReal'
-    },
-    {
-        name: '实有人口',
-        color: '#FD6D6D',
-        image: require('../../../assets/images/home_population.png'),
-        page: 'Population',
+        name: '联勤资源',
+        color: '#FCC23F',
+        image: require('../../../assets/images/home_check.png'),
+        page: '',
         isToggle: true,
         isSwitch: true,
     },
     {
-        name: '实有单位',
-        color: '#B9E669',
+        name: '值班备勤',
+        color: '#FCC23F',
         image: require('../../../assets/images/home_unit.png'),
-        page: 'RealUnit'
+        page: ''
     },
     {
-        name: '实有车辆',
+        name: '巡防报备',
+        color: '#FEA095',
+        image: require('../../../assets/images/home_check.png'),
+        page: ''
+    },
+    {
+        name: '专项任务勤务报备',
+        color: '#89DBFD',
+        image: require('../../../assets/images/home_task.png'),
+        page: ''
+    },
+    {
+        name: '勤务查询',
+        color: '#FD6D6D',
+        image: require('../../../assets/images/home_control.png'),
+        page: ''
+    },
+    {
+        name: '勤务监督',
+        color: '#B9E669',
+        image: require('../../../assets/images/home_task.png'),
+        page: ''
+    },
+    {
+        name: '绩效统计',
         color: '#FCC23F',
-        image: require('../../../assets/images/home_car.png'),
-        page: 'VehicleRegional'
+        image: require('../../../assets/images/home_dispute.png'),
+        page: ''
     },
 ];
 
 let itemListArr = [
     {
-        name: '户籍统计',
-        color: '#89DBFD',
-        image: require('../../../assets/images/home_population.png'),
-        page: 'Distribution',
-        isText: true
-    },
-    {
-        name: '高龄老人',
-        color: '#FEA095',
-        image: require('../../../assets/images/home_dispute.png'),
-        page: 'OldMan',
-        isText: true
-    },
-    {
-        name: '租客信息',
+        name: '警务助理',
         color: '#FCC23F',
         image: require('../../../assets/images/home_check.png'),
         page: '',
         isText: true
     },
     {
-        name: '访客信息',
-        color: '#B9E669',
-        image: require('../../../assets/images/home_house.png'),
+        name: '信息员',
+        color: '#FEA095',
+        image: require('../../../assets/images/home_control.png'),
+        page: '',
+        isText: true
+    },
+    {
+        name: '巡防人员',
+        color: '#FEA095',
+        image: require('../../../assets/images/home_control.png'),
         page: '',
         isText: true
     },
 ];
 
-export default class Basis extends Component {
-
+export default class Joint extends Component {
 
     constructor(props) {
         super(props);
         this.index = 0,
         this.state = {
-            data: []
+            isSwitch: false,
         }
     }
 
@@ -92,7 +103,6 @@ export default class Basis extends Component {
             Toast.smile('正在开发中，敬请期待...');
         }
     };
-
 
     itemList = () => {
         return (

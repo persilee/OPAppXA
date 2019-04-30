@@ -45,10 +45,9 @@ export default class RealUnit extends Component{
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.initTypeData();
         this.queryData();
-
     }
 
     initTypeData = () => {
@@ -62,6 +61,7 @@ export default class RealUnit extends Component{
     }
 
     dealResponseTypeData=(responseData)=>{
+        console.log('responseData',responseData);
         this.setState({
             typeData:responseData.data.list
         })
@@ -88,6 +88,7 @@ export default class RealUnit extends Component{
     }
 
     dealResponseData=(responseData)=>{
+        console.log('responseData',responseData);
         this.setState({
             data:responseData.data.list
         })

@@ -18,6 +18,7 @@ import ItemInput from '../../componets/ItemInput';
 import CommonFetch from "../../componets/CommonFetch";
 import Toast, {DURATION} from 'react-native-easy-toast';
 import {observer,inject} from 'mobx-react';
+
 @inject('User')
 @observer
 export default class HouseDetail extends Component{

@@ -47,6 +47,10 @@ export default class Login extends Component{
             {
                 text: '明航小区',
                 value: 10002,
+            },
+            {
+                text: '红谷凯旋',
+                value: 10003,
             }
         ];
 
@@ -190,22 +194,31 @@ export default class Login extends Component{
         // let url = "http://192.168.1.23:8380/api/appserver/auth/login";
         let url = API.login;
         let params = {
-            areaKey: this.state.valueCustom,
             passwd:this.state.password,
             userName:this.state.mobileNo,
-        }
-        console.log('params', params);
+        };
+        let requestParams = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    areaKey: this.state.valueCustom,
+                },
+                body:JSON.stringify(params)
+            };
         fetch(url,{
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
+                    areaKey: this.state.valueCustom,
                 },
                 body:JSON.stringify(params)
             }
         ).then(response => response.json())
             .then(responseData => {
                 console.log("login",responseData);
+                console.log('requestParams',requestParams);
                 if(responseData.code == 0){
                     this.setState({
                         mobileNo: '',
@@ -216,7 +229,7 @@ export default class Login extends Component{
                     Xinge.registerPushWithAccount(data.user.id).then(token =>{
                         console.info("Xinge推送的token",token);
                     });
-                    this.props.User.updateUser(true, data.token, data.user.areaKey,data.user.userName,data.user.id,
+                    this.props.User.updateUser(true, data.token,this.state.valueCustom,data.user.userName,data.user.id,
                         data.user.idcardNum,data.user.userNameChn,data.user.superName,data.user.orgName,data.user.userPosi);
                     this.props.User.updateModuList(data.moduList);
                     this.props.navigation.replace('Main');

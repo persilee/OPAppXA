@@ -15,11 +15,24 @@ function getUserId(){
     });
   }
 
+function getUser() {
+    return new Promise((resolve, reject) => {
+        AsyncStorage.getItem('_userInfo', (err, result) => {
+            if (!err) {
+                resolve(result)
+            } else {
+                reject(err);
+            }
+        });
+    });
+}
+
 export { 
     width,
     height,
     onePixel,
     getUserId,
+    getUser
 }
 
 

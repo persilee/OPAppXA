@@ -69,21 +69,6 @@ export default class NotifService {
 		return color;
 	};
 
-	doFetch(uri, callback) {
-		fetch(uri, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded'
-			},
-			body: ''
-		})
-			.then((response) => response.json())
-			.then(callback)
-			.catch((error) => {
-				console.error(error);
-			});
-	}
-
 	getAlarmList() {
     let params = {
       date: date,

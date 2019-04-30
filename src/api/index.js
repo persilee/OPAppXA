@@ -8,7 +8,7 @@ export default  {
     getHouseUnitEmphasisInfo:`${baseUrl}/mqi/pageOrData/00806c1d869749c781a749e1ee31dbfc`,//重点关注人员房屋
     getHousePersonDetail:`${baseUrl}/mqi/pageOrData/f8ba05a25d584f3387ed5b05b0ac1332`,//实有房屋单元信息人员详情
     getHouseColor:`${baseUrl}/mqi/pageOrData/e91eb7150e964e0cb1c652b33684511f`,//实有房屋单元信息颜色对应接口
-    getPopulaceDistribution:`${baseUrl}/mqi/pageOrData/51dd63c14739418396b20224db5b9fe7`, //实有人口统计
+    getPopulaceDistribution: `${baseUrl}/mqi/pageOrData/51dd63c14739418396b20224db5b9fe7`, //实有人口统计
     getPopulaceList:`${baseUrl}/mqi/pageOrData/1d52e595b9ba4ac7b6a4b16bd29a15b5`,//居民人员列表
     getPopulaceDetail:`${baseUrl}/mqi/pageOrData/60ad02f6fe464383b263f5e526523718`,//居民信息详情
     getWaitCheckList:`${baseUrl}/mqi/pageOrData/f06730824b32451b9c36cea394fe7269`,//待核查任务列表

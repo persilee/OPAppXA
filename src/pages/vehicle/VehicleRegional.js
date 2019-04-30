@@ -12,6 +12,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import RoutApi from '../../api/index';
 import {observer,inject} from 'mobx-react';
 import Color from "../../config/color";
+
 @inject('User')
 @observer
 export default class VehicleRegional extends React.Component {
@@ -30,7 +31,8 @@ export default class VehicleRegional extends React.Component {
             method: "POST",
             headers: {
                 Accept: "application/json",
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                'areaKey': this.props.User.areaKey
             },
             body: JSON.stringify({
                 init: 0,

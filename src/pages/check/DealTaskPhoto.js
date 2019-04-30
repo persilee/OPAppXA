@@ -122,7 +122,8 @@ export default class DealTaskPhoto extends Component {
             method:'POST',
             headers:{
                 'Content-Type':'multipart/form-data',
-                'Authorization': this.props.User.token
+                'Authorization': this.props.User.token,
+                'areaKey': this.props.User.areaKey
             },
             body:formData,
         })

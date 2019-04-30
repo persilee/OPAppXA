@@ -12,9 +12,13 @@ import API from "../../api/index";
 import {groupBy} from "../../utils/Utils";
 import {getUserId} from "../../utils/Common";
 import Color from "../../config/color";
+import { observer, inject } from 'mobx-react';
 var Dimensions = require('Dimensions');
 var ScreenWidth = Dimensions.get('window').width;
 
+
+@inject('User')
+@observer
 export default class HouseReal extends Component{
     constructor(props) {
         super(props);
@@ -42,18 +46,28 @@ export default class HouseReal extends Component{
                 // userId: "001",
                 userId:this.userId,
         }};
+        let requestParams = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'areaKey': this.props.User.areaKey
+                },
+                body:JSON.stringify(params)
+            };
         console.info("getHouseList params:"+JSON.stringify(params));
          fetch(url,{
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    // 'Authorization': this.props.User.token
+                    'areaKey': this.props.User.areaKey
                 },
                 body:JSON.stringify(params)
             })
             .then(response => response.json())
             .then(responseData => {
+                console.info("requestParams",requestParams);
                 console.info("getHouseList",responseData);
                 if (responseData.data && responseData.data.list) {
                     let data = this.convertTreeData(responseData.data.list);
