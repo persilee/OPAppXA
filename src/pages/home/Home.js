@@ -97,7 +97,7 @@ let itemArr = [
 		iconOutSize: 48,
 		height: 66,
 		iconSize: 30,
-		page: '',
+		page: 'Face',
 		moduCode: 'Face'
 	},
 	{
@@ -246,6 +246,7 @@ export default class Home extends Component {
 	};
 
 	userPress = async (page) => {
+		console.log('page',page);
 		if(page){
             const { navigate } = this.props.navigation;
             navigate(page);

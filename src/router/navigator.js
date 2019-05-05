@@ -33,6 +33,7 @@ import Alarm from '../pages/home/Alarm';
 import Joint from '../pages/home/Joint';
 import ItPolice from '../pages/home/ItPolice';
 import Duty from '../pages/home/Duty';
+import Face from '../pages/home/Face';
 import Mine from '../pages/mine/Mine';
 import QuickSearch from '../pages/quicksearch/QuickSearch';
 import HouseReal from '../pages/house/HouseReal';
@@ -113,6 +114,13 @@ export default createStackNavigator(
 			screen: Duty,
 			navigationOptions: ({ navigation }) => ({
 				headerTitle: '勤务资源',
+				headerRight: <View />
+			})
+		},
+		Face: {
+			screen: Face,
+			navigationOptions: ({ navigation }) => ({
+				headerTitle: '人脸识别',
 				headerRight: <View />
 			})
 		},

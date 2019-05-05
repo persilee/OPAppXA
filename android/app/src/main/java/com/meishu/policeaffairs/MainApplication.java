@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.facebook.react.ReactApplication;
+import com.beefe.picker.PickerViewPackage;
 import org.lovebing.reactnative.baidumap.BaiduMapPackage;
 import cn.reactnative.modules.update.UpdatePackage;
 import cn.reactnative.modules.update.UpdateContext;
@@ -44,6 +45,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new PickerViewPackage(),
             new BaiduMapPackage(),
             new UpdatePackage(),
             new BackgroundJobPackage(),

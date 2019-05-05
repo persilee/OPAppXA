@@ -84,6 +84,7 @@ export default class CheckUpdate extends Component {
 
 	checkUpdate = () => {
 		checkUpdate(appKey).then(info => {
+			console.log('updateInfo', info);
 			if (info.expired) {
 				Alert.alert('提示', '您的应用版本已更新,请前往应用商店下载新的版本', [
                     { text: '是', onPress: () => { info.downloadUrl && Linking.openURL(info.downloadUrl) } },
@@ -120,8 +121,9 @@ export default class CheckUpdate extends Component {
 	};
 
 	componentDidMount() {
-        this.showCustom();
-		this.checkUpdate();
+        // this.showCustom();
+		// this.checkUpdate();
+		this.props.navigation.replace('Login');
 	}
 
 	render() {
