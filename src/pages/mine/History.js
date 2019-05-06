@@ -26,7 +26,7 @@ export default class History extends Component{
         super(props);
         this.state = {
             data:[],
-            loading:false,
+            loading:true,
             total:0,
         }
     }
@@ -55,6 +55,7 @@ export default class History extends Component{
                 let convertArr = this.convertData(data);
                 this.setState({
                     data:this.state.data.concat(convertArr),
+                    loading: false,
                 });
             }
         });
@@ -130,11 +131,15 @@ export default class History extends Component{
 
 
     _renderEmptyComponent = () => {
-        return (
-            <View style={[GlobalStyles.center,GlobalStyles.mt40]}>
-                <Text style={[GlobalStyles.font14Gray]}>无数据</Text>
-            </View>
-        );
+        if(!this.state.loading){
+            return (
+                <View style={[GlobalStyles.center,GlobalStyles.mt40]}>
+                    <Text style={[GlobalStyles.font14Gray]}>无数据</Text>
+                </View>
+            );
+        }else{
+            return null;
+        }
     }
 
     renderItem = ({item,index}) => {

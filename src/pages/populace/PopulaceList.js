@@ -32,6 +32,7 @@ export default class  PopulaceList extends Component {
             totalNum:-1,
             keyword:'',
             searchFlag:false,
+            loading: true
         }
     }
 
@@ -91,7 +92,8 @@ export default class  PopulaceList extends Component {
         this.setState({
             data:data,
             totalNum:responseData.data.total,
-            searchFlag:false
+            searchFlag:false,
+            loading: false
         })
     }
 
@@ -145,11 +147,15 @@ export default class  PopulaceList extends Component {
     }
 
     _renderEmptyComponent = () => {
-        return (
-            <View style={[GlobalStyles.center,GlobalStyles.mt40]}>
-                <Text style={[GlobalStyles.font14Gray]}>无数据</Text>
-            </View>
-        );
+        if(!this.state.loading){
+            return (
+                <View style={[GlobalStyles.center,GlobalStyles.mt40]}>
+                    <Text style={[GlobalStyles.font14Gray]}>无数据</Text>
+                </View>
+            );
+        }else{
+            return null;
+        }
     }
 
 

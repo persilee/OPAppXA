@@ -37,6 +37,7 @@ export default class  CheckListWait extends Component {
             clickIndex:0,
             waitPageNo:1,
             waitTotalNum:-1,
+            loading: true
         
         }
     }
@@ -89,6 +90,7 @@ export default class  CheckListWait extends Component {
                         waitData:data,
                         waitTotalNum:responseData.data.total,
                         searchFlag:false,
+                        loading: false
                     })
                 },
                 this.refs.toast)
@@ -171,11 +173,15 @@ export default class  CheckListWait extends Component {
     }
 
     _renderEmptyComponent = () => {
-        return (
-            <View style={[GlobalStyles.center,GlobalStyles.mt40]}>
-                <Text style={[GlobalStyles.font14Gray]}>无数据</Text>
-            </View>
-        );
+        if(!this.state.loading){
+            return (
+                <View style={[GlobalStyles.center,GlobalStyles.mt40]}>
+                    <Text style={[GlobalStyles.font14Gray]}>无数据</Text>
+                </View>
+            );
+        }else{
+            return null;
+        }
     }
 
     

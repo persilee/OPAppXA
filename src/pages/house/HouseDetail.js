@@ -17,6 +17,7 @@ import {copyData} from "../../utils/Utils";
 import Toast, {DURATION} from 'react-native-easy-toast';
 import Color from "../../config/color";
 import {observer,inject} from 'mobx-react';
+import Loading from '../../componets/Loading';
 
 let ownerTitleArr =[ 
     {
@@ -96,10 +97,12 @@ export default class HouseDetail extends Component{
         this.state = {
             data:[],
             showOtherInfoSwitch:{},
+            loading: true
         }
     }
 
     componentDidMount(){
+        Loading.showCustom();
         this.props.navigation.setParams({ submitCheck: this.submitCheck });
         getUserId().then(_userId => {
             this.userId = _userId;
@@ -166,8 +169,10 @@ export default class HouseDetail extends Component{
                 let arr = this.convertTreeData(responseData.data.list);
                 this.setState({
                     data: arr,
+                    loading: false,
                 });
             }
+            Loading.hideCustom();
         }).catch( err => {
             console.error(err);
         });
@@ -383,11 +388,15 @@ export default class HouseDetail extends Component{
     }
 
     _renderEmptyComponent = () => {
-        return (
-            <View style={[GlobalStyles.center,GlobalStyles.mt40]}>
-                <Text style={[GlobalStyles.font14Gray]}>无数据</Text>
-            </View>
-        );
+        if(!this.state.loading){
+            return (
+                <View style={[GlobalStyles.center,GlobalStyles.mt40]}>
+                    <Text style={[GlobalStyles.font14Gray]}>无数据</Text>
+                </View>
+            );
+        }else{
+            return null;
+        }
     }
     
     render(){

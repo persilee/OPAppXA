@@ -51,6 +51,7 @@ export default class  CheckList extends Component {
 
             doneListPageNo:1,
             doneListTotal:-1,
+            loading: true,
 
         }
     }
@@ -152,7 +153,8 @@ export default class  CheckList extends Component {
                     let data = responseData.data.list?responseData.data.list:[];
                     this.setState({
                         areaList:data,
-                        areaListTotal:responseData.data.total
+                        areaListTotal:responseData.data.total,
+                        loading: false
                     })
                 },
                 this.refs.toast)
@@ -508,11 +510,15 @@ export default class  CheckList extends Component {
     }
 
     _renderEmptyComponent = () => {
-        return (
-            <View style={[GlobalStyles.center,GlobalStyles.mt40]}>
-                <Text style={[GlobalStyles.font14Gray]}>无数据</Text>
-            </View>
-        );
+        if(!this.state.loading){
+            return (
+                <View style={[GlobalStyles.center,GlobalStyles.mt40]}>
+                    <Text style={[GlobalStyles.font14Gray]}>无数据</Text>
+                </View>
+            );
+        }else{
+            return null;
+        }
     }
 
 

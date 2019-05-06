@@ -16,6 +16,7 @@ import {groupBy} from "../../utils/Utils";
 import {getUserId} from "../../utils/Common";
 import Color from "../../config/color";
 import {observer,inject} from 'mobx-react/native';
+import Loading from '../../componets/Loading';
 
 
 @inject('User')
@@ -31,10 +32,12 @@ export default class HouseAllScene extends Component{
             filterCheckedArr:[true,false,false,false,false,false],
             data:[],
             houseColor:[],
+            loading: true
         }
     }
 
     componentDidMount(){
+        Loading.showCustom();
         console.info("getHouseUnitInfo","componentDidMount");
         getUserId().then(_userId => {
             this.userId = _userId;
@@ -79,6 +82,7 @@ export default class HouseAllScene extends Component{
                    this.setState({
                         houseColor: arr,
                    });
+                   Loading.hideCustom();
                }
            }).catch( err => {
                console.error(err);
@@ -150,6 +154,7 @@ export default class HouseAllScene extends Component{
                    let arr = this.convertTreeData(responseData.data.list);
                    this.setState({
                        data: arr,
+                       loading: false
                    });
                }else{
                    this.setState({
@@ -298,11 +303,15 @@ export default class HouseAllScene extends Component{
     }
 
     _renderEmptyComponent = () => {
-        return (
-            <View style={[GlobalStyles.center,GlobalStyles.mt40]}>
-                <Text style={[GlobalStyles.font14Gray]}>无数据</Text>
-            </View>
-        );
+        if(!this.state.loading){
+            return (
+                <View style={[GlobalStyles.center,GlobalStyles.mt40]}>
+                    <Text style={[GlobalStyles.font14Gray]}>无数据</Text>
+                </View>
+            );
+        }else{
+            return null;
+        }
     }
 
     render(){

@@ -30,7 +30,8 @@ export default class OldMan extends Component {
 		this.state = {
 			data: [],
 			keyword: '',
-			searchFlag: false
+			searchFlag: false,
+			loading: true
 		};
 	}
 
@@ -80,7 +81,8 @@ export default class OldMan extends Component {
 		this.setState({
 			data: data,
 			searchFlag: false,
-			keyword: ''
+			keyword: '',
+			loading: false
 		});
 		this.pageNo = this.pageNo + 1;
 	};
@@ -144,11 +146,15 @@ export default class OldMan extends Component {
 	}
 
 	_renderEmptyComponent = () => {
-		return (
-			<View style={[ GlobalStyles.center, GlobalStyles.mt40 ]}>
-				<Text style={[ GlobalStyles.font14Gray ]}>无数据</Text>
-			</View>
-		);
+		if(!this.state.loading){
+            return (
+                <View style={[GlobalStyles.center,GlobalStyles.mt40]}>
+                    <Text style={[GlobalStyles.font14Gray]}>无数据</Text>
+                </View>
+            );
+        }else{
+            return null;
+        }
 	};
 
 	render() {

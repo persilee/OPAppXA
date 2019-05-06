@@ -32,6 +32,7 @@ export default class RealUnit extends Component{
             unitId: this.props.navigation.getParam('unitId', ''),//企业ID
             keyword: "",
             data: [],
+            loading: true
         }
     }
 
@@ -51,7 +52,8 @@ export default class RealUnit extends Component{
     dealResponseData=(responseData)=>{
         console.log('responseData', responseData);
         this.setState({
-            data:responseData.data.list
+            data:responseData.data.list,
+            loading: false
         })
         console.log(this.state.data);
     }
@@ -107,11 +109,15 @@ export default class RealUnit extends Component{
         );
     }
     _renderEmptyComponent = () => {
-        return (
-            <View style={[GlobalStyles.center,GlobalStyles.mt40]}>
-                <Text style={[GlobalStyles.font14Gray]}>无数据</Text>
-            </View>
-        );
+        if(!this.state.loading){
+            return (
+                <View style={[GlobalStyles.center,GlobalStyles.mt40]}>
+                    <Text style={[GlobalStyles.font14Gray]}>无数据</Text>
+                </View>
+            );
+        }else{
+            return null;
+        }
     }
 
     _keyExtractor = (item, index) => index.toString();

@@ -35,6 +35,7 @@ export default class VehicleDetails extends React.Component {
             pageNum: 1,
             pageSize: 10,
             totalNum: -1,
+            loading: true,
         }
     }
 
@@ -95,7 +96,8 @@ export default class VehicleDetails extends React.Component {
                 userId: this.props.User.userInfo.userId,
                 sname: queryParam.name2,
                 areaName: queryParam.areaName,
-            }
+            },
+            loading: false
         };
         if (this.state.queryText != null) {
             params.queryPair[this.state.currentQueryType.key] = this.state.queryText;
@@ -122,11 +124,15 @@ export default class VehicleDetails extends React.Component {
 
 
     _renderEmptyComponent = () => {
-        return (
-            <View style={[GlobalStyles.center,GlobalStyles.mt40]}>
-                <Text style={[GlobalStyles.font14Gray]}>无数据</Text>
-            </View>
-        );
+        if(!this.state.loading){
+            return (
+                <View style={[GlobalStyles.center,GlobalStyles.mt40]}>
+                    <Text style={[GlobalStyles.font14Gray]}>无数据</Text>
+                </View>
+            );
+        }else{
+            return null;
+        }
     }
 
 

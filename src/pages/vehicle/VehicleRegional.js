@@ -12,6 +12,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import RoutApi from '../../api/index';
 import {observer,inject} from 'mobx-react';
 import Color from "../../config/color";
+import Loading from '../../componets/Loading';
 
 @inject('User')
 @observer
@@ -20,7 +21,8 @@ export default class VehicleRegional extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            date: []
+            date: [],
+            loading: true
         }
     }
 
@@ -55,18 +57,19 @@ export default class VehicleRegional extends React.Component {
                         dataList[i]["carNum"] = carNum;
                     }
                     this.setState({
-                        data: dataList
+                        data: dataList,
+                        loading: false,
                     })
                 }
-
+                Loading.hideCustom();
             }).catch(error => {
                 console.error("post error:" + error);
             });
     }
 
     componentWillMount() {
+        Loading.showCustom();
         this.getJsonData();
-
     }
 
     headerPress = (index) => {
@@ -141,11 +144,15 @@ export default class VehicleRegional extends React.Component {
     }
 
     _renderEmptyComponent = () => {
-        return (
-            <View style={[GlobalStyles.center,GlobalStyles.mt40]}>
-                <Text style={[GlobalStyles.font14Gray]}>无数据</Text>
-            </View>
-        );
+        if(!this.state.loading){
+            return (
+                <View style={[GlobalStyles.center,GlobalStyles.mt40]}>
+                    <Text style={[GlobalStyles.font14Gray]}>无数据</Text>
+                </View>
+            );
+        }else{
+            return null;
+        }
     }
 
 
