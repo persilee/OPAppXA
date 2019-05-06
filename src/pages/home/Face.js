@@ -72,7 +72,7 @@ export default class Face extends Component{
     }
 
     componentDidMount() {
-        // this._getFaceListNow();
+        this._getFaceListNow();
         // this._searchForFace();
     }
 
@@ -360,18 +360,10 @@ export default class Face extends Component{
 
     // 获取最近人脸信息
     _getFaceListNow() {
-        let url = API.getFaceListNow;
-        let params = `currentPage=${this.state.faceListcurrentPage}&pageSize=${this.state.faceListpageSize}`;
-        CommonFetch.doGet(url, params,(responseData) => {
+        CommonFetch.doPost(API.getFaceListNow,'currentPage=1&pageSize=10', (responseData) => {
             console.log(responseData);
             this._setFaceList(responseData);
-        },this.refs.toast, (err)=>{
-            console.log(err);
-        },(err) =>{
-            console.log(err);
-        },this.state.faceToken);
-
-
+        },null,null,null,this.props.User.faceToken);
     }
 
     // 加载更多的人脸数据

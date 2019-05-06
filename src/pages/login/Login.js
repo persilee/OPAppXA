@@ -21,7 +21,7 @@ import API from '../../api/index';
 import {observer,inject} from 'mobx-react';
 import {getUserId} from "../../utils/Common";
 import Color from "../../config/color";
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import CommonFetch from "../../componets/CommonFetch";
 import { Select } from 'teaset';
 
 
@@ -58,7 +58,8 @@ export default class Login extends Component{
             mobileNo: '',
             password: '',
             isChecked:false,
-            valueCustom: null
+            valueCustom: null,
+            faceToken: null,
         };
     }
 
@@ -229,10 +230,20 @@ export default class Login extends Component{
                     Xinge.registerPushWithAccount(data.user.id).then(token =>{
                         console.info("Xinge推送的token",token);
                     });
-                    this.props.User.updateUser(true, data.token,this.state.valueCustom,data.user.userName,data.user.id,
-                        data.user.idcardNum,data.user.userNameChn,data.user.superName,data.user.orgName,data.user.userPosi);
-                    this.props.User.updateModuList(data.moduList);
-                    this.props.navigation.replace('Main');
+                    //获取人脸的token
+                    CommonFetch.doFetch(
+                        API.longFace + '?loginname=admin&password=123456',
+                        '',
+                        (responseData)=>{                           
+                            this.setState({
+                                faceToken: `${responseData.data.token_type} ${responseData.data.access_token}`,
+                            });                          
+                            this.props.User.updateUser(true, data.token,this.state.valueCustom,data.user.userName,data.user.id,
+                            data.user.idcardNum,data.user.userNameChn,data.user.superName,data.user.orgName,data.user.userPosi,this.state.faceToken);
+                            this.props.User.updateModuList(data.moduList);
+                            this.props.navigation.replace('Main');
+                        }
+                    )
                 }else {
                     this.refs.toast.show(responseData.msg ?responseData.msg : "网络异常");
                 }

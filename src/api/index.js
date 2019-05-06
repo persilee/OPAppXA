@@ -1,8 +1,7 @@
-import {baseUrl,additionUrl,newUrl} from '../config/index'
+import {baseUrl,additionUrl,newUrl,faceUrl} from '../config/index'
 
 export default  {
     login:`${additionUrl}/api/appserver/auth/login`,
-    // login:`${additionUrl}/appserver/auth/login`,
     getHouseList:`${baseUrl}/mqi/pageOrData/45268bd540d147e6ad3bfca27958f3d6`,
     getHouseUnitInfo:`${baseUrl}/mqi/pageOrData/c6d2af1c2b9e4e4fb92cd77815d3881d`,  //实有房屋单元信息
     getHouseUnitEmphasisInfo:`${baseUrl}/mqi/pageOrData/00806c1d869749c781a749e1ee31dbfc`,//重点关注人员房屋
@@ -55,4 +54,11 @@ export default  {
     getHouseCheckPoliceList:`${baseUrl}/mqi/pageOrData/c9d1baf216c24dc6ac349105f58d6cf4`,//房屋核查警察list
     addHouseCheck:`${additionUrl}/api/appserver/roomtask/add`,//添加房屋核查任务
     getHouseCheckOwnerInfo:`${baseUrl}/mqi/pageOrData/8bb0ad2690d14a24aa3a9d2e26740911`,//房屋核查房主信息
+
+    //人脸API
+    longFace: `${faceUrl}/api/Account/Login`, //人脸系统登陆
+    getFaceListNow:`${faceUrl}/api/FaceDataManage/SearchFacePage`,  //获取最新人脸列表
+    getFaceImage_url:`${faceUrl}/api/ImageProcess/GetFaceList_Url`, // 通过url获取人脸照片的详细信息
+    getFaceImage_file:`${faceUrl}/api/ImageProcess/GetFaceList_Upload`, // 通过file获取人脸照片的详细信息
+    getFaceForFaceImage:`${faceUrl}/api/SearchEngine/SearchFaces` // 根据人脸特征搜索人脸数据
 }

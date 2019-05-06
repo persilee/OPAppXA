@@ -20,6 +20,7 @@ class User {
         orgName:"",
         userPosi:"",
         expiration:"",
+        faceToken:""
     };
 
     @observable moduList = [];
@@ -60,6 +61,10 @@ class User {
         return this.userInfo.userPosi;
     };
 
+    @computed get faceToken(){
+        return this.userInfo.faceToken;
+    };
+
     @computed get moduleList(){
         return this.moduList.map(item => {
             return item;
@@ -71,7 +76,7 @@ class User {
     }
 
     @action
-    updateUser = (flag, _token, areaKey, _mobileNo, userId,idcardNum,userNameChn,superName,orgName,userPosi) =>{
+    updateUser = (flag, _token, areaKey, _mobileNo, userId,idcardNum,userNameChn,superName,orgName,userPosi,faceToken) =>{
 
         let date = new Date();//token有效期 7天
         date.setTime(date.getTime() + 1000*60*60*24*7);
@@ -89,6 +94,7 @@ class User {
             orgName:orgName,
             userPosi:userPosi,
             expiration:date.getTime(),
+            faceToken:faceToken,
         }
         console.log('updateUser', this.userInfo)
         AsyncStorage.setItem("_userInfo",JSON.stringify(this.userInfo));
@@ -133,6 +139,7 @@ class User {
                     orgName:"",
                     userPosi:"",
                     expiration:"",
+                    faceToken:"",
                 }
                 this.moduList = [];
                 
