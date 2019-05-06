@@ -147,7 +147,7 @@ export default class Face extends Component{
                             value={this.state.faceSimilarity}/>
 
 
-                        <TouchableOpacity onPress={this._searchForFace}>
+                        <TouchableOpacity onPress={() => null}>
                             <View style={[styles._seachOk]}>
                                 <Text style={[styles._seachOkText]}>开始查询</Text>
                             </View>
@@ -360,7 +360,7 @@ export default class Face extends Component{
 
     // 获取最近人脸信息
     _getFaceListNow() {
-        CommonFetch.doPost(API.getFaceListNow,'currentPage=1&pageSize=10', (responseData) => {
+        CommonFetch.doPost(API.getFaceListNow,`currentPage=${this.state.faceListcurrentPage}&pageSize=${this.state.faceListpageSize}`, (responseData) => {
             console.log(responseData);
             this._setFaceList(responseData);
         },null,null,null,this.props.User.faceToken);
@@ -479,7 +479,7 @@ export default class Face extends Component{
 
         if(!this.state.isAllList) {
             this.state.faceListcurrentPage = this.state.faceListcurrentPage + 1;
-            // this._getFaceListNow();
+            this._getFaceListNow();
         }
     }
 
