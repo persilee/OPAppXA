@@ -29,6 +29,7 @@ var boxW = width/3;
 
 import ImagePicker from 'react-native-image-picker';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { Toast as PopToast } from 'teaset';
 
 
 @inject('User')
@@ -147,7 +148,7 @@ export default class Face extends Component{
                             value={this.state.faceSimilarity}/>
 
 
-                        <TouchableOpacity onPress={() => null}>
+                        <TouchableOpacity onPress={() => {PopToast.smile('正在开发中，敬请期待...')}}>
                             <View style={[styles._seachOk]}>
                                 <Text style={[styles._seachOkText]}>开始查询</Text>
                             </View>

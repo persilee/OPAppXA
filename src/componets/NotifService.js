@@ -3,8 +3,6 @@ import CommonFetch from './CommonFetch';
 import { getUserId } from '../utils/Common';
 import API from '../api/index';
 import moment from 'moment';
-import 'moment/min/locales';
-import 'moment/locale/zh-cn';
 
 let subText = '';
 let bigText = '';
@@ -76,7 +74,7 @@ export default class NotifService {
       pwd: '2ysh3z72w'
     };
 
-    CommonFetch.doFetch(API.getNotifAlarmData, params, (responseData) => {
+    CommonFetch.doFetchExtends({api: API.getNotifAlarmData, params, callback: (responseData) => {
       if (responseData.data && responseData.data.Exists){
         num++;
         date = responseData.data.AlarmTime.slice(0, 10);
@@ -88,7 +86,7 @@ export default class NotifService {
           this.localNotif();
         }
       }
-    })
+    }, loading: false})
 	}
 
 	localNotif() {

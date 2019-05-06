@@ -26,7 +26,6 @@ export default class AlarmList extends Component {
 	}
 
 	componentDidMount() {
-		Loading.showCustom();
 		this.fetchData();
 	}
 
@@ -95,6 +94,28 @@ export default class AlarmList extends Component {
 
 		CommonFetch.doFetch(API.getAlarmListData, params, (responseData) => {
 			if (responseData.data && responseData.data.list && responseData.data.list.length > 0) {
+				this.setState({
+					data: responseData.data.list,
+					loading: this.pageNum > 1 ? true : false
+				});
+			}
+		});
+	};
+
+	fetchMoreData = () => {
+		this.setState({
+			loading: false
+		});
+		let params = {
+			alarmstate: 0,
+			istoday: 0,
+			page: this.pageNum,
+			limit: this.pageSize,
+			pwd: '2ysh3z72w'
+		};
+
+		CommonFetch.doFetchExtends({api: API.getAlarmListData, params, callback: (responseData) => {
+			if (responseData.data && responseData.data.list && responseData.data.list.length > 0) {
 				this.pageTotal = responseData.data.list.length;
 				let arr = [ ...responseData.data.list, ...this.state.data ];
 				function compare(property) {
@@ -112,8 +133,7 @@ export default class AlarmList extends Component {
 				sortArr = [];
 				this.pageNum = this.pageNum + 1;
 			}
-			Loading.hideCustom();
-		});
+		}, loading: false});
 	};
 
 	render() {
@@ -125,7 +145,7 @@ export default class AlarmList extends Component {
 					extraData={this.state}
 					renderItem={this._renderItem}
 					onEndReachedThreshold={0.1}
-					onEndReached={() => this.fetchData()}
+					onEndReached={() => this.fetchMoreData()}
 					ListFooterComponent={this.pageNum * this.pageSize <= this.pageTotal * this.pageNum ? Loading.renderFooter(this.state.loading) : null}
 				/>
 			</View>
