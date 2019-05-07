@@ -22,6 +22,7 @@ import Toast, { DURATION } from 'react-native-easy-toast';
 import { getUserId } from '../../utils/Common';
 import Color from '../../config/color';
 import Communications from 'react-native-communications';
+import Loading from '../../componets/Loading';
 export default class OldMan extends Component {
 	constructor(props) {
 		super(props);
@@ -53,7 +54,19 @@ export default class OldMan extends Component {
 			pwd: '2ysh3z72w'
 		};
 		console.log('params', params);
-		CommonFetch.doFetch(RoutApi.getOldManList, params, this.dealResponseData, this.refs.toast);
+		CommonFetch.doFetch(RoutApi.getOldManList, params, (responseData) => {
+			let data = this.state.data;
+			if (responseData.data.list) {
+				data = data.concat(responseData.data.list);
+			}
+			console.log('responseData', data);
+			this.setState({
+				data: data,
+				searchFlag: false,
+				keyword: '',
+				loading: false
+			});
+		}, this.refs.toast);
 	};
 
 	doSearch = () => {
@@ -86,6 +99,17 @@ export default class OldMan extends Component {
 		});
 		this.pageNo = this.pageNo + 1;
 	};
+
+	doEndReached = () => {
+		let params = {
+			page: this.pageNo,
+			limit: 20,
+			key: this.state.keyword,
+			pwd: '2ysh3z72w'
+		};
+		console.log('params', params);
+		CommonFetch.doFetchExtends({api:RoutApi.getOldManList, params, callback: this.dealResponseData, toast: this.refs.toast, loading: false});
+	}
 
 	headerPress = (item) => {
 		console.log('provincePress', item);
@@ -181,7 +205,8 @@ export default class OldMan extends Component {
 					data={this.state.data}
 					renderItem={this._renderItem}
 					onEndReachedThreshold={0.2}
-					onEndReached={this.doFetch}
+					onEndReached={this.doEndReached}
+					ListFooterComponent={Loading.renderFooter(this.state.loading)}
 				/>
 
 				<Toast

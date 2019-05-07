@@ -121,8 +121,8 @@ export default class CheckUpdate extends Component {
 	};
 
 	componentDidMount() {
-        // this.showCustom();
-		// this.checkUpdate();
+        this.showCustom();
+		this.checkUpdate();
 		this.props.navigation.replace('Login');
 	}
 
