@@ -55,14 +55,14 @@ let itemListArr = [
         name: '租客信息',
         color: '#FCC23F',
         image: require('../../../assets/images/home_check.png'),
-        page: '',
+        page: 'Tenants',
         isText: true
     },
     {
         name: '访客信息',
         color: '#B9E669',
         image: require('../../../assets/images/home_house.png'),
-        page: '',
+        page: 'Visitors',
         isText: true
     },
 ];

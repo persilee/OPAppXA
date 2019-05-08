@@ -20,7 +20,7 @@ var ScreenWidth = Dimensions.get('window').width;
 
 @inject('User')
 @observer
-export default class HouseReal extends Component{
+export default class Tenants extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -243,6 +243,8 @@ export default class HouseReal extends Component{
         //ListView有点特殊，必须修改datasource才会更新
         let list = [...this.state.data];
 
+        console.log('list',list);
+
         list[firstIndex].data[secondIndex].data.map((subItem,ind)=>{
             if(ind == thirdIndex){
                 subItem.checked = !subItem.checked;
@@ -255,7 +257,7 @@ export default class HouseReal extends Component{
         });
         let selectedItem = list[firstIndex].data[secondIndex].data[thirdIndex];
         const { navigate } = this.props.navigation;
-        navigate('HouseEmphasis',{
+        navigate('TenantDetail',{
             unitId:selectedItem.unitId,
             name:`${selectedItem.unitName}`,
         });

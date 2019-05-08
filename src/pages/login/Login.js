@@ -51,6 +51,10 @@ export default class Login extends Component{
             {
                 text: '红谷凯旋',
                 value: 10003,
+            },
+            {
+                text: '龙记学府城',
+                value: 10004,
             }
         ];
 

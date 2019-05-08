@@ -20,7 +20,7 @@ var ScreenWidth = Dimensions.get('window').width;
 
 @inject('User')
 @observer
-export default class HouseReal extends Component{
+export default class Visitors extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -205,43 +205,12 @@ export default class HouseReal extends Component{
         this.statusSelect(true);
     }
 
-    // renderThirdItem = (thirdItem,thirdIndex,secondItem,secondIndex,firstItem,firstIndex) => {
-    //     return (
-    //         <TouchableOpacity key={thirdIndex} style={[GlobalStyles.flexDirectRow,GlobalStyles.alignCenter,
-    //              GlobalStyles.pageBg1, GlobalStyles.lineBottom,
-    //             styles.subItemStyle,GlobalStyles.pdlr15]}
-    //             onPress={() => this.itemPress(thirdItem,thirdIndex,secondItem,secondIndex,firstItem,firstIndex)}>
-    //             <View style={[GlobalStyles.flexDirectRow,GlobalStyles.center]}>
-    //                 <Text style={[GlobalStyles.font14Gray,GlobalStyles.flex]}>{thirdItem.unitName}</Text>
-    //                 {thirdItem.checked ?
-    //                     <FontAwesome name={"check"} size={16} color={Color.whiteColor} style={{marginLeft:15}} />
-    //                     : null }
-    //             </View>
-    //         </TouchableOpacity>
-    //     );
-    // }
-    //
-    // secondHeaderPress = (secondItem,secondIndex,firstItem,firstIndex) =>{
-    //     //ListView有点特殊，必须修改datasource才会更新
-    //     let list = [...this.state.data];
-    //
-    //     list[firstIndex].data.forEach((item,ind)=>{
-    //         if(ind == secondIndex){
-    //             item.expanded = !item.expanded;
-    //         }else{
-    //             item.expanded = false;
-    //         }
-    //     });
-    //
-    //     this.setState({
-    //         data:list
-    //     });
-    // }
-
 
     itemPress = (thirdItem,thirdIndex,secondItem,secondIndex,firstItem,firstIndex) => {
         //ListView有点特殊，必须修改datasource才会更新
         let list = [...this.state.data];
+
+        console.log('list',list);
 
         list[firstIndex].data[secondIndex].data.map((subItem,ind)=>{
             if(ind == thirdIndex){
@@ -255,7 +224,7 @@ export default class HouseReal extends Component{
         });
         let selectedItem = list[firstIndex].data[secondIndex].data[thirdIndex];
         const { navigate } = this.props.navigation;
-        navigate('HouseEmphasis',{
+        navigate('VisitorDetail',{
             unitId:selectedItem.unitId,
             name:`${selectedItem.unitName}`,
         });

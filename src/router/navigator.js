@@ -21,6 +21,10 @@ import DealTaskResult from '../pages/check/DealTaskResult';
 import OneButtonCall from '../pages/alarmCall/OneButtonCall';
 import VehicleRegional from '../pages/vehicle/VehicleRegional';
 import OldMan from '../pages/oldMan/OldMan';
+import Tenants from '../pages/tenants/Tenants';
+import TenantDetail from '../pages/tenants/TenantDetail';
+import Visitors from '../pages/visitors/Visitors';
+import VisitorDetail from '../pages/visitors/VisitorDetail';
 import OldManDetail from '../pages/oldMan/OldManDetail';
 import VehicleDetails from '../pages/vehicle/VehicleDetails';
 import Login from '../pages/login/Login';
@@ -285,6 +289,34 @@ export default createStackNavigator(
 			screen: HouseReal,
 			navigationOptions: ({ navigation }) => ({
 				headerTitle: '实有房屋',
+				headerRight: <View />
+			})
+		},
+		Tenants: {
+			screen: Tenants,
+			navigationOptions: ({ navigation }) => ({
+				headerTitle: '租客信息',
+				headerRight: <View />
+			})
+		},
+		TenantDetail: {
+			screen: TenantDetail,
+			navigationOptions: ({ navigation }) => ({
+				// headerTitle: '租客信息',
+				headerRight: <View />
+			})
+		},
+		Visitors: {
+			screen: Visitors,
+			navigationOptions: ({ navigation }) => ({
+				headerTitle: '访客信息',
+				headerRight: <View />
+			})
+		},
+		VisitorDetail: {
+			screen: VisitorDetail,
+			navigationOptions: ({ navigation }) => ({
+				// headerTitle: '租客信息',
 				headerRight: <View />
 			})
 		},

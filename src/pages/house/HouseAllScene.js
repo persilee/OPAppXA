@@ -57,7 +57,7 @@ export default class HouseAllScene extends Component{
     }
 
     getHouseColor = () => {
-        let url = API.getHouseColor;;
+        let url = API.getHouseColor;
         fetch(url,{
                method: 'POST',
                headers: {
