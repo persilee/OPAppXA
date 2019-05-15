@@ -150,7 +150,7 @@ if (Platform.OS === 'android') {
 	const backgroundJob = {
 		jobKey: 'backgroundNotif',
 		job: () => {
-			new NotifService().getAlarmList();
+			// new NotifService().getAlarmList();
 		}
 	};
 	BackgroundJob.register(backgroundJob);
@@ -167,7 +167,7 @@ export default class Home extends Component {
 			senderId: 'senderID'
 		};
 
-		this.notif = new NotifService(this.onRegister.bind(this), this.onNotif.bind(this));
+		// this.notif = new NotifService(this.onRegister.bind(this), this.onNotif.bind(this));
 	}
 
 	onRegister(token) {

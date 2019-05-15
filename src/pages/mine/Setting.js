@@ -50,7 +50,10 @@ export default class Setting extends Component{
                     this.props.User.logout();
                     this.props.navigation.navigate("Login");
                 }else{
-                    this.refs.toast.show("退出登录失败");
+                    this.props.User.updateUser(false, "", "","","","","","","");
+                    this.props.User.updateModuList([]);
+                    this.props.User.logout();
+                    this.props.navigation.navigate("Login");
                 }
             }).catch(err => {
                 console.log(err);

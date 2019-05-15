@@ -48,6 +48,8 @@ export default class  Distribution extends Component {
 
 
     dealResponseData = (responseData)=>{
+
+        console.log('responseData',responseData);
         let data = responseData.data.list;
         data.map((item,index)=>{
             item.expanded = false;
@@ -128,7 +130,7 @@ export default class  Distribution extends Component {
                  leftStyle={[GlobalStyles.font14Gray,styles.leftStyle]}>                  
                 </ItemInput> */}
 
-                <Text style={[GlobalStyles.font14Gray, GlobalStyles.mr15]}>{item.NAME}</Text>
+                <Text style={[GlobalStyles.font14Gray, GlobalStyles.mr15]}>{item.NAME || item.name}</Text>
                 <Text style={[GlobalStyles.font14Gray, GlobalStyles.mr15]}>{item.roomUserNum}</Text>
             </TouchableOpacity>
         )

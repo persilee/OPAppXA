@@ -62,7 +62,7 @@ let itemListArr = [
         name: '访客信息',
         color: '#B9E669',
         image: require('../../../assets/images/home_house.png'),
-        page: 'Visitors',
+        page: 'Visitors', 
         isText: true
     },
 ];

@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.facebook.react.ReactApplication;
+import org.lovebing.reactnative.baidumap.BaiduMapPackage;
 import com.beefe.picker.PickerViewPackage;
 import org.lovebing.reactnative.baidumap.BaiduMapPackage;
 import cn.reactnative.modules.update.UpdatePackage;

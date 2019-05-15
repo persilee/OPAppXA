@@ -23,7 +23,6 @@ export default class TenantDetail extends Component {
 
         this.unitId = this.props.navigation.getParam('unitId', '');
         
-
         this.state = {
 
         }

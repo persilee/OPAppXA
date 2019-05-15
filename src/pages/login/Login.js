@@ -27,6 +27,9 @@ import { Select } from 'teaset';
 
 const {Xinge} = NativeModules;
 
+console.log('NativeModules',NativeModules);
+console.log('Xinge',Xinge);
+
 @inject('User')
 @observer
 export default class Login extends Component{
@@ -55,7 +58,19 @@ export default class Login extends Component{
             {
                 text: '龙记学府城',
                 value: 10004,
-            }
+            },
+            {
+                text: '西城派出所',
+                value: 10005,
+            },
+            {
+                text: '凤凰家园',
+                value: 10006,
+            },
+            {
+                text: '廊坊安次',
+                value: 10007,
+            },
         ];
 
         this.state = {
@@ -135,8 +150,8 @@ export default class Login extends Component{
                             getItemValue={(item, index) => item.value}
                             getItemText={(item, index) => item.text}
                             iconTintColor={Color.whiteColor}
-                            placeholder='请选择小区'
-                            pickerTitle='请选择小区'
+                            placeholder='请选择网点'
+                            pickerTitle='请选择网点'
                             pickerType='pull'
                             onSelected={(item, index) => this.isSelected(item)}
                         />
@@ -230,10 +245,12 @@ export default class Login extends Component{
                         password: ''
                     });
                     let data = responseData.data;
-                    Xinge.enableDebug(false);
-                    Xinge.registerPushWithAccount(data.user.id).then(token =>{
-                        console.info("Xinge推送的token",token);
-                    });
+                    if(Platform.OS == 'android'){
+                        Xinge.enableDebug(false);
+                        Xinge.registerPushWithAccount(data.user.id).then(token =>{
+                            console.info("Xinge推送的token",token);
+                        });
+                    }
                     //获取人脸的token
                     CommonFetch.doFetch(
                         API.longFace + '?loginname=admin&password=123456',
@@ -252,7 +269,7 @@ export default class Login extends Component{
                     this.refs.toast.show(responseData.msg ?responseData.msg : "网络异常");
                 }
             }).catch(err => {
-                // console.error(err);
+                console.error(err);
                 this.refs.toast.show("网络异常");
         });
     }
