@@ -12,7 +12,7 @@ import CommonFetch from "../../componets/CommonFetch";
 import Shadow from "../../componets/Shadow";
 import RoutApi from '../../api/index';
 import Toast, {DURATION} from 'react-native-easy-toast';
-
+import CommonBtn from '../../componets/CommonBtn';
 import {getUserId} from "../../utils/Common";
 
 
@@ -88,10 +88,19 @@ export default class  PopulaceDetail extends Component {
         )
     }
 
+    updateRoomUser = (roomUserId) => {
+        console.log('roomUserId',roomUserId);
+        let params={
+            id: roomUserId
+          };
 
+        CommonFetch.doFetchExtends({api: RoutApi.updateRoomUser, params, callback: (responseData) => {
+            
+            console.log('updateRoomUser', responseData);
+        }, loading: false});
+    }
 
     render() {
-
         return (
             <View style={[GlobalStyles.pageBg,styles.page]}>
                 
@@ -130,7 +139,7 @@ export default class  PopulaceDetail extends Component {
                     {this.detailText('登记时间',this.state.data.createTime)}
                     {this.detailText('户籍地址',this.state.data.housePlace)}
                     {this.state.data.roomUserType=='租客'&&this.detailText('租住时间',this.state.data.tenantTime)}
-
+                    <CommonBtn text={'标记为已离开'} onPress={() => this.updateRoomUser(this.state.roomId)} style={{ marginTop: 10, width: 126, alignSelf: 'flex-end' }} ></CommonBtn>
                 </View>
             </View>
         );

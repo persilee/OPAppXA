@@ -1,0 +1,49 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+pod 'React', :path => '../node_modules/react-native', :subspecs => [
+    'Core',
+    'CxxBridge',
+    'DevSupport', 
+    'RCTText',
+    'RCTNetwork',
+    'RCTWebSocket', 
+    'RCTAnimation'
+  ]
+  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+  pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
+  pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
+  pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+
+  pod 'react-native-baidu-map', :podspec => '../node_modules/react-native-baidu-map/ios/react-native-baidu-map.podspec'
+
+target 'PoliceAffairs' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for PoliceAffairs
+
+  target 'PoliceAffairs-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'PoliceAffairsTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+target 'PoliceAffairs-tvOS' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for PoliceAffairs-tvOS
+
+  target 'PoliceAffairs-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end

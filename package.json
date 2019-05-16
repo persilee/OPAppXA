@@ -6,6 +6,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "android": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle",
+    "iOS": "react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/app/release_ios/main.jsbundle --assets-dest ios/app/release_ios/",
     "package-android": "cd android;./gradlew assembleRelease;cd ..",
     "rm-image": "find android/app/src/main/res -name 'assets_image*' |xargs rm -f"
   },

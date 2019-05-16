@@ -39,9 +39,12 @@
 		2DCD954D1E0B4F2C00145EB5 /* PoliceAffairsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PoliceAffairsTests.m */; };
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		3E7C2ABB0AC440E9B4542EC6 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2C2E85409D145E9BC7FD07E /* FontAwesome.ttf */; };
+		567EA22F228BF3BA00237649 /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5641DC7322891B7100985F9C /* libRNCWebView.a */; };
 		569662612289A8A40002E249 /* libRCTHotUpdate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5641DC6D22891B7100985F9C /* libRCTHotUpdate.a */; };
 		569662632289AA0D0002E249 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 569662622289AA0D0002E249 /* libbz2.tbd */; };
 		56D642D72289809600700BFC /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D642B32289806C00700BFC /* libRCTPushNotification.a */; };
+		56DA0CF6228D0DEC0073AFEA /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 56DA0CC0228D0DEC0073AFEA /* assets */; };
+		56DA0CF8228D0E100073AFEA /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 56DA0CF7228D0E100073AFEA /* main.jsbundle */; };
 		74E449CD6D044A45BD42A3C9 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1A04241F55E4DB7B26301CE /* EvilIcons.ttf */; };
 		805D1771273044CB8E323763 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3CD611819584467281471773 /* MaterialCommunityIcons.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
@@ -378,6 +381,20 @@
 			remoteGlobalIDString = 3D7682761D8E76B80014119E;
 			remoteInfo = SplashScreen;
 		};
+		567EA227228BF3A100237649 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 567EA1F6228BF3A100237649 /* RNCWebView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNCWebView;
+		};
+		567EA234228C179D00237649 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 567EA230228C179D00237649 /* RCTBaiduMap.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EF3C22561CC2C30D0099E9B6;
+			remoteInfo = RCTBaiduMap;
+		};
 		56D642B22289806C00700BFC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 56D6429D2289806C00700BFC /* RCTPushNotification.xcodeproj */;
@@ -461,8 +478,12 @@
 		3E36424CFCF34CB2ACF09F7F /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		40E281322D764012B223D98C /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		5601A42E22897BC8002B8B65 /* libRCTPushNotification-tvOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libRCTPushNotification-tvOS.a"; path = "../../../../../../Library/Developer/Xcode/DerivedData/RCTPushNotification-dttogtvndbsgqjdukybsdjyzyfbh/Build/Products/Debug-appletvsimulator/libRCTPushNotification-tvOS.a"; sourceTree = "<group>"; };
+		567EA1F6228BF3A100237649 /* RNCWebView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCWebView.xcodeproj; path = "../node_modules/react-native-webview/ios/RNCWebView.xcodeproj"; sourceTree = "<group>"; };
+		567EA230228C179D00237649 /* RCTBaiduMap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBaiduMap.xcodeproj; path = "../../../../../../Downloads/react-native-baidu-map-master/ios/RCTBaiduMap.xcodeproj"; sourceTree = "<group>"; };
 		569662622289AA0D0002E249 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
 		56D6429D2289806C00700BFC /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
+		56DA0CC0228D0DEC0073AFEA /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = app/release_ios/assets; sourceTree = "<group>"; };
+		56DA0CF7228D0E100073AFEA /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.jsbundle; path = app/release_ios/main.jsbundle; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		60A3BF078EA54CDDB393E4AA /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		67C4548349BE4543890DA94E /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
@@ -501,6 +522,7 @@
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				56D642D72289809600700BFC /* libRCTPushNotification.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
+				567EA22F228BF3BA00237649 /* libRNCWebView.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
@@ -753,6 +775,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		567EA1F7228BF3A100237649 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				567EA228228BF3A100237649 /* libRNCWebView.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		567EA231228C179D00237649 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				567EA235228C179D00237649 /* libRCTBaiduMap.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		56D6429E2289806C00700BFC /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -804,6 +842,8 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				567EA230228C179D00237649 /* RCTBaiduMap.xcodeproj */,
+				567EA1F6228BF3A100237649 /* RNCWebView.xcodeproj */,
 				56D6429D2289806C00700BFC /* RCTPushNotification.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -843,6 +883,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				56DA0CC0228D0DEC0073AFEA /* assets */,
+				56DA0CF7228D0E100073AFEA /* main.jsbundle */,
 				13B07FAE1A68108700A75B9A /* PoliceAffairs */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* PoliceAffairsTests */,
@@ -966,6 +1008,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 2448L8FQW5;
+						ProvisioningStyle = Automatic;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1001,6 +1044,10 @@
 				{
 					ProductGroup = 5E91572E1DD0AC6500FF2AA8 /* Products */;
 					ProjectRef = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
+				},
+				{
+					ProductGroup = 567EA231228C179D00237649 /* Products */;
+					ProjectRef = 567EA230228C179D00237649 /* RCTBaiduMap.xcodeproj */;
 				},
 				{
 					ProductGroup = 5641DC6022891B7000985F9C /* Products */;
@@ -1061,6 +1108,10 @@
 				{
 					ProductGroup = 5641DC4E22891B7000985F9C /* Products */;
 					ProjectRef = 1687311F4FF34BE6A4CFBF26 /* RNCWebView.xcodeproj */;
+				},
+				{
+					ProductGroup = 567EA1F7228BF3A100237649 /* Products */;
+					ProjectRef = 567EA1F6228BF3A100237649 /* RNCWebView.xcodeproj */;
 				},
 				{
 					ProductGroup = 5641DC5422891B7000985F9C /* Products */;
@@ -1402,6 +1453,20 @@
 			remoteRef = 5641DC8422891B7100985F9C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		567EA228228BF3A100237649 /* libRNCWebView.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNCWebView.a;
+			remoteRef = 567EA227228BF3A100237649 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		567EA235228C179D00237649 /* libRCTBaiduMap.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTBaiduMap.a;
+			remoteRef = 567EA234228C179D00237649 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		56D642B32289806C00700BFC /* libRCTPushNotification.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1467,6 +1532,8 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				56DA0CF6228D0DEC0073AFEA /* assets in Resources */,
+				56DA0CF8228D0E100073AFEA /* main.jsbundle in Resources */,
 				0473F32A6CD644978F118B4B /* Entypo.ttf in Resources */,
 				74E449CD6D044A45BD42A3C9 /* EvilIcons.ttf in Resources */,
 				B7F52D2FFBC541E5BBD2F339 /* Feather.ttf in Resources */,
@@ -1690,9 +1757,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 2448L8FQW5;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native-baidu-map/ios/lib";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)..",
@@ -1714,6 +1784,8 @@
 					"$(SRCROOT)/../node_modules/react-native-background-job/ios",
 					"$(SRCROOT)/../node_modules/react-native-update/ios/RCTHotUpdate",
 					"$(SRCROOT)/../node_modules/react-native-picker/ios/RCTBEEPickerManager",
+					"$(SRCROOT)/../node_modules/react-native-baidu-map/ios/RCTBaiduMap",
+					"$(SRCROOT)/../node_modules/react-native/react",
 				);
 				INFOPLIST_FILE = PoliceAffairs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1724,6 +1796,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = PoliceAffairs;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1732,8 +1805,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2448L8FQW5;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native-baidu-map/ios/lib";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)..",
@@ -1755,6 +1831,8 @@
 					"$(SRCROOT)/../node_modules/react-native-background-job/ios",
 					"$(SRCROOT)/../node_modules/react-native-update/ios/RCTHotUpdate",
 					"$(SRCROOT)/../node_modules/react-native-picker/ios/RCTBEEPickerManager",
+					"$(SRCROOT)/../node_modules/react-native-baidu-map/ios/RCTBaiduMap",
+					"$(SRCROOT)/../node_modules/react-native/react",
 				);
 				INFOPLIST_FILE = PoliceAffairs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1765,6 +1843,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = PoliceAffairs;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

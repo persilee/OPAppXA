@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, StyleSheet,Alert,Text, View, Dimensions,PermissionsAndroid,ToastAndroid, } from 'react-native';
+import { Platform, StyleSheet,Alert,Text, View, Dimensions,PermissionsAndroid,ToastAndroid, } from 'react-native';
 
 import { observer, inject } from 'mobx-react';
 import { MapView, MapTypes, Geolocation, Overlay } from 'react-native-baidu-map';
@@ -33,7 +33,11 @@ export default class OneButtonCall extends Component {
     }
 
     componentDidMount() {
-        this.checkPermission(); 
+        if (Platform.OS === 'android') {
+            this.checkPermission(); 
+        }else{
+             Toast.smile('正在开发中，敬请期待...');
+        }
     }
 
     show(data) {
@@ -121,7 +125,8 @@ export default class OneButtonCall extends Component {
     }
 
     render() {
-        console.log('Overlay', Overlay);
+        if (Platform.OS === 'android') {
+            console.log('Overlay', Overlay);
         const { Marker, Arc, Circle, Polyline, Polygon, InfoWindow } = Overlay;
         console.log('this.state.geolocation', this.state.geolocation);
         console.log('this.state.marker', this.state.marker);
@@ -166,6 +171,11 @@ export default class OneButtonCall extends Component {
                 </View>
             </View>
         );
+        }else{
+             return (
+                <View style={[styles.container, GlobalStyles.pageBg]}></View>
+             );
+        }
     }
 }
 

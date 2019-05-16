@@ -49,13 +49,13 @@
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
 
 
-    #if DEBUG
-    // 原来的jsCodeLocation保留在这里
-      jsCodeLocation = jsCodeLocation;
-    #else
+  #if DEBUG
+  // 原来的jsCodeLocation保留在这里
+    jsCodeLocation = jsCodeLocation;
+  #else
       // 非DEBUG情况下启用热更新
-      jsCodeLocation=[RCTHotUpdate bundleURL];
-    #endif
+    jsCodeLocation=[RCTHotUpdate bundleURL];
+  #endif
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"PoliceAffairs"

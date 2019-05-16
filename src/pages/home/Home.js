@@ -150,7 +150,7 @@ if (Platform.OS === 'android') {
 	const backgroundJob = {
 		jobKey: 'backgroundNotif',
 		job: () => {
-			// new NotifService().getAlarmList();
+			new NotifService().getAlarmList();
 		}
 	};
 	BackgroundJob.register(backgroundJob);
@@ -167,7 +167,7 @@ export default class Home extends Component {
 			senderId: 'senderID'
 		};
 
-		// this.notif = new NotifService(this.onRegister.bind(this), this.onNotif.bind(this));
+		this.notif = new NotifService(this.onRegister.bind(this), this.onNotif.bind(this));
 	}
 
 	onRegister(token) {
@@ -189,7 +189,7 @@ export default class Home extends Component {
 			}
 		});
 
-		if (BackgroundJob) {
+		if (Platform.OS === 'android' && BackgroundJob) {
 			BackgroundJob.schedule({
 				jobKey: 'backgroundNotif', //后台运行任务的key
 				period: 5000, //任务执行周期
@@ -341,8 +341,8 @@ export default class Home extends Component {
 						</View>
 					</View>
 
-					<View style={styles.leftTriangleStyle} />
-					<View style={styles.rightTriangleStyle} />
+					{/* <View style={styles.leftTriangleStyle} />
+					<View style={styles.rightTriangleStyle} /> */}
 				</View>
 
 				{this.findmoduleIndex('QuickSearch') > -1 ? (

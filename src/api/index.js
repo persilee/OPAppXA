@@ -60,5 +60,7 @@ export default  {
     getFaceListNow:`${faceUrl}/api/FaceDataManage/SearchFacePage`,  //获取最新人脸列表
     getFaceImage_url:`${faceUrl}/api/ImageProcess/GetFaceList_Url`, // 通过url获取人脸照片的详细信息
     getFaceImage_file:`${faceUrl}/api/ImageProcess/GetFaceList_Upload`, // 通过file获取人脸照片的详细信息
-    getFaceForFaceImage:`${faceUrl}/api/SearchEngine/SearchFaces` // 根据人脸特征搜索人脸数据
+    getFaceForFaceImage:`${faceUrl}/api/SearchEngine/SearchFaces`, // 根据人脸特征搜索人脸数据
+
+    updateRoomUser: `${baseUrl}/appserver/roomUser/updateById` // 改人员是否已离开  成为历史住户
 }
