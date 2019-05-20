@@ -62,5 +62,6 @@ export default  {
     getFaceImage_file:`${faceUrl}/api/ImageProcess/GetFaceList_Upload`, // 通过file获取人脸照片的详细信息
     getFaceForFaceImage:`${faceUrl}/api/SearchEngine/SearchFaces`, // 根据人脸特征搜索人脸数据
 
-    updateRoomUser: `${baseUrl}/appserver/roomUser/updateById` // 改人员是否已离开  成为历史住户
+    updateRoomUser: `${baseUrl}/api/appserver/roomUser/updateById`, // 改人员是否已离开  成为历史住户
+    getCarOutList: `${baseUrl}/mqi/pageOrData/15f151182e234b9f9488062eade46afd`, // 获取车辆出入
 }

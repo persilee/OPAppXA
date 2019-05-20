@@ -12,7 +12,7 @@ let itemArr = [
     {
         name: '联勤资源',
         color: '#FCC23F',
-        image: require('../../../assets/images/home_check.png'),
+        image: require('../../../assets/images/logistics.png'),
         page: '',
         isToggle: true,
         isSwitch: true,
@@ -20,38 +20,38 @@ let itemArr = [
     {
         name: '值班备勤',
         color: '#FCC23F',
-        image: require('../../../assets/images/home_unit.png'),
+        image: require('../../../assets/images/Onduty.png'),
         page: ''
     },
     {
         name: '巡防报备',
         color: '#FEA095',
-        image: require('../../../assets/images/home_check.png'),
+        image: require('../../../assets/images/Scouts.png'),
         page: ''
     },
     {
         name: '专项任务勤务报备',
         color: '#89DBFD',
-        image: require('../../../assets/images/home_task.png'),
+        image: require('../../../assets/images/Specialtask.png'),
         page: ''
     },
     {
         name: '勤务查询',
         color: '#FD6D6D',
-        image: require('../../../assets/images/home_control.png'),
+        image: require('../../../assets/images/Service.png'),
         page: ''
     },
     {
         name: '勤务监督',
         color: '#B9E669',
-        image: require('../../../assets/images/home_task.png'),
+        image: require('../../../assets/images/Supervision.png'),
         page: ''
     },
     {
         name: '绩效统计',
         color: '#FCC23F',
-        image: require('../../../assets/images/home_dispute.png'),
-        page: ''
+        image: require('../../../assets/images/Performance.png'),
+        page: ''  // Performance
     },
 ];
 

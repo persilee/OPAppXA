@@ -12,7 +12,7 @@ let itemArr = [
         name: '车辆出入',
         color: '#89DBFD',
         image: require('../../../assets/images/home_population.png'),
-        page: ''
+        page: 'CarOut'
     },
     {
         name: '门禁管理',

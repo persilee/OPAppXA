@@ -29,6 +29,36 @@ let carTitleArr = [
 	}
 ];
 
+let oldManTitleArr = [
+	{
+		title: '姓名',
+		value: 'RealName'
+	},
+	{
+		title: '报警时间',
+		value: 'alarmTime'
+	},
+	{
+		title: '布控原因',
+		value: 'Remark'
+	}
+];
+let alreadyOldManTitleArr = [
+	...oldManTitleArr,
+	{
+		title: '处理人',
+		value: 'DealAlarmPolice'
+	},
+	{
+	title: '反馈内容',
+		value: 'BackDescription'
+	},
+	{
+	title: '处理时间',
+		value: 'UpdateTime'
+	}
+];
+
 let alreadyCarTitileArr = [
 	...carTitleArr,
 	{
@@ -188,6 +218,48 @@ export default class ControlScene extends Component {
 		}
 	};
 
+	renderOldManItem = (item) => {
+		if (this.props.readStatus == 0) {
+			return (
+				<View>
+					{oldManTitleArr.map((titleItem, index) => {
+						let specialColor = GlobalStyles.font14Gray;
+						return (
+							<View
+								style={[ GlobalStyles.flexDirectRow, GlobalStyles.mb5, GlobalStyles.justifyCenter ]}
+								key={`item-${index}`}
+							>
+								<Text style={[ GlobalStyles.font14Gray, GlobalStyles.mr5 ]}>{titleItem.title}：</Text>
+								<Text style={[ GlobalStyles.flex, GlobalStyles.justifyCenter, specialColor ]}>
+									{item[titleItem.value]}
+								</Text>
+							</View>
+						);
+					})}
+				</View>
+			);
+		} else {
+			return (
+				<View>
+					{alreadyOldManTitleArr.map((titleItem, index) => {
+						let specialColor = GlobalStyles.font14Gray;
+						return (
+							<View
+								style={[ GlobalStyles.flexDirectRow, GlobalStyles.mb5, GlobalStyles.justifyCenter ]}
+								key={`item-${index}`}
+							>
+								<Text style={[ GlobalStyles.font14Gray, GlobalStyles.mr5 ]}>{titleItem.title}：</Text>
+								<Text style={[ GlobalStyles.flex, GlobalStyles.justifyCenter, specialColor ]}>
+									{item[titleItem.value]}
+								</Text>
+							</View>
+						);
+					})}
+				</View>
+			);
+		}
+	};
+
 	renderFaceItem = (item) => {
 		if (this.props.readStatus == 0) {
 			return (
@@ -244,82 +316,50 @@ export default class ControlScene extends Component {
 		}
 	};
 
-	_renderItem = ({ item, index }) => {
-		let color = this.convertAlarmColor(item.alarmType);
-		let specialColor = GlobalStyles.font14Gray;
-		if (item.value == 'like') {
-			specialColor = GlobalStyles.font14Red;
-		}
-		return (
-			<View style={[ GlobalStyles.pageBg ]}>
-				{item.alarmType == '人脸报警' ? (
-					<View style={[ GlobalStyles.pageBg ]}>
-						<View style={[ GlobalStyles.containerBg, styles.itemContainer ]}>
+	_renderIsAlarmType = (item) => {
+		console.log('item',item);
+		if(item.alarmType == '人脸报警') {
+			return (
+				<View style={[ GlobalStyles.pageBg ]}>
+					<View style={[ GlobalStyles.containerBg, styles.itemContainer ]}>
+						<View
+							style={[
+								GlobalStyles.flexDirectRow,
+								GlobalStyles.mb10,
+								GlobalStyles.alignCenter,
+								{ justifyContent: 'space-between' }
+							]}
+						>
 							<View
 								style={[
-									GlobalStyles.flexDirectRow,
-									GlobalStyles.mb10,
+									styles.imgFaceContainer,
 									GlobalStyles.alignCenter,
-									{ justifyContent: 'space-between' }
+									GlobalStyles.borderColor
 								]}
 							>
-								<View
-									style={[
-										styles.imgFaceContainer,
-										GlobalStyles.alignCenter,
-										GlobalStyles.borderColor
-									]}
-								>
-									<Image source={{ uri: item.DestinationUrl }} style={styles.imgFaceStyle} />
-									<Text style={[ GlobalStyles.font12Gray, styles.imgText ]}>原始图片</Text>
-								</View>
-								<View style={GlobalStyles.justifyCenter}>
-									<Text style={[ GlobalStyles.font12Gray, GlobalStyles.mb5, GlobalStyles.taCenter ]}>
-										VS
-									</Text>
-									<Text style={[ GlobalStyles.font12Gray ]}>
-										相似度:<Text style={GlobalStyles.font12Red}>{item.Similary * 100}%</Text>
-									</Text>
-								</View>
-								<View
-									style={[
-										styles.imgFaceContainer,
-										GlobalStyles.alignCenter,
-										GlobalStyles.borderColor
-									]}
-								>
-									<Image source={{ uri: item.SnapImageUrl }} style={styles.imgFaceStyle} />
-									<Text style={[ GlobalStyles.font12Gray, styles.imgText ]}>抓拍照片</Text>
-								</View>
+								<Image source={{ uri: item.DestinationUrl }} style={styles.imgFaceStyle} />
+								<Text style={[ GlobalStyles.font12Gray, styles.imgText ]}>原始图片</Text>
 							</View>
-							{this.renderFaceItem(item)}
-							{this.props.readStatus == 0 ? (
-								<CommonBtn
-									text={'处 理'}
-									onPress={() => this.openFilterModal(item)}
-									style={{ marginTop: 10, width: 86, alignSelf: 'flex-end' }}
-								/>
-							) : null}
-						</View>
-					</View>
-				) : (
-					<View style={[ GlobalStyles.containerBg, styles.itemContainer ]}>
-						<View style={[ GlobalStyles.flexDirectRow, GlobalStyles.mb10, GlobalStyles.alignCenter ]}>
-							<View style={[ styles.imgContainer, GlobalStyles.alignCenter, GlobalStyles.borderColor ]}>
-								<View style={[ GlobalStyles.center, { position: 'relative' } ]}>
-									<Image
-										source={{
-											uri: item.SnapImageUrl
-										}}
-										resizeMode="contain"
-										style={styles.imgStyle}
-									/>
-									{/* <Text style={[ GlobalStyles.font14Gray, styles.alarmTips ]}>原始图片</Text> */}
-								</View>
-								<Text style={[ GlobalStyles.font12Gray, styles.imgText ]}>抓拍图片</Text>
+							<View style={GlobalStyles.justifyCenter}>
+								<Text style={[ GlobalStyles.font12Gray, GlobalStyles.mb5, GlobalStyles.taCenter ]}>
+									VS
+								</Text>
+								<Text style={[ GlobalStyles.font12Gray ]}>
+									相似度:<Text style={GlobalStyles.font12Red}>{item.Similary * 100}%</Text>
+								</Text>
+							</View>
+							<View
+								style={[
+									styles.imgFaceContainer,
+									GlobalStyles.alignCenter,
+									GlobalStyles.borderColor
+								]}
+							>
+								<Image source={{ uri: item.SnapImageUrl }} style={styles.imgFaceStyle} />
+								<Text style={[ GlobalStyles.font12Gray, styles.imgText ]}>抓拍照片</Text>
 							</View>
 						</View>
-						{this.renderCarItem(item)}
+						{this.renderFaceItem(item)}
 						{this.props.readStatus == 0 ? (
 							<CommonBtn
 								text={'处 理'}
@@ -328,7 +368,75 @@ export default class ControlScene extends Component {
 							/>
 						) : null}
 					</View>
-				)}
+				</View>
+			)
+		}else if(item.alarmType == '车辆报警'){
+			return (
+				<View style={[ GlobalStyles.containerBg, styles.itemContainer ]}>
+					<View style={[ GlobalStyles.flexDirectRow, GlobalStyles.mb10, GlobalStyles.alignCenter ]}>
+						<View style={[ styles.imgContainer, GlobalStyles.alignCenter, GlobalStyles.borderColor ]}>
+							<View style={[ GlobalStyles.center, { position: 'relative' } ]}>
+								<Image
+									source={{
+										uri: item.SnapImageUrl
+									}}
+									resizeMode="contain"
+									style={styles.imgStyle}
+								/>
+								{/* <Text style={[ GlobalStyles.font14Gray, styles.alarmTips ]}>原始图片</Text> */}
+							</View>
+							<Text style={[ GlobalStyles.font12Gray, styles.imgText ]}>抓拍图片</Text>
+						</View>
+					</View>
+					{this.renderCarItem(item)}
+					{this.props.readStatus == 0 ? (
+						<CommonBtn
+							text={'处 理'}
+							onPress={() => this.openFilterModal(item)}
+							style={{ marginTop: 10, width: 86, alignSelf: 'flex-end' }}
+						/>
+					) : null}
+				</View>
+			)
+		}else if(item.alarmType == '老人报警'){
+			return (
+				<View style={[ GlobalStyles.containerBg, styles.itemContainer ]}>
+					<View style={[ GlobalStyles.flexDirectRow, GlobalStyles.mb10, GlobalStyles.alignCenter ]}>
+						<View style={[ styles.imgContainer, GlobalStyles.alignCenter, GlobalStyles.borderColor ]}>
+							<View style={styles.imageView}>
+								{item.SnapImageUrl ?
+									(<Image source={{ uri: item.SnapImageUrl }} style={[styles.image, { marginRight: 30, marginTop: 20 }]}></Image>) :
+									(<Image source={require("../../../assets/images/idcard_default.png")} style={[styles.image, { marginRight: 30 }]}></Image>)
+								}
+								{item.DestinationUrl ?
+									(<Image source={{ uri: item.DestinationUrl }} style={[styles.image, { marginTop: 20 }]}></Image>) :
+									(<Image source={require("../../../assets/images/image_default.png")} style={[styles.image]}></Image>)
+								}
+							</View>
+						</View>
+					</View>
+					{this.renderOldManItem(item)}
+					{this.props.readStatus == 0 ? (
+						<CommonBtn
+							text={'处 理'}
+							onPress={() => this.openFilterModal(item)}
+							style={{ marginTop: 10, width: 86, alignSelf: 'flex-end' }}
+						/>
+					) : null}
+				</View>
+			);
+		}			
+	}
+
+	_renderItem = ({ item, index }) => {
+		let color = this.convertAlarmColor(item.alarmType);
+		let specialColor = GlobalStyles.font14Gray;
+		if (item.value == 'like') {
+			specialColor = GlobalStyles.font14Red;
+		}
+		return (
+			<View style={[ GlobalStyles.pageBg ]}>
+				{ this._renderIsAlarmType(item) }
 			</View>
 		);
 	};
@@ -526,6 +634,15 @@ const styles = StyleSheet.create({
 		height: 200,
 		borderRadius: 3
 	},
+	imageView:{
+        flexDirection:"row",
+        justifyContent:"center"
+	},
+	image:{
+        width: 130,
+        height:160,
+        borderRadius: 4
+    },
 	imgFaceStyle: {
 		width: 104,
 		height: 123,

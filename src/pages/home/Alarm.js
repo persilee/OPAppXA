@@ -20,7 +20,7 @@ let itemArr = [
     {
         name: '一键报警',
         color: '#FEA095',
-        image: require('../../../assets/images/baojing.png'),
+        image: require('../../../assets/images/Alarm.png'),
         page: 'OneButtonCall'
     }
 ];

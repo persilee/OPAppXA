@@ -38,6 +38,7 @@ import Joint from '../pages/home/Joint';
 import ItPolice from '../pages/home/ItPolice';
 import Duty from '../pages/home/Duty';
 import Face from '../pages/home/Face';
+import CarOut from '../pages/carOut/CarOut';
 import Mine from '../pages/mine/Mine';
 import QuickSearch from '../pages/quicksearch/QuickSearch';
 import HouseReal from '../pages/house/HouseReal';
@@ -125,6 +126,13 @@ export default createStackNavigator(
 			screen: Face,
 			navigationOptions: ({ navigation }) => ({
 				headerTitle: '人脸识别',
+				headerRight: <View />
+			})
+		},
+		CarOut: {
+			screen: CarOut,
+			navigationOptions: ({ navigation }) => ({
+				headerTitle: '车辆出入',
 				headerRight: <View />
 			})
 		},

@@ -91,10 +91,10 @@ export default class  PopulaceDetail extends Component {
     updateRoomUser = (roomUserId) => {
         console.log('roomUserId',roomUserId);
         let params={
-            id: roomUserId
+            // id: roomUserId
           };
 
-        CommonFetch.doFetchExtends({api: RoutApi.updateRoomUser, params, callback: (responseData) => {
+        CommonFetch.doFetchExtends({api: `${RoutApi.updateRoomUser}?id=${roomUserId}`, params, callback: (responseData) => {
             
             console.log('updateRoomUser', responseData);
         }, loading: false});
