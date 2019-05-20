@@ -10,13 +10,13 @@ let itemArr = [
     {
         name: '房屋核查',
         color: '#FCC23F',
-        image: require('../../../assets/images/home_check.png'),
+        image: require('../../../assets/images/Check.png'),
         page: 'Check'
     },
     {
         name: '报警任务',
         color: '#FEA095',
-        image: require('../../../assets/images/home_control.png'),
+        image: require('../../../assets/images/Control.png'),
         page: 'Control'
     }
 ];

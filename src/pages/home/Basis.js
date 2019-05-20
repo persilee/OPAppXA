@@ -11,13 +11,13 @@ let itemArr = [
     {
         name: '实有房屋',
         color: '#89DBFD',
-        image: require('../../../assets/images/home_house.png'),
+        image: require('../../../assets/images/HouseReal.png'),
         page: 'HouseReal'
     },
     {
         name: '实有人口',
         color: '#FD6D6D',
-        image: require('../../../assets/images/home_population.png'),
+        image: require('../../../assets/images/Population.png'),
         page: 'Population',
         isToggle: true,
         isSwitch: true,
@@ -25,13 +25,13 @@ let itemArr = [
     {
         name: '实有单位',
         color: '#B9E669',
-        image: require('../../../assets/images/home_unit.png'),
+        image: require('../../../assets/images/RealUnit.png'),
         page: 'RealUnit'
     },
     {
         name: '实有车辆',
         color: '#FCC23F',
-        image: require('../../../assets/images/home_car.png'),
+        image: require('../../../assets/images/VehicleRegional.png'),
         page: 'VehicleRegional'
     },
 ];

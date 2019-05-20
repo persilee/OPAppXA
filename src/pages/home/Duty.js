@@ -11,26 +11,26 @@ import { Toast } from 'teaset';
 let itemArr = [
     {
         name: '警员信',
-        color: '#FCC23F',
-        image: require('../../../assets/images/home_check.png'),
+        color: '#89DBFD',
+        image: require('../../../assets/images/PoliceBelieve.png'),
         page: '',
     },
     {
         name: '警用装备',
         color: '#FCC23F',
-        image: require('../../../assets/images/home_unit.png'),
+        image: require('../../../assets/images/PoliceEquipment.png'),
         page: ''
     },
     {
         name: '智能排班',
         color: '#FEA095',
-        image: require('../../../assets/images/home_check.png'),
+        image: require('../../../assets/images/Intelligent.png'),
         page: ''
     },
     {
         name: '地图实况展示',
-        color: '#FEA095',
-        image: require('../../../assets/images/home_check.png'),
+        color: '#B9E669',
+        image: require('../../../assets/images/Map.png'),
         page: ''
     },
 ];

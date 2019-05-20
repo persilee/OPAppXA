@@ -11,14 +11,14 @@ let itemArr = [
     {
         name: '车辆出入',
         color: '#89DBFD',
-        image: require('../../../assets/images/home_population.png'),
+        image: require('../../../assets/images/CarOut.png'),
         page: 'CarOut'
     },
     {
         name: '门禁管理',
         color: '#B9E669',
         image: require('../../../assets/images/home_dispute.png'),
-        page: ''
+        page: 'Entrance'
     }
 ];
 

@@ -12,7 +12,7 @@ let itemArr = [
     {
         name: '警务通讯录',
         color: '#FCC23F',
-        image: require('../../../assets/images/home_check.png'),
+        image: require('../../../assets/images/Directory.png'),
         page: 'AddressList',
         isToggle: true,
         isSwitch: true,

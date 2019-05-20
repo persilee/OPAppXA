@@ -64,4 +64,6 @@ export default  {
 
     updateRoomUser: `${baseUrl}/api/appserver/roomUser/updateById`, // 改人员是否已离开  成为历史住户
     getCarOutList: `${baseUrl}/mqi/pageOrData/15f151182e234b9f9488062eade46afd`, // 获取车辆出入
+    getEntranceComList: `${baseUrl}/mqi/pageOrData/5cd34d77b1b949f09db527de6731e8f6`, // 获门禁数据（小区方式）
+    getEntranceUnitList: `${baseUrl}/mqi/pageOrData/160c9826f29345538e672755a3789fba`, // 获门禁数据（单元楼方式）
 }

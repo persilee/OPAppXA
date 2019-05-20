@@ -39,6 +39,8 @@ import ItPolice from '../pages/home/ItPolice';
 import Duty from '../pages/home/Duty';
 import Face from '../pages/home/Face';
 import CarOut from '../pages/carOut/CarOut';
+import Entrance from '../pages/entrance/Entrance';
+import FloorSceneDetail from '../pages/entrance/FloorSceneDetail';
 import Mine from '../pages/mine/Mine';
 import QuickSearch from '../pages/quicksearch/QuickSearch';
 import HouseReal from '../pages/house/HouseReal';
@@ -133,6 +135,20 @@ export default createStackNavigator(
 			screen: CarOut,
 			navigationOptions: ({ navigation }) => ({
 				headerTitle: '车辆出入',
+				headerRight: <View />
+			})
+		},
+		Entrance: {
+			screen: Entrance,
+			navigationOptions: ({ navigation }) => ({
+				headerTitle: '门禁管理',
+				headerRight: <View />
+			})
+		},
+		FloorSceneDetail: {
+			screen: FloorSceneDetail,
+			navigationOptions: ({ navigation }) => ({
+				// headerTitle: '门禁管理',
 				headerRight: <View />
 			})
 		},

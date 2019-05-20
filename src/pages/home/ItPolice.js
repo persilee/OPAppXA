@@ -11,8 +11,8 @@ import { Toast } from 'teaset';
 let itemArr = [
     {
         name: '警情警力实时态势',
-        color: '#FCC23F',
-        image: require('../../../assets/images/home_check.png'),
+        color: '#89DBFD',
+        image: require('../../../assets/images/Police.png'),
         page: '',
         isToggle: true,
         isSwitch: true,
@@ -20,7 +20,7 @@ let itemArr = [
     {
         name: '警情状态更改',
         color: '#FCC23F',
-        image: require('../../../assets/images/home_unit.png'),
+        image: require('../../../assets/images/Enforcement.png'),
         page: ''
     },
     {
