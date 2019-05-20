@@ -11,7 +11,7 @@ import { Toast } from 'teaset';
 let itemArr = [
     {
         name: '联勤资源',
-        color: '#FCC23F',
+        color: '#B9E669',
         image: require('../../../assets/images/logistics.png'),
         page: '',
         isToggle: true,

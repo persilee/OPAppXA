@@ -17,7 +17,7 @@ let itemArr = [
     {
         name: '门禁管理',
         color: '#B9E669',
-        image: require('../../../assets/images/home_dispute.png'),
+        image: require('../../../assets/images/Entrance.png'),
         page: 'Entrance'
     }
 ];

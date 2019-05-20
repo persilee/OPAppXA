@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
     StyleSheet,ScrollView,Modal,
     Text,TouchableOpacity,TextInput,
-    View,PixelRatio,FlatList,Image
+    View,Alert,FlatList,Image
 } from 'react-native';
 
 import ItemInput from '../../componets/ItemInput';
@@ -14,6 +14,7 @@ import RoutApi from '../../api/index';
 import Toast, {DURATION} from 'react-native-easy-toast';
 import CommonBtn from '../../componets/CommonBtn';
 import {getUserId} from "../../utils/Common";
+import { Toast as TeasetToast } from 'teaset';
 
 
 export default class  PopulaceDetail extends Component {
@@ -95,8 +96,17 @@ export default class  PopulaceDetail extends Component {
           };
 
         CommonFetch.doFetchExtends({api: `${RoutApi.updateRoomUser}?id=${roomUserId}`, params, callback: (responseData) => {
-            
             console.log('updateRoomUser', responseData);
+            Alert.alert('提示', '是否标记为已离开', [
+				{ text: '否'},
+				{ text: '是', onPress: () => { 
+                    if(responseData.data == 0){
+                        TeasetToast.smile('标记成功');
+                    }else{
+                        TeasetToast.fail('标记失败');
+                    }
+                 } },
+			]);
         }, loading: false});
     }
 
