@@ -12,19 +12,22 @@ let itemArr = [
         name: '重点房屋核查',
         color: '#89DBFD',
         image: require('../../../assets/images/HouseReal.png'),
-        page: 'Check'
+        page: 'CheckList',
+        type: 'Emphasis'
     },
     {
         name: '空置房屋核查',
         color: '#FD6D6D',
         image: require('../../../assets/images/HouseReal.png'),
-        page: 'Check'
+        page: 'CheckList',
+        type: 'Vacancy'
     },
     {
         name: '七人以上房屋核查',
         color: '#B9E669',
         image: require('../../../assets/images/HouseReal.png'),
-        page: 'Check'
+        page: 'CheckList',
+        type: 'MultiUser'
     }
 ];
 
@@ -45,10 +48,11 @@ export default class CheckListType extends Component {
         });
     }
 
-    userPress = async (page) => {
-        if(page){
+    userPress = async (item) => {
+        console.log('item',item);
+        if(item.page){
             const { navigate } = this.props.navigation;
-            navigate(page);
+            navigate(item.page, {type:item.type});
         }else{
             Toast.smile('正在开发中，敬请期待...');
         }
@@ -66,7 +70,7 @@ export default class CheckListType extends Component {
                             name={item.name}
                             color={item.color}
                             image={item.image}
-                            onPress={() => this.userPress(item.page)}
+                            onPress={() => this.userPress(item)}
                             isText={item.isText}
                         />
                     );
@@ -103,7 +107,7 @@ export default class CheckListType extends Component {
                                     name={item.name}
                                     color={item.color}
                                     image={item.image}
-                                    onPress={() => this.userPress(item.page)}
+                                    onPress={() => this.userPress(item)}
                                 />
                             );
                         }

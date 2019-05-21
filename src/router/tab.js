@@ -6,7 +6,7 @@ import {renderTabIcon} from '../utils/RouterUtil';
 
 import HomePage from "../pages/home/Home";
 import MinePage from "../pages/mine/Mine";
-import CheckList from "../pages/check/CheckList";
+import CheckListType from "../pages/check/CheckListType";
 import ControlList from "../pages/control/ControlList";
 import DisputeList from "../pages/dispute/DisputeList";
 
@@ -24,7 +24,7 @@ const Tabs = createBottomTabNavigator({
     },
 
     Check: {
-        screen: CheckList,
+        screen: CheckListType,
         navigationOptions:({navigation}) => ({
             tabBarLabel: '核查',
             tabBarIcon:({focused, tintColor}) => {
@@ -32,7 +32,7 @@ const Tabs = createBottomTabNavigator({
             },
             tabBarOnPress:(obj)=>{
                 console.log("obj",obj);
-                DeviceEventEmitter.emit("reloadCheckList");
+                DeviceEventEmitter.emit("");
                 obj.navigation.navigate('CheckListType');
             }
         }),

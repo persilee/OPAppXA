@@ -30,8 +30,7 @@ export default class  CheckListWait extends Component {
 
         this.state = {
             waitData:[],
-            
-
+            type: this.props.type,
             modalVisible:false,
             modalView:null,
             clickIndex:0,
@@ -43,7 +42,9 @@ export default class  CheckListWait extends Component {
     }
 
     componentDidMount(){
-        this.getWaitList();
+        console.log('type',this.state.type);
+        console.log('props',this.props);
+        this.getWaitList(this.state.type);
         this.reload = DeviceEventEmitter.addListener('reloadCheckList',(msg) => {
             this.setState({
                 clickIndex:0,
@@ -59,8 +60,12 @@ export default class  CheckListWait extends Component {
         this.closeModal();
     }
 
+    //获取重点房屋核查列表
+    getEmphasisList = () => {
 
-    getWaitList = () => {
+    }
+
+    getWaitList = (type) => {
 
         if(this.state.waitTotalNum == -1 || this.state.waitTotalNum > (this.state.waitPageNo-1)*10){
             
@@ -74,11 +79,21 @@ export default class  CheckListWait extends Component {
                        userId: this.props.User.userId,
                        taskType:'1'
                    }};
+            let url = '';
+
+            if(type == 'Emphasis') {
+                url = RoutApi.getEmphasisList;
+            }else if(type == 'Vacancy') {
+                url = RoutApi.getVacancyList;
+            }else if(type == 'MultiUser') {
+                url = RoutApi.getMultiUserList;
+            }
 
             console.info("getWaitCheckList params",params);
 
             CommonFetch.doFetch(
                 RoutApi.getWaitCheckList,
+                // url,
                 params,
                 (responseData)=>{
 
@@ -126,6 +141,7 @@ export default class  CheckListWait extends Component {
             RoutApi.taskperson,
             params,
             (responseData)=>{
+                console.log('responseData',responseData);
             },
             null,this.props.User.token);
             

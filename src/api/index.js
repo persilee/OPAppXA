@@ -66,4 +66,8 @@ export default  {
     getCarOutList: `${baseUrl}/mqi/pageOrData/15f151182e234b9f9488062eade46afd`, // 获取车辆出入
     getEntranceComList: `${baseUrl}/mqi/pageOrData/5cd34d77b1b949f09db527de6731e8f6`, // 获门禁数据（小区方式）
     getEntranceUnitList: `${baseUrl}/mqi/pageOrData/160c9826f29345538e672755a3789fba`, // 获门禁数据（单元楼方式）
+    getEmphasisList: `${baseUrl}/mqi/pageOrData/aa978659c1b94600b550415f49c6c0bd`, // 获门重房点核查数据
+    getVacancyList: `${baseUrl}/mqi/pageOrData/6668693ae29f4a44b5da4e7052e073e7`, // 获门空置房核查数据
+    getMultiUserList: `${baseUrl}/mqi/pageOrData/91def9cfa2d744bcae5a8f938aeec25f`, // 获门空置房核查数据
+
 }

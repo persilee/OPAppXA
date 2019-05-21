@@ -47,6 +47,7 @@ export default class  WaitCheck extends Component {
             RoutApi.getCheckTaskInfo,
             params,
             (responseData)=>{
+                console.log('responseData',responseData);
                 if(responseData.data && responseData.data.list && responseData.data.list.length > 0 ){
                     this.setState({
                         data:responseData.data.list[0]
@@ -73,6 +74,7 @@ export default class  WaitCheck extends Component {
             RoutApi.dealCheckTask,
             params,
             (responseData)=>{
+                console.log('responseData',responseData);
                 this.props.navigation.navigate('DealTask',{taskId:this.state.taskId});
                 DeviceEventEmitter.emit('reloadCheckList',"登录成功");
             },

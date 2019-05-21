@@ -79,6 +79,10 @@ export default class Login extends Component{
                 text: '众美绿都',
                 value: 10009,
             },
+            {
+                text: '花果园',
+                value: 10010,
+            },
         ];
 
         this.state = {

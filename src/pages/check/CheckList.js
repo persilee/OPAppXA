@@ -18,6 +18,7 @@ export default class  CheckList extends Component {
 
     constructor(props) {
         super(props);
+        this.type = this.props.navigation.getParam('type', {});
     }
 
 
@@ -36,8 +37,8 @@ export default class  CheckList extends Component {
                     tabBarTextStyle={styles.tabBarText}
                     style={{borderWidth: 0,height:60}}>
 
-                    <CheckListWait navigation={this.props.navigation} tabLabel='待核查任务'/>
-                    <CheckListDone navigation={this.props.navigation} tabLabel='已核查任务'/>
+                    <CheckListWait type={this.type} navigation={this.props.navigation} tabLabel='待核查任务'/>
+                    <CheckListDone type={this.type} navigation={this.props.navigation} tabLabel='已核查任务'/>
                     
                 </ScrollableTabView>
 

@@ -113,6 +113,7 @@ export default class  DealTask extends Component {
             RoutApi.getDictList,
             params,
             (responseData)=>{
+                console.log('getNationList',responseData);
                 this.props.CheckData.setNationList(responseData.data.list);
             },
             this.refs.toast)
@@ -130,6 +131,7 @@ export default class  DealTask extends Component {
             RoutApi.getDictList,
             params,
             (responseData)=>{
+                console.log('getCountryList',responseData);
                 this.props.CheckData.setCountryList(responseData.data.list);
             },
             this.refs.toast)
@@ -147,6 +149,7 @@ export default class  DealTask extends Component {
             RoutApi.getDictList,
             params,
             (responseData)=>{
+                console.log('getPeopleTypeList',responseData);
                 this.props.CheckData.setPeopleTypeList(responseData.data.list);
             },
             this.refs.toast)

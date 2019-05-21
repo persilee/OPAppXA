@@ -13,6 +13,7 @@ import CheckResult from '../pages/check/CheckResult';
 import CheckListType from '../pages/check/CheckListType';
 import CheckResultPhoto from '../pages/check/CheckResultPhoto';
 import WaitCheck from '../pages/check/WaitCheck';
+import CheckList from '../pages/check/CheckList';
 import DealTask from '../pages/check/DealTask';
 import DealTaskPerson from '../pages/check/DealTaskPerson';
 import DealTaskCard from '../pages/check/DealTaskCard';
@@ -223,6 +224,13 @@ export default createStackNavigator(
 			screen: WaitCheck,
 			navigationOptions: ({ navigation }) => ({
 				headerTitle: '待核查任务',
+				headerRight: <View />
+			})
+		},
+		CheckList: {
+			screen: CheckList,
+			navigationOptions: ({ navigation }) => ({
+				headerTitle: '核查',
 				headerRight: <View />
 			})
 		},
