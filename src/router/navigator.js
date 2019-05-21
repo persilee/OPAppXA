@@ -10,6 +10,7 @@ import PopulaceList from '../pages/populace/PopulaceList';
 import PopulaceDetail from '../pages/populace/PopulaceDetail';
 
 import CheckResult from '../pages/check/CheckResult';
+import CheckListType from '../pages/check/CheckListType';
 import CheckResultPhoto from '../pages/check/CheckResultPhoto';
 import WaitCheck from '../pages/check/WaitCheck';
 import DealTask from '../pages/check/DealTask';
@@ -192,6 +193,13 @@ export default createStackNavigator(
 			screen: PopulaceDetail,
 			navigationOptions: ({ navigation }) => ({
 				headerTitle: '人口详情',
+				headerRight: <View />
+			})
+		},
+		CheckListType: {
+			screen: CheckListType,
+			navigationOptions: ({ navigation }) => ({
+				headerTitle: '核查类型',
 				headerRight: <View />
 			})
 		},

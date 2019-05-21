@@ -33,7 +33,7 @@ const Tabs = createBottomTabNavigator({
             tabBarOnPress:(obj)=>{
                 console.log("obj",obj);
                 DeviceEventEmitter.emit("reloadCheckList");
-                obj.navigation.navigate('Check');
+                obj.navigation.navigate('CheckListType');
             }
         }),
     },

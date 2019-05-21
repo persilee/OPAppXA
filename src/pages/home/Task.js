@@ -11,7 +11,7 @@ let itemArr = [
         name: '房屋核查',
         color: '#FCC23F',
         image: require('../../../assets/images/Check.png'),
-        page: 'Check'
+        page: 'CheckListType'
     },
     {
         name: '报警任务',

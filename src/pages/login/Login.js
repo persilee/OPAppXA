@@ -48,7 +48,7 @@ export default class Login extends Component{
                 value: 10001,
             },
             {
-                text: '明航小区',
+                text: '民航小区',
                 value: 10002,
             },
             {
@@ -70,6 +70,14 @@ export default class Login extends Component{
             {
                 text: '廊坊安次',
                 value: 10007,
+            },
+            {
+                text: '九泉凯旋苑',
+                value: 10008,
+            },
+            {
+                text: '众美绿都',
+                value: 10009,
             },
         ];
 
