@@ -170,7 +170,10 @@ export default class  CheckList extends Component {
 			if (responseData.msg == 'success') {
 				this.modalSelect(false);
 				this.setState({
-					text: '',
+                    text: '',
+                    pageNo:1,
+                    pageSize:10,
+                    totalNum:-1,
 					data:[]
 				},this.getList);
                 
