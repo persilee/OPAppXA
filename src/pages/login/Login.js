@@ -72,7 +72,7 @@ export default class Login extends Component{
                 value: 10007,
             },
             {
-                text: '九泉凯旋苑',
+                text: '酒泉凯旋苑',
                 value: 10008,
             },
             {

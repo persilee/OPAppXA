@@ -230,7 +230,7 @@ export default createStackNavigator(
 		CheckList: {
 			screen: CheckList,
 			navigationOptions: ({ navigation }) => ({
-				headerTitle: '核查',
+				// headerTitle: '核查',
 				headerRight: <View />
 			})
 		},

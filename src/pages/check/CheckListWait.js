@@ -92,8 +92,8 @@ export default class  CheckListWait extends Component {
             console.info("getWaitCheckList params",params);
 
             CommonFetch.doFetch(
-                RoutApi.getWaitCheckList,
-                // url,
+                // RoutApi.getWaitCheckList,
+                url,
                 params,
                 (responseData)=>{
 

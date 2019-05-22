@@ -52,7 +52,7 @@ export default class CheckListType extends Component {
         console.log('item',item);
         if(item.page){
             const { navigate } = this.props.navigation;
-            navigate(item.page, {type:item.type});
+            navigate(item.page, {type:item.type, name: item.name});
         }else{
             Toast.smile('正在开发中，敬请期待...');
         }
